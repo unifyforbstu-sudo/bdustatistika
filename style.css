@@ -4,9 +4,12 @@ html {
   font-size: 16px;
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  /* Performans: hardware acceleration */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 body {
-  font-family: 'Segoe UI', Arial, sans-serif;
+  font-family: 'Segoe UI', system-ui, Arial, sans-serif;
   background: #f5f6fa;
   color: #1a2340;
   min-height: 100vh;
@@ -16,6 +19,13 @@ body {
   -webkit-tap-highlight-color: transparent;
   /* Overscroll behavior */
   overscroll-behavior-y: contain;
+  /* Touch callout disable */
+  -webkit-touch-callout: none;
+}
+/* Bütün interaktiv elementlər üçün touch-action */
+button, [role="button"], .filter-chip, .faculty-card, .korpus-card, .km-fac-card {
+  touch-action: manipulation;
+  cursor: pointer;
 }
 img { max-width: 100%; display: block; }
 button { cursor: pointer; font-family: inherit; border: none; }
@@ -85,10 +95,10 @@ header {
   background: linear-gradient(135deg, #0a1433 60%, #1a3a6e);
   color: #fff;
   text-align: center;
-  padding: 48px 20px 40px;
+  padding: 40px 20px 30px;
 }
 .hero h1 { font-size: 2rem; font-weight: 800; margin-bottom: 8px; }
-.hero p { font-size: 1rem; opacity: .8; max-width: 540px; margin: 0 auto 26px; }
+.hero p { font-size: 1rem; opacity: .8; max-width: 540px; margin: 0 auto 0; }
 .hero-btn {
   background: #c8a84b;
   color: #0a1433;
@@ -100,6 +110,113 @@ header {
 }
 .hero-btn:hover { background: #e0be5a; transform: translateY(-2px); }
 .hero-btn:active { transform: translateY(0); }
+
+/* ===== HOME NAV KARTLARI ===== */
+.home-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin: 28px 0 24px;
+}
+.home-nav-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px 20px 22px;
+  box-shadow: 0 3px 16px rgba(10,20,51,.09);
+  border: 2px solid transparent;
+  cursor: pointer;
+  text-align: left;
+  transition: transform .2s, box-shadow .2s, border-color .2s;
+  -webkit-tap-highlight-color: transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+  /* Touch events explicitly enabled */
+  touch-action: manipulation;
+}
+.home-nav-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  border-radius: 16px 16px 0 0;
+}
+.home-nav-calc::before    { background: linear-gradient(90deg, #c8a84b, #e0be5a); }
+.home-nav-faculties::before { background: linear-gradient(90deg, #0a1433, #1a3a6e); }
+.home-nav-korpuslar::before { background: linear-gradient(90deg, #1a7a4a, #27ae60); }
+.home-nav-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 32px rgba(10,20,51,.15);
+  border-color: #c8a84b;
+}
+.home-nav-card:active { transform: translateY(-2px); }
+.home-nav-icon { font-size: 2.2rem; margin-bottom: 4px; }
+.home-nav-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #0a1433;
+  line-height: 1.2;
+}
+.home-nav-desc {
+  font-size: .8rem;
+  color: #666;
+  line-height: 1.5;
+  flex: 1;
+}
+.home-nav-arrow {
+  font-size: 1.1rem;
+  color: #c8a84b;
+  font-weight: 700;
+  margin-top: 6px;
+}
+
+/* ===== HOME STATS ===== */
+.home-stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 36px;
+}
+.home-stat {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px 12px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(10,20,51,.07);
+}
+.home-stat-num {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: #0a1433;
+  line-height: 1;
+  margin-bottom: 5px;
+}
+.home-stat-lbl {
+  font-size: .72rem;
+  color: #777;
+  font-weight: 600;
+}
+
+/* ===== PAGE HEADER BAR (Fakültələr/Korpuslar page) ===== */
+.page-header-bar {
+  background: linear-gradient(135deg, #0a1433 55%, #1a3a6e);
+  color: #fff;
+  padding: 24px 0 20px;
+  margin-bottom: 4px;
+}
+.page-header-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-bottom: 5px;
+  color: #fff;
+}
+.page-header-desc {
+  font-size: .88rem;
+  opacity: .75;
+  color: #fff;
+}
 
 /* ===== SECTION HEADING ===== */
 .section-title {
@@ -656,21 +773,31 @@ header {
 .form-group select,
 .form-group input[type="number"] {
   width: 100%;
-  padding: 10px 12px;
+  padding: 12px 14px;
   border: 1.5px solid #d0d6e8;
   border-radius: 8px;
-  font-size: .9rem;
+  /* Mobil zoom fix: min 16px */
+  font-size: 16px;
   background: #f8f9ff;
   color: #1a2340;
   transition: border-color .2s;
   -webkit-appearance: none;
   appearance: none;
+  /* Touch sürətləndirmə */
+  touch-action: manipulation;
 }
 .form-group select:focus,
 .form-group input:focus {
   outline: none;
   border-color: #c8a84b;
   background: #fff;
+}
+/* Select arrow */
+.form-group select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
 }
 
 /* ===== FILTER SECTION ===== */
@@ -694,38 +821,47 @@ header {
   font-weight: 600;
 }
 .filter-label .filter-req.ok { background: #28a745; }
-.filter-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.filter-chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .filter-chip {
-  padding: 6px 14px;
+  padding: 9px 16px;
   border: 2px solid #d0d6e8;
-  border-radius: 20px;
-  font-size: .78rem;
+  border-radius: 24px;
+  font-size: .8rem;
   font-weight: 600;
   background: #fff;
   color: #555;
   transition: all .16s;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
 }
 .filter-chip.active { background: #0a1433; color: #fff; border-color: #0a1433; }
 .filter-chip:hover:not(.active) { border-color: #c8a84b; color: #0a1433; }
-.filter-warning { font-size: .72rem; color: #dc3545; margin-top: 4px; display: none; }
+.filter-chip:active { transform: scale(.95); }
+.filter-warning { font-size: .72rem; color: #dc3545; margin-top: 5px; display: none; }
 .filter-warning.visible { display: block; }
 
 .calc-btn {
   background: #c8a84b;
   color: #0a1433;
-  padding: 13px 30px;
+  padding: 15px 30px;
   border-radius: 8px;
   font-size: 1rem;
   font-weight: 700;
   width: 100%;
-  margin-top: 6px;
-  transition: background .2s;
+  margin-top: 10px;
+  transition: background .2s, transform .1s;
   letter-spacing: .3px;
+  touch-action: manipulation;
+  border: none;
+  min-height: 52px;
 }
 .calc-btn:hover { background: #e0be5a; }
-.calc-btn:active { transform: scale(.99); }
+.calc-btn:active { transform: scale(.98); background: #b8982b; }
 
 /* Results */
 .results-container { margin-bottom: 40px; }
@@ -1084,6 +1220,13 @@ footer {
   .hero h1 { font-size: 1.45rem; }
   .hero p  { font-size: .88rem; }
   .hero-btn { padding: 10px 22px; font-size: .9rem; }
+  .home-nav-grid { grid-template-columns: 1fr; gap: 12px; }
+  .home-nav-card { flex-direction: row; align-items: center; padding: 18px 16px; gap: 16px; }
+  .home-nav-icon { font-size: 1.9rem; margin-bottom: 0; flex-shrink: 0; }
+  .home-nav-title { font-size: 1.05rem; }
+  .home-nav-arrow { margin-top: 0; margin-left: auto; flex-shrink: 0; }
+  .home-stats-row { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .home-stat-num { font-size: 1.4rem; }
   .faculty-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
   .korpus-grid  { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
   .faculty-card-logo { width: 84px; height: 84px; }
@@ -1111,7 +1254,14 @@ footer {
 }
 
 @media (max-width: 480px) {
-  .hero { padding: 36px 16px 30px; }
+  .hero { padding: 30px 16px 24px; }
+  .home-nav-grid { gap: 10px; }
+  .home-nav-card { padding: 16px 14px; }
+  .home-nav-icon { font-size: 1.7rem; }
+  .home-stats-row { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .home-stat { padding: 12px 8px; }
+  .home-stat-num { font-size: 1.3rem; }
+  .page-header-title { font-size: 1.15rem; }
   .faculty-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
   .korpus-grid  { grid-template-columns: 1fr; gap: 10px; }
   .faculty-card-logo-wrap { min-height: 100px; padding: 12px 0 5px; }

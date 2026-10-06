@@ -340,25 +340,58 @@ const KORPUSLAR = [
    PAGE NAVIGATION
    ========================================================= */
 let currentPage = 'page-home';
+// Naviqasiya tarixi — geri düyməsi üçün
+const pageHistory = [];
 
 function showPage(pageId) {
   const pages = document.querySelectorAll('.page');
   for (let i = 0; i < pages.length; i++) pages[i].classList.remove('active');
   const pg = document.getElementById(pageId);
   if (pg) pg.classList.add('active');
+  // Tarixə əlavə et
+  if (currentPage !== pageId) {
+    pageHistory.push(currentPage);
+  }
   currentPage = pageId;
   document.getElementById('backBtn').classList.toggle('visible', pageId !== 'page-home');
-  window.scrollTo(0, 0);
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  // Lazy build: yalnız lazım olduqda qur
+  if (pageId === 'page-faculties') buildFacultyGrid();
+  if (pageId === 'page-korpuslar') buildKorpusGrid();
 }
 
-function goHome() { showPage('page-home'); }
+function goBack() {
+  const prev = pageHistory.pop();
+  if (prev) {
+    const pages = document.querySelectorAll('.page');
+    for (let i = 0; i < pages.length; i++) pages[i].classList.remove('active');
+    const pg = document.getElementById(prev);
+    if (pg) pg.classList.add('active');
+    currentPage = prev;
+    document.getElementById('backBtn').classList.toggle('visible', prev !== 'page-home');
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  } else {
+    goHome();
+  }
+}
+
+function goHome() {
+  pageHistory.length = 0;
+  const pages = document.querySelectorAll('.page');
+  for (let i = 0; i < pages.length; i++) pages[i].classList.remove('active');
+  const pg = document.getElementById('page-home');
+  if (pg) pg.classList.add('active');
+  currentPage = 'page-home';
+  document.getElementById('backBtn').classList.remove('visible');
+  window.scrollTo({ top: 0, behavior: 'instant' });
+}
 
 /* =========================================================
-   BUILD HOME FACULTY CARDS
+   BUILD FACULTY CARDS — page-faculties üçün
    ========================================================= */
 function buildFacultyGrid() {
   const grid = document.getElementById('facultyGrid');
-  if (!grid) return;
+  if (!grid || grid.childElementCount > 0) return; // artıq qurulubsa keç
   const frag = document.createDocumentFragment();
   FACULTIES.forEach(f => {
     const card = document.createElement('article');
@@ -366,8 +399,9 @@ function buildFacultyGrid() {
     card.setAttribute('role', 'button');
     card.setAttribute('tabindex', '0');
     card.setAttribute('aria-label', f.name);
-    card.onclick = () => openFaculty(f.id);
-    card.onkeydown = (e) => { if (e.key === 'Enter' || e.key === ' ') openFaculty(f.id); };
+    // Touch + click hər ikisi üçün
+    card.addEventListener('click', () => openFaculty(f.id));
+    card.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openFaculty(f.id); } });
 
     const logoHtml = f.logo
       ? `<img src="${f.logo}" alt="${f.name}" class="faculty-card-logo" loading="lazy"
@@ -387,11 +421,11 @@ function buildFacultyGrid() {
 }
 
 /* =========================================================
-   BUILD KORPUS GRID — Kart kimi (modal açır)
+   BUILD KORPUS GRID — page-korpuslar üçün (modal açır)
    ========================================================= */
 function buildKorpusGrid() {
   const grid = document.getElementById('korpusGrid');
-  if (!grid) return;
+  if (!grid || grid.childElementCount > 0) return; // artıq qurulubsa keç
   const frag = document.createDocumentFragment();
   KORPUSLAR.forEach(k => {
     const card = document.createElement('article');
@@ -399,8 +433,9 @@ function buildKorpusGrid() {
     card.setAttribute('role', 'button');
     card.setAttribute('tabindex', '0');
     card.setAttribute('aria-label', k.name);
-    card.onclick = () => openKorpusModal(k.id);
-    card.onkeydown = (e) => { if (e.key === 'Enter' || e.key === ' ') openKorpusModal(k.id); };
+    // Touch + click hər ikisi üçün
+    card.addEventListener('click', () => openKorpusModal(k.id));
+    card.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openKorpusModal(k.id); } });
 
     card.innerHTML = `
       <div class="korpus-card-top" style="background:${k.color};">
@@ -436,7 +471,7 @@ function openKorpusModal(id) {
     const fac = FACULTIES.find(f => f.id === fid);
     if (!fac) return '';
     return `
-      <div class="km-fac-card" onclick="closeKorpusModal();openFaculty('${fac.id}')">
+      <div class="km-fac-card" onclick="openFacultyFromKorpus('${fac.id}')">
         ${fac.logo
           ? `<img src="${fac.logo}" alt="${fac.name}" class="km-fac-logo" loading="lazy"
               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
@@ -566,7 +601,18 @@ function openFaculty(id) {
     specList.appendChild(sfrag);
   }
 
+  // page-faculty-ya keç (tarix qeyd olunur)
   showPage('page-faculty');
+}
+
+/* =========================================================
+   OPEN FACULTY FROM KORPUS — Korpus modalından fakültəyə keç
+   ========================================================= */
+function openFacultyFromKorpus(id) {
+  closeKorpusModal();
+  // Əvvəl korpuslar səhifəsinə qayıt, sonra fakültəni aç
+  // ki geri düyməsi düzgün işləsin
+  setTimeout(() => openFaculty(id), 50);
 }
 
 /* =========================================================
@@ -908,7 +954,14 @@ function calculate() {
     }
   }
 
-  container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // Mobil klaviaturanı bağla
+  if (document.activeElement && document.activeElement.blur) {
+    document.activeElement.blur();
+  }
+  // Scroll to results
+  setTimeout(() => {
+    container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
 }
 
 /* =========================================================
@@ -1283,8 +1336,8 @@ function getBduluAnswer(text) {
    INIT — DOMContentLoaded
    ========================================================= */
 document.addEventListener('DOMContentLoaded', () => {
-  buildFacultyGrid();
-  buildKorpusGrid();
+  // Grids lazy build edilir — showPage() çağırdıqda qurulur
+  // Performans: ilk yükləmədə gərəksiz DOM işi yoxdur
 
   // Filter chip init
   document.querySelectorAll('.filter-chip[data-group]').forEach(el => {
