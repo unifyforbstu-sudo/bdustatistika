@@ -124,7 +124,7 @@ header {
   padding: 40px 20px 30px;
 }
 .hero h1 { font-size: 2rem; font-weight: 800; margin-bottom: 8px; }
-.hero p { font-size: 1rem; opacity: .8; max-width: 540px; margin: 0 auto 0; }
+.hero p { font-size: 1rem; opacity: .8; max-width: 540px; margin: 0 auto 16px; }
 .hero-btn {
   background: #c8a84b;
   color: #0a1433;
@@ -136,6 +136,32 @@ header {
 }
 .hero-btn:hover { background: #e0be5a; transform: translateY(-2px); }
 .hero-btn:active { transform: translateY(0); }
+/* Hero Bal Hesabla düyməsi */
+.hero-calc-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #c8a84b, #e0be5a);
+  color: #0a1433;
+  padding: 14px 36px;
+  border-radius: 10px;
+  font-size: 1.12rem;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+  margin-top: 4px;
+  box-shadow: 0 4px 18px rgba(200,168,75,.45);
+  transition: background .2s, transform .15s, box-shadow .2s;
+  letter-spacing: .3px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.hero-calc-btn:hover {
+  background: linear-gradient(135deg, #e0be5a, #f0d070);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(200,168,75,.55);
+}
+.hero-calc-btn:active { transform: scale(.97); }
 
 /* ===== HOME NAV KARTLARI ===== */
 .home-nav-grid {
@@ -143,6 +169,10 @@ header {
   grid-template-columns: repeat(3, 1fr);
   gap: 18px;
   margin: 28px 0 24px;
+}
+/* 2 kart rejimi — Bal Hesabla hero-ya keçdikdən sonra */
+.home-nav-grid-2 {
+  grid-template-columns: repeat(2, 1fr);
 }
 .home-nav-card {
   background: #fff;
@@ -989,15 +1019,17 @@ footer {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: transform .2s, box-shadow .2s;
+  transition: box-shadow .2s;
   position: relative;
   padding: 4px;
   overflow: visible;
   -webkit-tap-highlight-color: transparent;
+  /* Hərəkətsiz — heç bir animation yoxdur */
+  animation: none !important;
   /* Klik ala bilsin */
   pointer-events: all;
 }
-.bdulu-toggle:hover { transform: scale(1.08); box-shadow: 0 10px 32px rgba(10,20,51,.45), 0 3px 12px rgba(200,168,75,.4); }
+.bdulu-toggle:hover { box-shadow: 0 10px 32px rgba(10,20,51,.45), 0 3px 12px rgba(200,168,75,.4); }
 .bdulu-toggle:active { transform: scale(.97); }
 .bdulu-toggle-img { width: 62px; height: 62px; border-radius: 50%; object-fit: cover; }
 .bdulu-badge {
@@ -1108,6 +1140,8 @@ footer {
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
   min-height: 0; /* important for flex shrink */
+  /* Mobil: scroll davran\u0131\u015f\u0131 d\u00fczg\u00fcn i\u015fl\u0259sin */
+  scroll-behavior: auto;
 }
 .bdulu-messages::-webkit-scrollbar { width: 3px; }
 .bdulu-messages::-webkit-scrollbar-thumb { background: #d0d6e8; border-radius: 2px; }
@@ -1245,6 +1279,9 @@ footer {
   .hero h1 { font-size: 1.45rem; }
   .hero p  { font-size: .88rem; }
   .hero-btn { padding: 10px 22px; font-size: .9rem; }
+  .hero-calc-btn { font-size: 1rem; padding: 13px 28px; }
+  /* 2 kart mobil: şaquli sütun */
+  .home-nav-grid-2 { grid-template-columns: 1fr; gap: 12px; }
   .home-nav-grid { grid-template-columns: 1fr; gap: 12px; }
   .home-nav-card { flex-direction: row; align-items: center; padding: 18px 16px; gap: 16px; }
   .home-nav-icon { font-size: 1.9rem; margin-bottom: 0; flex-shrink: 0; }
@@ -1281,7 +1318,21 @@ footer {
 
 @media (max-width: 480px) {
   .hero { padding: 30px 16px 24px; }
-  .home-nav-grid { gap: 10px; }
+  .hero-calc-btn { font-size: .95rem; padding: 12px 22px; }
+  .home-nav-grid, .home-nav-grid-2 { gap: 10px; }
+  /* 2 kart: mobil ekranı tam doldursun */
+  .home-nav-grid-2 { grid-template-columns: 1fr; gap: 10px; }
+  .home-nav-grid-2 .home-nav-card {
+    flex-direction: row;
+    align-items: center;
+    padding: 22px 18px;
+    gap: 18px;
+    min-height: 90px;
+  }
+  .home-nav-grid-2 .home-nav-icon { font-size: 2.1rem; margin-bottom: 0; flex-shrink: 0; }
+  .home-nav-grid-2 .home-nav-title { font-size: 1.15rem; }
+  .home-nav-grid-2 .home-nav-desc { font-size: .82rem; }
+  .home-nav-grid-2 .home-nav-arrow { margin-top: 0; margin-left: auto; flex-shrink: 0; }
   .home-nav-card { padding: 16px 14px; }
   .home-nav-icon { font-size: 1.7rem; }
   .home-stats-row { grid-template-columns: repeat(2, 1fr); gap: 8px; }

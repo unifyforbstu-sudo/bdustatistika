@@ -1236,6 +1236,9 @@ function toggleBdulu() {
   if (bduluOpen) {
     badge.style.display = 'none';
     requestAnimationFrame(() => {
+      // Panel a\u00e7\u0131ld\u0131qda \u0259n son mesaja scroll et
+      const container = document.getElementById('bduluMessages');
+      if (container) scrollBduluToBottom(container);
       const input = document.getElementById('bduluInput');
       if (input) input.focus();
     });
@@ -1269,6 +1272,17 @@ function sendBdulu() {
   }, 400 + Math.random() * 300);
 }
 
+function scrollBduluToBottom(container) {
+  // requestAnimationFrame: DOM render tam tamamlandıqdan sonra scroll — mobil üçün etibarlı
+  requestAnimationFrame(() => {
+    container.scrollTop = container.scrollHeight;
+    // Bir frame daha gözlə (bəzi mobil brauzerlər üçün)
+    requestAnimationFrame(() => {
+      container.scrollTop = container.scrollHeight;
+    });
+  });
+}
+
 function appendBduluMsg(text, role) {
   const container = document.getElementById('bduluMessages');
   const div = document.createElement('div');
@@ -1281,8 +1295,8 @@ function appendBduluMsg(text, role) {
     div.innerHTML = `<div class="bdulu-msg-bubble bdulu-msg-bubble-user">${escHtml(text)}</div>`;
   }
   container.appendChild(div);
-  // Smooth scroll to bottom
-  container.scrollTop = container.scrollHeight;
+  // Mobil üçün etibarlı scroll: həmişə ən son mesaj görünsün
+  scrollBduluToBottom(container);
 }
 
 function escHtml(str) {
@@ -1306,7 +1320,7 @@ function showBduluTyping() {
       <span></span><span></span><span></span>
     </div>`;
   container.appendChild(div);
-  container.scrollTop = container.scrollHeight;
+  scrollBduluToBottom(container);
   return id;
 }
 
