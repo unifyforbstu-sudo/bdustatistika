@@ -272,6 +272,94 @@ const FACULTIES = [
 ];
 
 /* =========================================================
+   KORPUS DATA
+   ========================================================= */
+const KORPUSLAR = [
+  {
+    id: 'esas',
+    name: 'Əsas Korpus',
+    emoji: '🏛️',
+    location: 'Elmlər metrosu çıxışı',
+    locationIcon: '🚇',
+    color: '#0a1433',
+    faculties: [
+      'Kimya Fakültəsi',
+      'Fizika Fakültəsi',
+      'Biologiya Fakültəsi',
+      'Geologiya Fakültəsi',
+    ],
+    facultyIds: ['kimya', 'fizika', 'bio', 'geo'],
+    desc: 'Universitetin əsas inzibati binası. Rektorat, dekanatlıqlar və əsas tədris otaqları buradadır.',
+    image: 'images/bdu-logo.png'
+  },
+  {
+    id: 'birinci',
+    name: '1 saylı Korpus',
+    emoji: '1️⃣',
+    location: 'Elmlər metrosu çıxışı',
+    locationIcon: '🚇',
+    color: '#1a3a6e',
+    faculties: [
+      'Hüquq Fakültəsi',
+      'Filologiya Fakültəsi',
+      'Beynəlxalq Münasibətlər və İqtisadiyyat Fakültəsi',
+    ],
+    facultyIds: ['huquq', 'fil', 'bmi'],
+    desc: '1 saylı korpus humanitar elmlər sahəsindəki fakültələrə ev sahibliyi edir.',
+    image: 'images/bdu-logo.png'
+  },
+  {
+    id: 'ikinci',
+    name: '2 saylı Korpus',
+    emoji: '2️⃣',
+    location: 'Elmlər metrosu çıxışı',
+    locationIcon: '🚇',
+    color: '#2a4a7e',
+    faculties: [
+      'İnformasiya və Sənəd Menecmenti Fakültəsi',
+      'Sosial Elmlər və Psixologiya Fakültəsi',
+      'Şərqşünaslıq Fakültəsi',
+      'Jurnalistika Fakültəsi',
+      'və digər fakültələr...',
+    ],
+    facultyIds: ['ism', 'sep', 'serk', 'jour'],
+    desc: '2 saylı korpus BDU-nun ən böyük binalarından biridir. Çoxsaylı fakültə və ixtisaslar buradadır.',
+    image: 'images/bdu-logo.png'
+  },
+  {
+    id: 'ucuncu',
+    name: '3 saylı Korpus',
+    emoji: '3️⃣',
+    location: 'Elmlər metrosu çıxışı',
+    locationIcon: '🚇',
+    color: '#0d3060',
+    faculties: [
+      'Mexanika-Riyaziyyat Fakültəsi',
+      'Tətbiqi Riyaziyyat və Kibernetika Fakültəsi',
+      'Tarix Fakültəsi',
+    ],
+    facultyIds: ['mr', 'trk', 'tarix'],
+    desc: '3 saylı korpus riyaziyyat, kompüter elmləri və tarix fakültələrinin tədris mərkəzidir.',
+    image: 'images/bdu-logo.png'
+  },
+  {
+    id: 'c',
+    name: 'C Korpusu',
+    emoji: '🅲',
+    location: '28 Noyabr metrosu çıxışı',
+    locationIcon: '🚇',
+    color: '#8b1a1a',
+    faculties: [
+      'Coğrafiya Fakültəsi',
+      'Ekologiya və Torpaqşünaslıq Fakültəsi',
+    ],
+    facultyIds: ['cografiya', 'eko'],
+    desc: 'C korpusu 28 Noyabr metro stansiyasının yaxınlığında yerləşir. Coğrafiya və Ekologiya fakültələri buradadır.',
+    image: 'images/bdu-logo.png'
+  },
+];
+
+/* =========================================================
    PAGE NAVIGATION
    ========================================================= */
 let currentPage = 'page-home';
@@ -327,6 +415,92 @@ function buildFacultyGrid() {
 }
 
 /* =========================================================
+   BUILD KORPUS GRID
+   ========================================================= */
+function buildKorpusGrid() {
+  const grid = document.getElementById('korpusGrid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  KORPUSLAR.forEach(k => {
+    const card = document.createElement('article');
+    card.className = 'korpus-card';
+    card.setAttribute('role', 'button');
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('aria-label', k.name);
+    card.onclick = () => openKorpus(k.id);
+    card.onkeydown = (e) => { if (e.key === 'Enter' || e.key === ' ') openKorpus(k.id); };
+    card.style.setProperty('--korpus-color', k.color);
+
+    card.innerHTML = `
+      <div class="korpus-card-top" style="background:${k.color};">
+        <div class="korpus-card-emoji">${k.emoji}</div>
+        <div class="korpus-card-name">${k.name}</div>
+      </div>
+      <div class="korpus-card-body">
+        <div class="korpus-card-location">
+          ${k.locationIcon} <span>${k.location}</span>
+        </div>
+        <div class="korpus-card-fac-count">${k.faculties.length} fakültə</div>
+        <div class="korpus-card-fac-list">
+          ${k.faculties.slice(0, 3).map(f => `<span class="korpus-fac-tag">${f}</span>`).join('')}
+          ${k.faculties.length > 3 ? `<span class="korpus-fac-tag korpus-fac-more">+${k.faculties.length - 3}</span>` : ''}
+        </div>
+        <div class="korpus-card-arrow">Ətraflı bax →</div>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+/* =========================================================
+   OPEN KORPUS DETAIL
+   ========================================================= */
+function openKorpus(id) {
+  const k = KORPUSLAR.find(x => x.id === id);
+  if (!k) return;
+
+  const header = document.getElementById('korpusDetailHeader');
+  header.style.background = `linear-gradient(135deg, ${k.color} 60%, #1a3a6e)`;
+  header.innerHTML = `
+    <div class="korpus-detail-header-inner">
+      <div class="korpus-detail-emoji-big">${k.emoji}</div>
+      <div class="korpus-detail-text">
+        <h2>${k.name}</h2>
+        <p>${k.locationIcon} ${k.location}</p>
+      </div>
+    </div>`;
+
+  const content = document.getElementById('korpusDetailContent');
+  const facHtml = k.facultyIds.map(fid => {
+    const fac = FACULTIES.find(f => f.id === fid);
+    if (!fac) return '';
+    return `
+      <div class="korpus-fac-card" onclick="openFaculty('${fac.id}')">
+        ${fac.logo ? `<img src="${fac.logo}" alt="${fac.name}" class="korpus-fac-card-logo" onerror="this.style.display='none'" />` : `<div class="korpus-fac-card-placeholder">🏛️</div>`}
+        <div class="korpus-fac-card-info">
+          <div class="korpus-fac-card-name">${fac.name}</div>
+          <div class="korpus-fac-card-meta">${fac.specialties.length > 0 ? fac.specialties.length + ' ixtisas' : 'Məlumat hazırlanır'} • ${fac.group}-ci qrup</div>
+        </div>
+        <span class="korpus-fac-card-arrow">›</span>
+      </div>`;
+  }).join('');
+
+  const bduImg = `<img src="images/bdu-logo.png" alt="BDU" class="korpus-detail-bdu-img" onerror="this.style.display='none'" />`;
+
+  content.innerHTML = `
+    <div class="korpus-detail-section">
+      ${bduImg}
+      <h3 class="section-title">Bu Korpus Haqqında</h3>
+      <p class="korpus-detail-desc">${k.desc}</p>
+    </div>
+    <div class="korpus-detail-section">
+      <h3 class="section-title">Bu Korpusdakı Fakültələr</h3>
+      <div class="korpus-fac-cards">${facHtml}</div>
+    </div>`;
+
+  showPage('page-korpus');
+}
+
+/* =========================================================
    OPEN FACULTY DETAIL
    ========================================================= */
 function openFaculty(id) {
@@ -367,6 +541,20 @@ function openFaculty(id) {
     gallery.appendChild(item);
   }
 
+  // RI Charts (only for group 1, ri subgroup)
+  const riSection = document.getElementById('ri-charts-section');
+  const riWrapper = document.getElementById('riChartsWrapper');
+
+  // Check if faculty has RI specialties
+  const riSpecs = f.specialties.filter(s => s.subgroup === 'ri');
+  if (riSpecs.length > 0) {
+    riSection.style.display = 'block';
+    buildRiCharts(riSpecs, riWrapper);
+  } else {
+    riSection.style.display = 'none';
+    riWrapper.innerHTML = '';
+  }
+
   // Specialties
   const specList = document.getElementById('facultySpecList');
   specList.innerHTML = '';
@@ -402,8 +590,104 @@ function openFaculty(id) {
 }
 
 /* =========================================================
+   RI CHARTS — Diaqramlar (1-ci qrup RI alt qrupu)
+   ========================================================= */
+function buildRiCharts(riSpecs, container) {
+  container.innerHTML = '';
+
+  // Summary stats
+  const maxFree = Math.max(...riSpecs.map(s => s.free));
+  const minFree = Math.min(...riSpecs.map(s => s.free));
+  const avgFree = riSpecs.reduce((a, s) => a + s.free, 0) / riSpecs.length;
+
+  // Stats row
+  const statsHtml = `
+    <div class="ri-stats-row">
+      <div class="ri-stat-card ri-stat-blue">
+        <div class="ri-stat-value">${maxFree}</div>
+        <div class="ri-stat-label">Ən yüksək ödənişsiz bal</div>
+      </div>
+      <div class="ri-stat-card ri-stat-green">
+        <div class="ri-stat-value">${avgFree.toFixed(1)}</div>
+        <div class="ri-stat-label">Orta ödənişsiz bal</div>
+      </div>
+      <div class="ri-stat-card ri-stat-orange">
+        <div class="ri-stat-value">${minFree}</div>
+        <div class="ri-stat-label">Ən aşağı ödənişsiz bal</div>
+      </div>
+      <div class="ri-stat-card ri-stat-purple">
+        <div class="ri-stat-value">${riSpecs.length}</div>
+        <div class="ri-stat-label">İxtisas sayı</div>
+      </div>
+    </div>`;
+
+  // Bar chart for free scores
+  const chartColors = ['#0a1433', '#1a3a6e', '#c8a84b', '#2a6496', '#e74c3c', '#27ae60'];
+  const barMax = maxFree * 1.05;
+  const barsHtml = riSpecs.map((s, i) => {
+    const pct = Math.round((s.free / barMax) * 100);
+    const pctPaid = Math.round((s.paid / barMax) * 100);
+    const color = chartColors[i % chartColors.length];
+    return `
+      <div class="ri-bar-row">
+        <div class="ri-bar-label">${s.name}</div>
+        <div class="ri-bar-tracks">
+          <div class="ri-bar-track">
+            <div class="ri-bar-fill" style="width:${pct}%;background:${color};">
+              <span class="ri-bar-val">${s.free}</span>
+            </div>
+            <small class="ri-bar-desc">Ödənişsiz</small>
+          </div>
+          <div class="ri-bar-track ri-bar-track-paid">
+            <div class="ri-bar-fill ri-bar-fill-paid" style="width:${pctPaid}%;background:${color}88;">
+              <span class="ri-bar-val">${s.paid.toFixed(1)}</span>
+            </div>
+            <small class="ri-bar-desc">Ödənişli</small>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+
+  // Percentage pie-like donut visual
+  const donutsHtml = `
+    <div class="ri-donuts-row">
+      ${riSpecs.map((s, i) => {
+        const color = chartColors[i % chartColors.length];
+        const pct = Math.round((s.free / maxFree) * 100);
+        const dashVal = Math.round(pct * 2.83); // 283 = circumference of r=45
+        return `
+          <div class="ri-donut-item">
+            <svg class="ri-donut-svg" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="45" fill="none" stroke="#e8ecf4" stroke-width="10"/>
+              <circle cx="50" cy="50" r="45" fill="none" stroke="${color}" stroke-width="10"
+                stroke-dasharray="${dashVal} ${283 - dashVal}"
+                stroke-dashoffset="70.75"
+                stroke-linecap="round"/>
+              <text x="50" y="46" text-anchor="middle" font-size="14" font-weight="700" fill="#0a1433">${pct}%</text>
+              <text x="50" y="62" text-anchor="middle" font-size="9" fill="#666">nisbət</text>
+            </svg>
+            <div class="ri-donut-label">${s.name.length > 28 ? s.name.substring(0, 25) + '...' : s.name}</div>
+            <div class="ri-donut-score" style="color:${color};">${s.free} bal</div>
+          </div>`;
+      }).join('')}
+    </div>`;
+
+  container.innerHTML = `
+    <div class="ri-charts-inner">
+      ${statsHtml}
+      <div class="ri-chart-card">
+        <h4 class="ri-chart-title">📊 Qəbul Balları Müqayisəsi</h4>
+        <div class="ri-bars">${barsHtml}</div>
+      </div>
+      <div class="ri-chart-card">
+        <h4 class="ri-chart-title">🔵 Bal Nisbəti (maksimuma görə faiz)</h4>
+        ${donutsHtml}
+      </div>
+    </div>`;
+}
+
+/* =========================================================
    FILTER SYSTEM
-   Min 1 active per group: ödəniş, dil, tədris forması
    ========================================================= */
 const filterGroups = {
   payment: { filters: ['free', 'paid'], active: new Set(['free', 'paid']) },
@@ -411,7 +695,6 @@ const filterGroups = {
   form:    { filters: ['eyani', 'qiyabi'], active: new Set(['eyani', 'qiyabi']) },
 };
 
-// Additional standalone filter
 const standaloneFilters = new Set(['qazax']);
 
 function getGroupForFilter(filterKey) {
@@ -428,14 +711,12 @@ function toggleFilter(el) {
   if (gName) {
     const group = filterGroups[gName];
     if (group.active.has(f)) {
-      // Only deactivate if at least 1 will remain active
       if (group.active.size > 1) {
         group.active.delete(f);
         el.classList.remove('active');
       } else {
-        // Shake effect to show it can't be deactivated
         el.style.animation = 'none';
-        el.offsetHeight; // reflow
+        el.offsetHeight;
         el.style.animation = 'shake 0.3s';
         showFilterWarning(gName);
         return;
@@ -446,7 +727,6 @@ function toggleFilter(el) {
     }
     updateGroupIndicator(gName);
   } else {
-    // Standalone (qazax)
     if (standaloneFilters.has(f)) {
       standaloneFilters.delete(f);
       el.classList.remove('active');
@@ -553,7 +833,6 @@ function calculate() {
   if (isNaN(exitScore) || exitScore < 0 || exitScore > 300) { alert('Buraxılış balı 0-300 arasında olmalıdır.'); return; }
   if (isNaN(blockScore) || blockScore < 0 || blockScore > 400) { alert('Blok balı 0-400 arasında olmalıdır.'); return; }
 
-  // Minimum block score check
   let blockOk = true, blockMsg = '';
   if (subgroup === 'ri' && blockScore < 100) {
     blockOk = false;
@@ -565,7 +844,6 @@ function calculate() {
 
   const userBal = exitScore + blockScore;
 
-  // Active filter sets
   const showFree   = filterGroups.payment.active.has('free');
   const showPaid   = filterGroups.payment.active.has('paid');
   const showAz     = filterGroups.lang.active.has('az');
@@ -574,34 +852,24 @@ function calculate() {
   const showQiyabi = filterGroups.form.active.has('qiyabi');
   const showQazax  = standaloneFilters.has('qazax');
 
-  // Collect matching specialties
   let allSpecs = [];
   FACULTIES.forEach(f => {
     f.specialties.forEach(s => {
-      // Filter by group/subgroup
       if (group === '1') {
         if (subgroup && s.subgroup !== subgroup) return;
       } else {
-        // No data for groups 2,3,4 yet
         return;
       }
-
-      // Language filter
       if (s.lang === 'en' && !showEn) return;
       if (s.lang === 'az' && !showAz) return;
-
-      // Form filter
       if (s.type === 'qiyabi' && !showQiyabi) return;
       if (s.type === 'eyani' && !showEyani) return;
-
-      // Qazax filter: if qazax is not active, hide qazax items
       if (s.isQazax && !showQazax) return;
 
       allSpecs.push({ ...s, facultyName: f.short, facultyId: f.id });
     });
   });
 
-  // Calculate percentages
   const results = allSpecs.map(s => {
     let freePercent = blockOk ? calcPercent(userBal, s.free) : 0;
     let paidPercent = blockOk ? calcPercent(userBal, s.paid) : 0;
@@ -614,10 +882,8 @@ function calculate() {
     };
   });
 
-  // Sort by maxPercent desc
   results.sort((a, b) => b.maxPercent - a.maxPercent);
 
-  // Render results
   const container = document.getElementById('resultsContainer');
   const list      = document.getElementById('resultsList');
   const header    = document.getElementById('resultsHeader');
@@ -673,12 +939,168 @@ function calculate() {
 }
 
 /* =========================================================
+   BDULU CHAT BOT
+   ========================================================= */
+const FAQ_DATA = [
+  {
+    keywords: ['korpus', 'bina', 'neçə korpus', 'neçə bina', 'korpuslar harada', 'yerləşir', 'elmlər', '28 noyabr'],
+    answer: 'Bakı Dövlət Universitetində 5 korpus var: 1 saylı, 2 saylı, 3 saylı, Əsas və C korpus. C korpusu istisna olmaqla digər bütün korpuslar Elmlər metrosu ərazisindədir. C korpusu isə 28 Noyabr metrosu ərazisindədir. 🏛️'
+  },
+  {
+    keywords: ['dərs saatı', 'dərs neçədə', 'dərslər neçədə', 'dərs vaxtı', 'səhər növbəsi', 'günorta növbəsi', 'saat', 'dərs başlayır'],
+    answer: 'Bakalavr tələbələri üçün:\n• 1-ci və 3-cü kurslar: Səhər növbəsi — 08:30-da\n• 2-ci və 4-cü kurslar: Günorta növbəsi — 13:50-də başlayır. 🕐'
+  },
+  {
+    keywords: ['həftədə neçə', 'həftədə dərs', 'dərs neçə dəfə', 'həftəlik dərs', 'neçə gün dərs'],
+    answer: 'Həftədə 4 dəfə dərs olur. 📅'
+  },
+  {
+    keywords: ['yataqxana', 'yataqxanada', 'kim yataqxana', 'şəhid', 'tək valideyn', 'yataqxana üçün'],
+    answer: 'Yataqxana əsasən şəhid ailələrindən olan və tək valideynli tələbələr üçün nəzərdə tutulub. Yataqxanada 220 tələbə üçün şərait var: 104 mebelli otaq, oxu zalı, görüş otağı, yeməkxana, mətbəxlər, camaşırxana, tibbi yardım otağı mövcuddur. 🏠'
+  },
+  {
+    keywords: ['fakültə', 'neçə fakültə', 'fakültələr', 'fakültə sayı'],
+    answer: 'BDU-nun rəsmi məlumatlarına görə 16 fakültə fəaliyyət göstərir. Bunlar arasında Tətbiqi Riyaziyyat, Mexanika-Riyaziyyat, Fizika, Kimya, Biologiya, Geologiya, Coğrafiya, Ekologiya, Tarix, Hüquq, Filologiya, Jurnalistika, BMİ, İSM, SEP və Şərqşünaslıq fakültələri var. 🎓'
+  },
+  {
+    keywords: ['kitabxana', 'elektron kitabxana', 'elektron resurs', 'kitab', 'dərslik'],
+    answer: 'BDU-da Elmi Kitabxana mövcuddur. Elektron resurslardan, dərslik və elmi informasiya materiallarından istifadə etmək mümkündür. 📚'
+  },
+  {
+    keywords: ['psixoloji', 'psixoloq', 'psixoloji dəstək', 'psixoloji yardım', 'psixoloji məsləhət'],
+    answer: 'BDU-da tələbə və əməkdaşlar üçün Psixoloji Yardım Xidməti fəaliyyət göstərir. 🧠'
+  },
+  {
+    keywords: ['əlillik', 'xüsusi ehtiyac', 'əlçatanlıq', 'pandus', 'lift', 'brayl'],
+    answer: 'BDU əlçatanlıq üçün: girişlərdə panduslar, binalarda Brayl düymələri olan liftlər, uyğunlaşdırılmış sanitar qovşaqları mövcuddur. ♿'
+  },
+  {
+    keywords: ['imkanlar', 'xidmətlər', 'nə var', 'kafeteriya', 'idman', 'coworking', 'kompüter otağı', 'laboratoriya'],
+    answer: 'BDU-da: kitabxana, laboratoriyalar, kompüter otaqları, yeməkxana/kafeteriya, coworking məkanlar, idman imkanları, yataqxana mövcuddur. 🏫'
+  },
+  {
+    keywords: ['salam', 'salamlar', 'merhaba', 'hi', 'hey', 'sən kimsən', 'adın nədir', 'bdulu nədir'],
+    answer: 'Salam! Mən BDULU-yam — Bakı Dövlət Universitetinin rəsmi köməkçi assistantı. 🎓 BDU haqqında hər cür sualınıza cavab verməyə hazıram!'
+  },
+];
+
+let bduluOpen = false;
+let bduluBadgeCount = 1;
+
+function toggleBdulu() {
+  bduluOpen = !bduluOpen;
+  const panel = document.getElementById('bduluPanel');
+  const badge = document.getElementById('bduluBadge');
+  panel.classList.toggle('open', bduluOpen);
+  if (bduluOpen) {
+    badge.style.display = 'none';
+    bduluBadgeCount = 0;
+    setTimeout(() => {
+      const input = document.getElementById('bduluInput');
+      if (input) input.focus();
+    }, 300);
+  }
+}
+
+function sendSuggestion(text) {
+  const input = document.getElementById('bduluInput');
+  input.value = text;
+  sendBdulu();
+}
+
+function sendBdulu() {
+  const input = document.getElementById('bduluInput');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+
+  appendBduluMsg(text, 'user');
+
+  // Hide suggestions after first message
+  const suggestions = document.getElementById('bduluSuggestions');
+  if (suggestions) suggestions.style.display = 'none';
+
+  // Typing indicator
+  const typingId = showBduluTyping();
+
+  setTimeout(() => {
+    removeBduluTyping(typingId);
+    const answer = getBduluAnswer(text);
+    appendBduluMsg(answer, 'bot');
+  }, 700 + Math.random() * 500);
+}
+
+function appendBduluMsg(text, role) {
+  const container = document.getElementById('bduluMessages');
+  const div = document.createElement('div');
+  div.className = `bdulu-msg bdulu-msg-${role}`;
+
+  if (role === 'bot') {
+    div.innerHTML = `
+      <img src="images/bdulu-logo.png" alt="BDULU" class="bdulu-msg-avatar" />
+      <div class="bdulu-msg-bubble">${text.replace(/\n/g, '<br>')}</div>`;
+  } else {
+    div.innerHTML = `<div class="bdulu-msg-bubble bdulu-msg-bubble-user">${text}</div>`;
+  }
+  container.appendChild(div);
+  container.scrollTop = container.scrollHeight;
+}
+
+let typingCounter = 0;
+function showBduluTyping() {
+  const container = document.getElementById('bduluMessages');
+  const id = 'typing-' + (++typingCounter);
+  const div = document.createElement('div');
+  div.className = 'bdulu-msg bdulu-msg-bot';
+  div.id = id;
+  div.innerHTML = `
+    <img src="images/bdulu-logo.png" alt="BDULU" class="bdulu-msg-avatar" />
+    <div class="bdulu-msg-bubble bdulu-typing">
+      <span></span><span></span><span></span>
+    </div>`;
+  container.appendChild(div);
+  container.scrollTop = container.scrollHeight;
+  return id;
+}
+
+function removeBduluTyping(id) {
+  const el = document.getElementById(id);
+  if (el) el.remove();
+}
+
+function getBduluAnswer(text) {
+  const lower = text.toLowerCase();
+
+  for (const entry of FAQ_DATA) {
+    for (const kw of entry.keywords) {
+      if (lower.includes(kw.toLowerCase())) {
+        return entry.answer;
+      }
+    }
+  }
+
+  // Partial fallback — check individual words
+  const words = lower.split(/\s+/).filter(w => w.length > 2);
+  for (const entry of FAQ_DATA) {
+    for (const kw of entry.keywords) {
+      for (const word of words) {
+        if (kw.toLowerCase().includes(word) || word.includes(kw.toLowerCase())) {
+          return entry.answer;
+        }
+      }
+    }
+  }
+
+  return 'Üzr istəyirəm, bu mövzu haqqında məlumatım yoxdur. Daha konkret sual versəniz, kömək etməyə çalışaram. 🙏\n\nMəsələn: "Korpuslar harada yerləşir?", "Dərs saatları nə vaxtdır?", "Yataqxana haqqında məlumat ver" kimi suallar verə bilərsiniz.';
+}
+
+/* =========================================================
    INIT
    ========================================================= */
 document.addEventListener('DOMContentLoaded', () => {
   buildFacultyGrid();
+  buildKorpusGrid();
 
-  // Build filter chips state from JS filterGroups
   document.querySelectorAll('.filter-chip[data-group]').forEach(el => {
     const gName = el.dataset.group;
     const f = el.dataset.filter;
