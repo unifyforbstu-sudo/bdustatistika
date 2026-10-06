@@ -10,8 +10,12 @@ body {
   background: #f5f6fa;
   color: #1a2340;
   min-height: 100vh;
-  /* GPU-accel for smoother mobile scroll */
+  /* Mobil scroll sürətləndirmə */
   -webkit-overflow-scrolling: touch;
+  /* Avoid white flash on tap */
+  -webkit-tap-highlight-color: transparent;
+  /* Overscroll behavior */
+  overscroll-behavior-y: contain;
 }
 img { max-width: 100%; display: block; }
 button { cursor: pointer; font-family: inherit; border: none; }
@@ -26,7 +30,6 @@ header {
   top: 0;
   z-index: 200;
   box-shadow: 0 2px 8px rgba(0,0,0,.4);
-  will-change: transform;
 }
 .header-inner {
   max-width: 1200px;
@@ -205,25 +208,56 @@ header {
   border-color: #c8a84b;
 }
 .korpus-card:active { transform: translateY(-1px); }
+/* Korpus kart yuxarı hissəsi — arxa planda korpus şəkli */
 .korpus-card-top {
-  padding: 20px 18px 16px;
+  position: relative;
+  padding: 0;
   color: #fff;
+  min-height: 120px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+.korpus-card-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(.5) saturate(1.1);
+  transform: scale(1.04);
+  transition: transform .4s ease, filter .3s ease;
+}
+.korpus-card:hover .korpus-card-bg {
+  transform: scale(1.08);
+  filter: brightness(.4) saturate(1.2);
+}
+.korpus-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.7) 0%, rgba(0,0,0,.15) 60%, transparent 100%);
+}
+.korpus-card-top-content {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   gap: 12px;
+  padding: 16px 16px 14px;
+  width: 100%;
 }
 .korpus-card-emoji {
-  font-size: 2rem;
-  background: rgba(255,255,255,.15);
+  font-size: 1.9rem;
+  background: rgba(255,255,255,.18);
   border-radius: 10px;
-  width: 48px;
-  height: 48px;
+  width: 46px;
+  height: 46px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  backdrop-filter: blur(4px);
 }
-.korpus-card-name { font-size: 1rem; font-weight: 700; line-height: 1.2; }
+.korpus-card-name { font-size: 1rem; font-weight: 700; line-height: 1.2; text-shadow: 0 1px 4px rgba(0,0,0,.5); }
 .korpus-card-body { padding: 14px 16px 16px; }
 .korpus-card-location {
   display: flex;
@@ -285,7 +319,7 @@ header {
   box-shadow: 0 20px 60px rgba(0,0,0,.3);
   transform: translateY(30px) scale(.96);
   transition: transform .28s cubic-bezier(.34,1.56,.64,1);
-  will-change: transform;
+  -webkit-transform: translateY(30px) scale(.96);
 }
 .korpus-modal-overlay.open .korpus-modal {
   transform: translateY(0) scale(1);
@@ -772,6 +806,9 @@ footer {
 }
 
 /* ===== BDULU CHAT WIDGET ===== */
+.ri-diff-up   { color: #27ae60; font-size: .65rem; font-weight: 700; margin-left: 4px; }
+.ri-diff-down { color: #dc3545; font-size: .65rem; font-weight: 700; margin-left: 4px; }
+
 .bdulu-widget {
   position: fixed;
   bottom: 20px;
@@ -824,7 +861,7 @@ footer {
 .bdulu-panel {
   width: 340px;
   /* Viewport height var() fallback — mobil brauzerlər üçün */
-  max-height: min(520px, calc(var(--vh, 1vh) * 85));
+  max-height: min(540px, calc(var(--vh, 1vh) * 85));
   background: #fff;
   border-radius: 18px;
   box-shadow: 0 8px 40px rgba(10,20,51,.2);
@@ -835,8 +872,10 @@ footer {
   transform: translateY(20px) scale(.95);
   pointer-events: none;
   transition: opacity .22s ease, transform .22s ease;
-  /* Prevent panel from affecting page layout */
+  /* Panel daşmasın, ekranı keçməsin */
   position: relative;
+  /* iOS momentum scrolling fix */
+  -webkit-transform: translateZ(0);
 }
 .bdulu-panel.open {
   opacity: 1;
@@ -991,25 +1030,29 @@ footer {
   align-items: center;
   gap: 7px;
   padding: 8px 10px;
-  padding-bottom: max(8px, env(safe-area-inset-bottom));
+  padding-bottom: max(8px, env(safe-area-inset-bottom, 8px));
   border-top: 1px solid #eef1fa;
   background: #fff;
   flex-shrink: 0;
-  min-height: 54px;
+  min-height: 52px;
+  max-height: 80px;
+  width: 100%;
+  box-sizing: border-box;
 }
 .bdulu-input {
   flex: 1;
   min-width: 0; /* prevents overflow */
+  max-width: calc(100% - 50px);
   border: 1.5px solid #d0d6e8;
   border-radius: 20px;
   padding: 9px 13px;
-  font-size: .82rem;
   color: #1a2340;
   outline: none;
   transition: border-color .16s;
   background: #f8f9ff;
-  /* prevent zoom on iOS */
-  font-size: max(.82rem, 16px);
+  /* prevent zoom on iOS — min 16px */
+  font-size: 16px;
+  box-sizing: border-box;
 }
 .bdulu-input:focus { border-color: #0a1433; background: #fff; }
 .bdulu-send-btn {
@@ -1061,8 +1104,9 @@ footer {
   .ri-bar-label { min-width: auto; max-width: 100%; }
   /* BDULU */
   .bdulu-panel {
-    width: calc(100vw - 28px);
-    max-height: min(480px, calc(var(--vh, 1vh) * 80));
+    width: min(340px, calc(100vw - 24px));
+    max-height: min(500px, calc(var(--vh, 1vh) * 82));
+    right: 0;
   }
 }
 
@@ -1084,13 +1128,19 @@ footer {
   .ri-donuts-row { gap: 10px; }
   .ri-donut-item { width: 95px; }
   .ri-donut-svg  { width: 76px; height: 76px; }
-  /* BDULU — tam ekrana yaxın */
+  /* BDULU — tam ekrana yaxın, daşmasın */
   .bdulu-widget  { bottom: 14px; right: 14px; }
   .bdulu-panel {
     width: calc(100vw - 20px);
-    max-height: calc(var(--vh, 1vh) * 82);
+    max-height: calc(var(--vh, 1vh) * 84);
     border-radius: 14px;
+    /* Mobil: sol kənara daşmasın */
+    transform-origin: bottom right;
   }
+  .bdulu-panel.open {
+    transform: translateY(0) scale(1);
+  }
+  .bdulu-input { font-size: 16px; } /* iOS zoom fix */
   .bdulu-toggle { width: 52px; height: 52px; }
   .bdulu-toggle-img { width: 52px; height: 52px; }
   /* Korpus modal */
@@ -1099,14 +1149,18 @@ footer {
     border-radius: 16px;
   }
   .km-title { font-size: 1.15rem; }
+  /* Korpus kart mobil */
+  .korpus-card-top { min-height: 100px; }
 }
 
 @media (max-width: 360px) {
   .faculty-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
   .hero h1 { font-size: 1.25rem; }
   .ri-stats-row { grid-template-columns: 1fr 1fr; }
+  .bdulu-widget { bottom: 10px; right: 10px; }
   .bdulu-panel {
-    width: calc(100vw - 14px);
-    max-height: calc(var(--vh, 1vh) * 85);
+    width: calc(100vw - 12px);
+    max-height: calc(var(--vh, 1vh) * 86);
   }
+  .bdulu-input { font-size: 16px; }
 }

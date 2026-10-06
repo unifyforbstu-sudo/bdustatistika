@@ -1,5 +1,5 @@
 /* =========================================================
-   BDU STATİSTİKA – script.js  (Optimallaşdırılmış v2)
+   BDU STATİSTİKA – script.js  (v3 – tam optimallaşdırılmış)
    ========================================================= */
 
 'use strict';
@@ -387,7 +387,7 @@ function buildFacultyGrid() {
 }
 
 /* =========================================================
-   BUILD KORPUS GRID  — Kart kimi (modal açır)
+   BUILD KORPUS GRID — Kart kimi (modal açır)
    ========================================================= */
 function buildKorpusGrid() {
   const grid = document.getElementById('korpusGrid');
@@ -404,8 +404,12 @@ function buildKorpusGrid() {
 
     card.innerHTML = `
       <div class="korpus-card-top" style="background:${k.color};">
-        <div class="korpus-card-emoji">${k.emoji}</div>
-        <div class="korpus-card-name">${k.name}</div>
+        <div class="korpus-card-bg" style="background-image:url('${k.image}');"></div>
+        <div class="korpus-card-overlay"></div>
+        <div class="korpus-card-top-content">
+          <div class="korpus-card-emoji">${k.emoji}</div>
+          <div class="korpus-card-name">${k.name}</div>
+        </div>
       </div>
       <div class="korpus-card-body">
         <div class="korpus-card-location">${k.locationIcon} <span>${k.location}</span></div>
@@ -520,15 +524,15 @@ function openFaculty(id) {
   }
   gallery.appendChild(gFrag);
 
-  // RI Charts section — SADƏCƏ BAL HESABLAMA SƏHİFƏSİNDƏ LAZIMDIR
-  // Fakültə səhifəsindən diaqramları gizlə
+  // RI Charts section — FAKÜLTƏ SƏHİFƏSİNDƏ GİZLƏT, yalnız bal hesablamada göstər
   const riSection = document.getElementById('ri-charts-section');
   if (riSection) {
     riSection.style.display = 'none';
-    document.getElementById('riChartsWrapper').innerHTML = '';
+    const riWrapper = document.getElementById('riChartsWrapper');
+    if (riWrapper) riWrapper.innerHTML = '';
   }
 
-  // Specialties list
+  // Specialties list — YALNIZ SADƏ SİYAHI, diaqram/faiz yoxdur
   const specList = document.getElementById('facultySpecList');
   specList.innerHTML = '';
   if (f.specialties.length === 0) {
@@ -566,9 +570,11 @@ function openFaculty(id) {
 }
 
 /* =========================================================
-   BAL HESABLAMA — RI CHARTS (yalnız calculator nəticəsindən sonra)
+   BAL HESABLAMA — RI CHARTS
+   YALNIZ BAL HESABLAMA SƏHİFƏSİNDƏ, hesabladıqdan sonra
+   İxtisas balı vs istifadəçi balı müqayisəsi
    ========================================================= */
-function buildRiChartsForCalc(riSpecs, container) {
+function buildRiChartsForCalc(riSpecs, userBal, container) {
   container.innerHTML = '';
   if (!riSpecs || riSpecs.length === 0) return;
 
@@ -576,65 +582,77 @@ function buildRiChartsForCalc(riSpecs, container) {
   const maxFree = Math.max(...riSpecs.map(s => s.free));
   const minFree = Math.min(...riSpecs.map(s => s.free));
   const avgFree = riSpecs.reduce((a, s) => a + s.free, 0) / riSpecs.length;
-  const barMax  = maxFree * 1.05;
+  const barMax  = Math.max(maxFree, userBal) * 1.08;
 
+  // Hər ixtisas üçün: ixtisas balı vs istifadəçi balı
   const barsHtml = riSpecs.map((s, i) => {
-    const pct     = Math.round((s.free / barMax) * 100);
-    const pctPaid = Math.round((s.paid / barMax) * 100);
+    const pctSpec = Math.round((s.free / barMax) * 100);
+    const pctUser = Math.round((userBal / barMax) * 100);
     const color   = chartColors[i % chartColors.length];
+    const isAbove = userBal >= s.free;
+    const diff    = (userBal - s.free).toFixed(1);
+    const diffLabel = isAbove
+      ? `<span class="ri-diff-up">+${diff} bal üstündür ✓</span>`
+      : `<span class="ri-diff-down">${diff} bal çatışmır ✗</span>`;
+
     return `
       <div class="ri-bar-row">
         <div class="ri-bar-label">${s.name}</div>
         <div class="ri-bar-tracks">
           <div class="ri-bar-track">
-            <div class="ri-bar-fill" style="width:${pct}%;background:${color};">
+            <div class="ri-bar-fill" style="width:${pctSpec}%;background:${color};">
               <span class="ri-bar-val">${s.free}</span>
             </div>
-            <small class="ri-bar-desc">Ödənişsiz</small>
+            <small class="ri-bar-desc">Ödənişsiz hədd</small>
           </div>
           <div class="ri-bar-track">
-            <div class="ri-bar-fill ri-bar-fill-paid" style="width:${pctPaid}%;background:${color}88;">
-              <span class="ri-bar-val">${s.paid.toFixed(1)}</span>
+            <div class="ri-bar-fill" style="width:${pctUser}%;background:${isAbove ? '#27ae60' : '#dc3545'};">
+              <span class="ri-bar-val">${userBal.toFixed(1)}</span>
             </div>
-            <small class="ri-bar-desc">Ödənişli</small>
+            <small class="ri-bar-desc">Sizin balınız ${diffLabel}</small>
           </div>
         </div>
       </div>`;
   }).join('');
 
+  // Donut: istifadəçi balının hər ixtisas həddine nisbəti
   const donutsHtml = riSpecs.map((s, i) => {
     const color   = chartColors[i % chartColors.length];
-    const pct     = Math.round((s.free / maxFree) * 100);
-    const dashVal = Math.round(pct * 2.83);
+    const ratio   = Math.min(userBal / s.free, 1.5);
+    const pct     = Math.round(Math.min((userBal / s.free) * 100, 150));
+    const displayPct = Math.min(pct, 100);
+    const dashVal = Math.round(displayPct * 2.83);
+    const isAbove = userBal >= s.free;
+    const fillColor = isAbove ? '#27ae60' : color;
     return `
       <div class="ri-donut-item">
         <svg class="ri-donut-svg" viewBox="0 0 100 100" aria-hidden="true">
           <circle cx="50" cy="50" r="45" fill="none" stroke="#e8ecf4" stroke-width="10"/>
-          <circle cx="50" cy="50" r="45" fill="none" stroke="${color}" stroke-width="10"
+          <circle cx="50" cy="50" r="45" fill="none" stroke="${fillColor}" stroke-width="10"
             stroke-dasharray="${dashVal} ${283 - dashVal}"
             stroke-dashoffset="70.75" stroke-linecap="round"/>
-          <text x="50" y="46" text-anchor="middle" font-size="14" font-weight="700" fill="#0a1433">${pct}%</text>
+          <text x="50" y="46" text-anchor="middle" font-size="14" font-weight="700" fill="${isAbove ? '#27ae60' : '#dc3545'}">${pct}%</text>
           <text x="50" y="62" text-anchor="middle" font-size="9" fill="#666">nisbət</text>
         </svg>
         <div class="ri-donut-label">${s.name.length > 28 ? s.name.substring(0, 25) + '…' : s.name}</div>
-        <div class="ri-donut-score" style="color:${color};">${s.free} bal</div>
+        <div class="ri-donut-score" style="color:${fillColor};">${s.free} bal hədd</div>
       </div>`;
   }).join('');
 
   container.innerHTML = `
     <div class="ri-charts-inner">
       <div class="ri-stats-row">
-        <div class="ri-stat-card ri-stat-blue"><div class="ri-stat-value">${maxFree}</div><div class="ri-stat-label">Ən yüksək ödənişsiz bal</div></div>
-        <div class="ri-stat-card ri-stat-green"><div class="ri-stat-value">${avgFree.toFixed(1)}</div><div class="ri-stat-label">Orta ödənişsiz bal</div></div>
-        <div class="ri-stat-card ri-stat-orange"><div class="ri-stat-value">${minFree}</div><div class="ri-stat-label">Ən aşağı ödənişsiz bal</div></div>
-        <div class="ri-stat-card ri-stat-purple"><div class="ri-stat-value">${riSpecs.length}</div><div class="ri-stat-label">İxtisas sayı</div></div>
+        <div class="ri-stat-card ri-stat-blue"><div class="ri-stat-value">${userBal.toFixed(1)}</div><div class="ri-stat-label">Sizin balınız</div></div>
+        <div class="ri-stat-card ri-stat-green"><div class="ri-stat-value">${maxFree}</div><div class="ri-stat-label">Ən yüksək hədd</div></div>
+        <div class="ri-stat-card ri-stat-orange"><div class="ri-stat-value">${avgFree.toFixed(1)}</div><div class="ri-stat-label">Orta hədd</div></div>
+        <div class="ri-stat-card ri-stat-purple"><div class="ri-stat-value">${minFree}</div><div class="ri-stat-label">Ən aşağı hədd</div></div>
       </div>
       <div class="ri-chart-card">
-        <h4 class="ri-chart-title">📊 Qəbul Balları Müqayisəsi</h4>
+        <h4 class="ri-chart-title">📊 Sizin Balınız vs İxtisas Qəbul Həddi</h4>
         <div class="ri-bars">${barsHtml}</div>
       </div>
       <div class="ri-chart-card">
-        <h4 class="ri-chart-title">🔵 Bal Nisbəti (maksimuma görə faiz)</h4>
+        <h4 class="ri-chart-title">🔵 Qəbul Həddini Keçmə Faizi</h4>
         <div class="ri-donuts-row">${donutsHtml}</div>
       </div>
     </div>`;
@@ -669,7 +687,7 @@ function toggleFilter(el) {
         el.classList.remove('active');
       } else {
         el.style.animation = 'none';
-        el.offsetHeight; // reflow
+        el.offsetHeight;
         el.style.animation = 'shake 0.3s';
         showFilterWarning(gName);
         return;
@@ -872,6 +890,7 @@ function calculate() {
   }
 
   // RI diaqramları — YALNIZ BAL HESABLAMA NƏTİCƏSİNDƏN SONRA
+  // İxtisas balı vs İstifadəçi balı müqayisəsi göstərilir
   const calcRiSection  = document.getElementById('calc-ri-charts-section');
   const calcRiWrapper  = document.getElementById('calcRiChartsWrapper');
   if (calcRiSection && calcRiWrapper) {
@@ -879,7 +898,7 @@ function calculate() {
       const riSpecs = allSpecs.filter(s => s.subgroup === 'ri');
       if (riSpecs.length > 0) {
         calcRiSection.style.display = 'block';
-        buildRiChartsForCalc(riSpecs, calcRiWrapper);
+        buildRiChartsForCalc(riSpecs, userBal, calcRiWrapper);
       } else {
         calcRiSection.style.display = 'none';
       }
@@ -893,89 +912,142 @@ function calculate() {
 }
 
 /* =========================================================
-   BDULU CHAT BOT – Genişləndirilmiş məlumat bazası
+   BDULU CHAT BOT
+   Genişləndirilmiş + optimallaşdırılmış məlumat bazası
    ========================================================= */
 const FAQ_DATA = [
+  // ── Salamlaşma / Tanışlıq ──
   {
-    keywords: ['salam', 'salamlar', 'merhaba', 'hi', 'hey', 'günün xeyir', 'sabahın xeyir', 'axşamın xeyir', 'günə xeyir'],
+    keywords: ['salam', 'salamlar', 'merhaba', 'hi', 'hey', 'günün xeyir', 'sabahın xeyir', 'axşamın xeyir', 'günə xeyir', 'sabah xeyir', 'axşam xeyir', 'gecən xeyrə'],
     answer: 'Salam! 👋 Mən BDUlu-yam — Bakı Dövlət Universitetinin köməkçi assistantı. BDU haqqında hər cür sualınıza cavab verməyə hazıram! 🎓'
   },
   {
-    keywords: ['sən kimsən', 'adın nədir', 'bdulu nədir', 'nə edə bilirsən', 'kimsən', 'nəsən'],
-    answer: 'Mən BDUlu-yam — Bakı Dövlət Universiteti haqqında sualları cavablandıran virtual köməkçiyəm. 😊 Korpuslar, dərs saatları, fakültələr, yataqxana, kitabxana, rektor, tələbə sayı kimi mövzularda məlumat verə bilərəm.'
+    keywords: ['sən kimsən', 'adın nədir', 'bdulu nədir', 'nə edə bilirsən', 'kimsən', 'nəsən', 'bdulu kimdir', 'sen kimsen', 'ai', 'robot', 'assistant'],
+    answer: 'Mən BDUlu-yam — Bakı Dövlət Universiteti haqqında sualları cavablandıran virtual köməkçiyəm. 😊 Korpuslar, dərs saatları, fakültələr, yataqxana, kitabxana, rektor, tələbə sayı, reytinqlər, qəbul məlumatları kimi mövzularda kömək edə bilərəm.'
   },
   {
-    keywords: ['necəsən', 'necə gedirsən', 'nə var nə yox', 'yaxşısan'],
+    keywords: ['necəsən', 'necə gedirsən', 'nə var nə yox', 'yaxşısan', 'necə kecirir', 'necə gedir'],
     answer: 'Yaxşıyam, sağ olun! 😊 Sualınızı verə bilərsiniz.'
   },
   {
-    keywords: ['təşəkkür', 'sağ ol', 'minnətdar', 'çox sağ ol'],
+    keywords: ['təşəkkür', 'sağ ol', 'minnətdar', 'çox sağ ol', 'tesekkur', 'teşekkür', 'çox sağol', 'minnətdaram', 'əla', 'super', 'çox yaxşı'],
     answer: 'Siz sağ olun! 😊 Başqa sualınız varsa, buyurun.'
   },
   {
-    keywords: ['hələlik', 'görüşərik', 'bye', 'gedirəm'],
+    keywords: ['hələlik', 'görüşərik', 'bye', 'gedirəm', 'xudahafiz', 'sağolun'],
     answer: 'Hələlik! Uğurlar! 🎓👋'
   },
   {
-    keywords: ['maraqlı fakt', 'fakt de', 'darıxıram'],
-    answer: 'Maraqlı fakt: BDU-da ilk dərs günü 15 noyabr 1919-cu il elan edilib. 🎓 Heydər Əliyev də BDU-nun məzunudur!'
+    keywords: ['uğur', 'uğurlar', 'uğur arzu', 'imtahan', 'dərs'],
+    answer: 'Sizə dərslərinizdə və imtahanlarınızda bol uğurlar arzulayıram! 🍀🎓 BDU-da müvəffəqiyyət sizin üçün!'
   },
   {
-    keywords: ['nə vaxt yaradılıb', 'tarix', 'neçənci ildə', 'yaranıb', 'təsis', '1919'],
+    keywords: ['maraqlı fakt', 'fakt de', 'darıxıram', 'bir fakt de', 'maraqlı bir'],
+    answer: 'Maraqlı fakt: BDU-da ilk dərs günü 15 noyabr 1919-cu il elan edilib. 🎓 Ulu öndər Heydər Əliyev də BDU-nun dünyaşöhrətli məzunudur! BDU 2026-cı ildə 107-ci ildönümünü qeyd edir.'
+  },
+  {
+    keywords: ['başa düşmədim', 'başa düşmədim', 'izah et', 'bir daha', 'anlamadım'],
+    answer: 'Problem deyil 😊 Hansı mövzunu daha ətraflı izah etməyimi istəyirsiniz? Korpuslar, fakültələr, qəbul, yataqxana, dərs saatları — istədiyinizi yazın.'
+  },
+  // ── BDU haqqında ümumi ──
+  {
+    keywords: ['nə vaxt yaradılıb', 'tarix', 'neçənci ildə', 'yaranıb', 'təsis', '1919', 'qurulub', 'açılıb'],
     answer: 'Bakı Dövlət Universiteti 1 sentyabr 1919-cu ildə Azərbaycan Xalq Cümhuriyyəti Parlamentinin qanunu ilə təsis edilib. İlk dərs günü isə 15 noyabr 1919-cu il elan edilib. BDU Azərbaycanın ilk ali təhsil müəssisəsidir. 🏛️'
   },
   {
-    keywords: ['neçə illik', 'ildönümü', '107', 'yaşı neçədir'],
-    answer: '2026-cı ildə BDU 107-ci ildönümünü qeyd edir. 🎂'
+    keywords: ['neçə illik', 'ildönümü', '107', 'yaşı neçədir', 'neçə yaşındadır'],
+    answer: '2026-cı ildə BDU 107-ci ildönümünü qeyd edir. 🎂 BDU 1919-cu ildə Azərbaycanın ilk ali məktəbi kimi yaradılıb.'
   },
   {
-    keywords: ['ilk rektor', 'razumovski'],
-    answer: 'BDU-nun ilk rektoru professor V.İ. Razumovski olub. 📚'
+    keywords: ['ilk rektor', 'razumovski', 'birinci rektor'],
+    answer: 'BDU-nun ilk rektoru professor V.İ. Razumovski olub. 📚 O, BDU-nun qurulduğu ilk illərində universitetə rəhbərlik edib.'
   },
   {
-    keywords: ['rektor', 'rəhbər', 'babayev'],
+    keywords: ['rektor', 'rəhbər', 'babayev', 'hazırki rektor', 'kimdir rektor'],
     answer: 'BDU-nun hazırkı rektoru Elçin Babayevdir. O, 2019-cu ilin mart ayında rektor vəzifəsinə təyin edilib. 👨‍💼'
   },
   {
-    keywords: ['tələbə sayı', 'neçə tələbə', 'nə qədər tələbə'],
+    keywords: ['tələbə sayı', 'neçə tələbə', 'nə qədər tələbə', 'tələbə nə qədərdir'],
     answer: '2026-cı ilin məlumatına görə BDU-da 25 mindən çox tələbə təhsil alır. 🎓'
   },
   {
-    keywords: ['kafedra', 'neçə kafedra'],
+    keywords: ['kafedra', 'neçə kafedra', 'kafedra sayı'],
     answer: '2026-cı ilin məlumatına görə BDU-da 114 kafedra fəaliyyət göstərir. 📋'
   },
   {
-    keywords: ['əməkdaş', 'müəllim sayı', 'akademik heyət'],
+    keywords: ['əməkdaş', 'müəllim sayı', 'akademik heyət', 'professor', 'müəllim neçədir'],
     answer: '2026-cı ilin məlumatına görə BDU-da 3 mindən çox akademik heyət üzvü və əməkdaş çalışır. 👩‍🏫'
   },
   {
-    keywords: ['ünvan', 'adres', 'harada yerləşir bdu', 'bdu harada'],
+    keywords: ['ünvan', 'adres', 'harada yerləşir bdu', 'bdu harada', 'bdu ünvanı'],
     answer: 'BDU-nun əsas ünvanı: Akademik Zahid Xəlilov küçəsi 33, AZ1148, Bakı. 📍'
   },
   {
-    keywords: ['korpus', 'bina', 'neçə korpus', 'neçə bina', 'korpuslar harada', 'elmlər', '28 noyabr'],
+    keywords: ['azərbaycanın ilk', 'ilk ali məktəb', 'ilk universitet'],
+    answer: 'Bəli! BDU 1919-cu ildə Azərbaycanın ilk ali təhsil müəssisəsi kimi yaradılıb. 🏛️ Bu, ölkənin ali təhsil tarixinin başlanğıcıdır.'
+  },
+  // ── Korpuslar ──
+  {
+    keywords: ['korpus', 'bina', 'neçə korpus', 'neçə bina', 'korpuslar harada', 'elmlər', '28 noyabr', 'hansı korpus', 'korpuslar'],
     answer: 'BDU-da 5 korpus var:\n🏛️ Əsas Korpus — Elmlər metrosu\n1️⃣ 1 saylı Korpus — Elmlər metrosu\n2️⃣ 2 saylı Korpus — Elmlər metrosu\n3️⃣ 3 saylı Korpus — Elmlər metrosu\n🅲 C Korpusu — 28 Noyabr metrosu\n\nC korpusu istisna olmaqla digər korpuslar Elmlər metrosu ərazisindədir. 🚇'
   },
   {
-    keywords: ['dərs saatı', 'dərs neçədə', 'dərslər neçədə', 'dərs vaxtı', 'başlayır', 'növbə'],
+    keywords: ['c korpus', 'c korpusu', '28 noyabr korpus'],
+    answer: 'C Korpusu 28 Noyabr metro stansiyasının yaxınlığında yerləşir. Coğrafiya Fakültəsi və Ekologiya və Torpaqşünaslıq Fakültəsi bu korpusdadır. 🚇'
+  },
+  {
+    keywords: ['əsas korpus', 'baş bina'],
+    answer: 'Əsas Korpus Elmlər metrosunun yanında yerləşir. Rektorat, dekanatlıqlar, Kimya, Fizika, Biologiya və Geologiya fakültələri bu korpusdadır. 🏛️'
+  },
+  // ── Dərs saatları ──
+  {
+    keywords: ['dərs saatı', 'dərs neçədə', 'dərslər neçədə', 'dərs vaxtı', 'başlayır', 'növbə', 'neçə başlayır'],
     answer: 'Bakalavr tələbələri üçün dərs vaxtları:\n• 1-ci və 3-cü kurslar: Səhər — 08:30-da\n• 2-ci və 4-cü kurslar: Günorta — 13:50-də başlayır. 🕐'
   },
   {
-    keywords: ['həftədə neçə', 'həftəlik dərs', 'neçə gün dərs', 'neçə dəfə dərs'],
+    keywords: ['həftədə neçə', 'həftəlik dərs', 'neçə gün dərs', 'neçə dəfə dərs', 'həftədə neçə dəfə'],
     answer: 'Həftədə 4 dəfə dərs olur. 📅'
   },
+  // ── Fakültələr ──
   {
-    keywords: ['fakültə', 'neçə fakültə', 'fakültələr', 'fakültə sayı'],
-    answer: 'BDU-da 16 fakültə fəaliyyət göstərir:\nTətbiqi Riyaziyyat, Mexanika-Riyaziyyat, Fizika, Kimya, Biologiya, Geologiya, Coğrafiya, Ekologiya, Tarix, Hüquq, Filologiya, Jurnalistika, BMİ, İSM, SEP, Şərqşünaslıq fakültələri. 🎓'
+    keywords: ['fakültə', 'neçə fakültə', 'fakültələr', 'fakültə sayı', 'hansı fakültələr var'],
+    answer: 'BDU-da 16 fakültə fəaliyyət göstərir:\n🔢 Tətbiqi Riyaziyyat və Kibernetika\n📐 Mexanika-Riyaziyyat\n⚛️ Fizika\n🧪 Kimya\n🔬 Biologiya\n🪨 Geologiya\n🗺️ Coğrafiya\n🌿 Ekologiya və Torpaqşünaslıq\n📜 Tarix\n⚖️ Hüquq\n📖 Filologiya\n📰 Jurnalistika\n🌍 Beynəlxalq Münasibətlər\n📁 İnformasiya Menecmenti\n🧠 Sosial Elmlər və Psixologiya\n☪️ Şərqşünaslıq 🎓'
   },
   {
-    keywords: ['yataqxana', 'kim yataqxana ala bilər', 'şəhid', 'tək valideyn', 'yaşamaq'],
-    answer: 'Yataqxana əsasən şəhid ailələrindən olan və tək valideynli tələbələr üçün nəzərdə tutulub. 🏠\n\nYataqxanada:\n• 220 tələbə üçün yer\n• 104 mebelli yataq otağı\n• Oxu zalı və kitabxana\n• Görüş otağı\n• Yeməkxana\n• Mətbəxlər\n• Camaşırxana\n• Tibbi yardım otağı'
+    keywords: ['tətbiqi riyaziyyat', 'trk', 'kibernetika', 'kompüter elmləri'],
+    answer: 'Tətbiqi Riyaziyyat və Kibernetika Fakültəsi (TRK) — 3 saylı Korpusdadır. İxtisaslar: Kompüter elmləri, Kompüter elmləri (ing.), İnformatika müəllimliyi, İnformasiya təhlükəsizliyi. RI alt qrupu ilə qəbul olunur. 💻'
   },
   {
-    keywords: ['kitabxana', 'elektron kitabxana', 'elektron resurs', 'kitab', 'dərslik'],
-    answer: 'BDU-da Elmi Kitabxana fəaliyyət göstərir. Kitabxananın tarixi universitetin yaranmasından başlayır, 1974-cü ildə Elmi Kitabxana statusu verilib. Elektron resurslar və dərsliklər mövcuddur. 📚'
+    keywords: ['hüquq fakültəsi', 'hüquqçu'],
+    answer: 'Hüquq Fakültəsi — 1 saylı Korpusdadır. Mülki hüquq, cinayət hüququ, beynəlxalq hüquq sahəsindəki mütəxəssislər hazırlanır. QS Subject 2026-da Law üzrə 301-350 aralığındadır. ⚖️'
   },
+  // ── Yataqxana ──
+  {
+    keywords: ['yataqxana', 'kim yataqxana ala bilər', 'şəhid', 'tək valideyn', 'yaşamaq', 'yataqxana var'],
+    answer: 'Yataqxana əsasən şəhid ailələrindən olan və tək valideynli tələbələr üçün nəzərdə tutulub. 🏠\n\nYataqxanada:\n• 220 tələbə üçün yer\n• 104 mebelli yataq otağı\n• Oxu zalı və kitabxana\n• Görüş otağı\n• Yeməkxana\n• Mətbəxlər\n• Camaşırxana və ütüləmə sahəsi\n• Tibbi yardım otağı'
+  },
+  {
+    keywords: ['yataqxana neçə yer', 'yataqxana yerləri', '220'],
+    answer: 'BDU yataqxanasında 220 tələbə üçün yer var. 104 mebelli yataq otağı mövcuddur. 🏠'
+  },
+  {
+    keywords: ['yataqxana kitabxana', 'oxu zalı'],
+    answer: 'Bəli, BDU yataqxanasında oxu zalı və kitabxana fəaliyyət göstərir. 📚'
+  },
+  {
+    keywords: ['yataqxana yeməkxana', 'yataqxana mətbəx'],
+    answer: 'BDU yataqxanasında həm yeməkxana, həm də mərtəbələrdə mətbəxlər var. 🍽️'
+  },
+  {
+    keywords: ['yataqxana camaşırxana', 'yataqxana tibbi'],
+    answer: 'BDU yataqxanasında camaşırxana, ütüləmə sahəsi və tibbi yardım otağı mövcuddur. 🏥'
+  },
+  // ── Kitabxana ──
+  {
+    keywords: ['kitabxana', 'elektron kitabxana', 'elektron resurs', 'kitab', 'dərslik', 'elmi kitabxana'],
+    answer: 'BDU-da Elmi Kitabxana fəaliyyət göstərir. Kitabxananın tarixi universitetin yaranmasından başlayır, 1974-cü ildə Elmi Kitabxana statusu verilib. Elektron informasiya resurslarından istifadə imkanları da mövcuddur. 📚\n\nSayt: elibrary.bsu.edu.az'
+  },
+  // ── Psixoloji yardım, əlçatanlıq ──
   {
     keywords: ['psixoloji', 'psixoloq', 'psixoloji dəstək', 'psixoloji yardım'],
     answer: 'BDU-da tələbə və əməkdaşlar üçün Psixoloji Yardım Xidməti fəaliyyət göstərir. 🧠'
@@ -984,43 +1056,113 @@ const FAQ_DATA = [
     keywords: ['əlillik', 'xüsusi ehtiyac', 'əlçatanlıq', 'pandus', 'lift', 'brayl'],
     answer: 'BDU əlçatanlıq üçün:\n• Girişlərdə panduslar\n• Brayl düymələri olan liftlər\n• Uyğunlaşdırılmış sanitar qovşaqları mövcuddur. ♿'
   },
+  // ── Tələbə həyatı ──
   {
-    keywords: ['tələbə təşkilatı', 'klub', 'yeni club', 'könüllü', 'həmkarlar'],
+    keywords: ['tələbə təşkilatı', 'klub', 'yeni club', 'könüllü', 'həmkarlar', 'tələbə qurumu'],
     answer: 'BDU-da tələbə təşkilatları:\n• BDU Könüllüləri\n• Tələbə Həmkarlar İttifaqı Komitəsi\n• Tələbə Gənclər Təşkilatı\n• YENİ Club\n• OIC Model Club\n• və digər qurumlar fəaliyyət göstərir. 🌟'
   },
   {
-    keywords: ['inkişaf mərkəzi', 'tələbə inkişaf', 'student space', 'eco space'],
-    answer: 'BDU-da tələbə məkanları:\n• Tələbə İnkişaf Mərkəzi (2025-ci ildə açılıb)\n• Student Space\n• Eco-Space\n• Eco-Energy Station\n\nTələbə İnkişaf Mərkəzi şəbəkələşmə, şəxsi/peşəkar inkişaf üçün yaradılıb. 🚀'
+    keywords: ['inkişaf mərkəzi', 'tələbə inkişaf', 'student space', 'eco space', 'eco energy'],
+    answer: 'BDU-da tələbə məkanları:\n• Tələbə İnkişaf Mərkəzi (2025-ci ildə açılıb) — şəbəkələşmə, şəxsi/peşəkar inkişaf üçün\n• Student Space\n• Eco-Space\n• Eco-Energy Station 🚀'
   },
   {
-    keywords: ['erasmus', 'mübadilə', 'mövlana', 'xarici proqram', 'beynəlxalq'],
-    answer: 'BDU-da beynəlxalq mübadilə proqramları:\n• Erasmus+\n• Mövlana proqramı\n• Müxtəlif universitetlərlə mübadilə\n• İkili diplom proqramları mövcuddur. 🌍'
+    keywords: ['tələbəyəm', 'tələbəsən', 'tələbə'],
+    answer: 'Xoş gəlmisiniz! 🎓 Dərs saatları, yataqxana, kitabxana, tələbə təşkilatları haqqında sualınızı verə bilərsiniz.'
   },
   {
-    keywords: ['reytinq', 'qs', 'sıralama', 'neçənci', 'dünya reytinqi'],
-    answer: 'BDU-nun dünya reytinqləri:\n• QS World 2027: 565-ci yer 🌍\n• QS Europe 2026: 278-ci yer\n• QS Western Asia 2026: 13-cü yer\n• QS Subject 2026: 2 geniş, 8 dar kateqoriyada\n• Neft mühəndisliyi: 51-100 aralığı\n• Riyaziyyat: 251-300 aralığı\n• Hüquq: 301-350 aralığı\n• Kompüter elmləri: 601-650 aralığı 📊'
+    keywords: ['abituriyent', 'qəbul olacam', 'daxil olmaq'],
+    answer: 'Xoş gəlmisiniz! 🎓 BDU-da 2026-2027 üçün 76 bakalavr proqramına qəbul aparılacaq. "Bal Hesabla" bölməsindən qəbul ehtimalınızı hesablaya bilərsiniz.'
+  },
+  // ── Beynəlxalq ──
+  {
+    keywords: ['erasmus', 'mübadilə', 'mövlana', 'xarici proqram', 'beynəlxalq', 'xarici universitet'],
+    answer: 'BDU-da beynəlxalq imkanlar:\n• Erasmus+ proqramı\n• Mövlana mübadilə proqramı\n• Müxtəlif universitetlərlə mübadilə\n• İkili diplom proqramları mövcuddur. 🌍'
   },
   {
-    keywords: ['süni intellekt', 'ai', 'magistr', 'yeni ixtisas'],
+    keywords: ['ikili diplom', 'double degree', 'xarici diplom'],
+    answer: 'BDU-da xarici universitetlərlə ikili diplom proqramları mövcuddur. 🌍 Ətraflı məlumat üçün bsu.edu.az saytına daxil ola bilərsiniz.'
+  },
+  // ── Reytinqlər ──
+  {
+    keywords: ['reytinq', 'qs', 'sıralama', 'neçənci', 'dünya reytinqi', 'world ranking'],
+    answer: 'BDU-nun dünya reytinqləri:\n🌍 QS World 2027: 565-ci yer\n🇪🇺 QS Europe 2026: 278-ci yer\n🌏 QS Western Asia 2026: 13-cü yer\n\nQS Subject 2026:\n⛏️ Neft mühəndisliyi: 51-100\n📐 Riyaziyyat: 251-300\n⚖️ Hüquq: 301-350\n💻 Kompüter elmləri: 601-650 📊'
+  },
+  {
+    keywords: ['qs world', 'qs 2027', '565'],
+    answer: 'QS World University Rankings 2027-də BDU 565-ci yerdədir. 🌍'
+  },
+  {
+    keywords: ['qs europe', 'avropa reytinq', '278'],
+    answer: 'QS Europe 2026-da BDU 278-ci yerdədir. 🇪🇺'
+  },
+  {
+    keywords: ['western asia', 'qərbi asiya', '13'],
+    answer: 'QS Western Asia 2026-da BDU 13-cü yerdədir. 🌏'
+  },
+  {
+    keywords: ['neft mühəndisliyi reytinq', 'petroleum'],
+    answer: 'BDU QS Subject 2026-da Neft Mühəndisliyi (Petroleum Engineering) üzrə 51-100 aralığındadır. ⛏️'
+  },
+  // ── AI, yeni ixtisaslar ──
+  {
+    keywords: ['süni intellekt', 'ai', 'magistr', 'yeni ixtisas', 'artificial intelligence'],
     answer: '2026-cı ildə BDU-da süni intellekt üzrə magistr ixtisaslaşması açılıb! 🤖 Həmçinin 2 BDU layihəsi QS Reimagine Education Awards 2026-nın qısa siyahısına düşüb.'
   },
   {
-    keywords: ['bakalavr proqramı', 'neçə proqram', 'qəbul proqramı', '76'],
+    keywords: ['qs reimagine', 'ai layihə', 'beynəlxalq mükafat'],
+    answer: '2 BDU layihəsi QS Reimagine Education Awards 2026-nın qısa siyahısına düşüb! 🏆'
+  },
+  // ── Qəbul / Bakalavr ──
+  {
+    keywords: ['bakalavr proqramı', 'neçə proqram', 'qəbul proqramı', '76', 'neçə ixtisas var'],
     answer: 'BDU 2026-2027-ci tədris ili üçün 76 bakalavr proqramına qəbul aparacağını elan edib. 📝'
   },
   {
-    keywords: ['məşhur məzun', 'heydər əliyev', 'tanınmış məzun'],
-    answer: 'BDU-nun dünyaşöhrətli məzunlarından biri ulu öndər Heydər Əliyevdir. 🎓'
-  },
-  {
-    keywords: ['imkanlar', 'xidmətlər', 'kafeteriya', 'yeməkxana', 'coworking', 'kompüter otağı'],
-    answer: 'BDU-da mövcud imkanlar:\n📚 Elmi Kitabxana\n🔬 Laboratoriyalar\n💻 Kompüter otaqları\n🍽️ Yeməkxana/kafeteriya\n🤝 Coworking məkanlar\n🏋️ İdman imkanları\n🏠 Yataqxana'
-  },
-  {
-    keywords: ['qəbul', 'necə qəbul', 'ixtisas', 'bal', 'abituriyent'],
+    keywords: ['qəbul', 'necə qəbul', 'ixtisas', 'bal', 'abituriyent', 'hesabla'],
     answer: 'BDU-ya qəbul üçün "Bal Hesabla" bölməsindən istifadə edə bilərsiniz! Qrup, alt qrup və balınızı daxil edin — ixtisaslara qəbul ehtimalını görün. 📊\n\nBDU 2026-2027 üçün 76 bakalavr proqramına qəbul aparır.'
   },
+  {
+    keywords: ['ödənişsiz', 'pulsuz', 'büdcə', 'xəzinə'],
+    answer: 'BDU-da həm ödənişsiz (büdcə), həm də ödənişli yerlər mövcuddur. "Bal Hesabla" bölməsindən hər iki seçimə görə qəbul faizinizi görə bilərsiniz. 📊'
+  },
+  {
+    keywords: ['qiyabi', 'qiyabi təhsil'],
+    answer: 'BDU-da bəzi ixtisaslarda qiyabi təhsil imkanı mövcuddur. "Bal Hesabla" bölməsindən qiyabi filter seçərək ixtisasları görə bilərsiniz. 📚'
+  },
+  // ── Məşhur məzunlar ──
+  {
+    keywords: ['məşhur məzun', 'heydər əliyev', 'tanınmış məzun', 'məzun kimdir'],
+    answer: 'BDU-nun dünyaşöhrətli məzunlarından biri ulu öndər Heydər Əliyevdir. 🎓'
+  },
+  // ── Yardım / İmkanlar ──
+  {
+    keywords: ['imkanlar', 'xidmətlər', 'kafeteriya', 'yeməkxana', 'coworking', 'kompüter otağı', 'laboratoriya'],
+    answer: 'BDU-da mövcud imkanlar:\n📚 Elmi Kitabxana\n🔬 Laboratoriyalar\n💻 Kompüter otaqları\n🍽️ Yeməkxana/kafeteriya\n🤝 Tələbə İnkişaf Mərkəzi\n♿ Əlçatanlıq infrastrukturu\n🏠 Yataqxana\n🧠 Psixoloji Yardım Xidməti'
+  },
+  {
+    keywords: ['sayt', 'vebsayt', 'bsu.edu.az', 'rəsmi sayt'],
+    answer: 'BDU-nun rəsmi saytı: 🌐 bsu.edu.az\nElmi Kitabxana: elibrary.bsu.edu.az\nDayanıqlı İnkişaf: sdg.bsu.edu.az'
+  },
+  {
+    keywords: ['1919', 'ilk dərs', '15 noyabr'],
+    answer: 'BDU-nun ilk dərs günü 15 noyabr 1919-cu il elan edilib. Universitet 1 sentyabr 1919-cu ildə Azərbaycan Xalq Cümhuriyyəti Parlamentinin qanunu ilə təsis edilib. 🏛️'
+  },
+  {
+    keywords: ['ilk fakültə', '4 fakültə', '1919 fakültə'],
+    answer: 'BDU 1919-cu ildə 4 fakültə ilə fəaliyyətə başlayıb: Tarix-filologiya, Fizika-riyaziyyat, Hüquq və Tibb fakültələri. Hazırda 16 fakültə var. 🎓'
+  },
 ];
+
+/* ── Optimallaşdırılmış axtarış: indeks ──── */
+let _faqIndex = null;
+function getFaqIndex() {
+  if (_faqIndex) return _faqIndex;
+  _faqIndex = FAQ_DATA.map(entry => ({
+    entry,
+    kwLower: entry.keywords.map(k => k.toLowerCase())
+  }));
+  return _faqIndex;
+}
 
 let bduluOpen = false;
 
@@ -1031,11 +1173,10 @@ function toggleBdulu() {
   panel.classList.toggle('open', bduluOpen);
   if (bduluOpen) {
     badge.style.display = 'none';
-    // Keyboard focus after animation — use passive timeout
-    setTimeout(() => {
+    requestAnimationFrame(() => {
       const input = document.getElementById('bduluInput');
       if (input) input.focus();
-    }, 300);
+    });
   }
 }
 
@@ -1050,6 +1191,7 @@ function sendBdulu() {
   const text  = input.value.trim();
   if (!text) return;
   input.value = '';
+  input.style.height = '';
 
   appendBduluMsg(text, 'user');
 
@@ -1058,12 +1200,11 @@ function sendBdulu() {
 
   const typingId = showBduluTyping();
 
-  // Use passive timer — not blocking main thread
   setTimeout(() => {
     removeBduluTyping(typingId);
     const answer = getBduluAnswer(text);
     appendBduluMsg(answer, 'bot');
-  }, 500 + Math.random() * 400);
+  }, 400 + Math.random() * 300);
 }
 
 function appendBduluMsg(text, role) {
@@ -1078,11 +1219,16 @@ function appendBduluMsg(text, role) {
     div.innerHTML = `<div class="bdulu-msg-bubble bdulu-msg-bubble-user">${escHtml(text)}</div>`;
   }
   container.appendChild(div);
+  // Smooth scroll to bottom
   container.scrollTop = container.scrollHeight;
 }
 
 function escHtml(str) {
-  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  return str
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;');
 }
 
 let typingCounter = 0;
@@ -1109,34 +1255,38 @@ function removeBduluTyping(id) {
 
 function getBduluAnswer(text) {
   const lower = text.toLowerCase().trim();
+  const index = getFaqIndex();
 
-  for (const entry of FAQ_DATA) {
-    for (const kw of entry.keywords) {
-      if (lower.includes(kw.toLowerCase())) return entry.answer;
+  // 1. Tam uyğunluq
+  for (const { entry, kwLower } of index) {
+    for (const kw of kwLower) {
+      if (lower.includes(kw)) return entry.answer;
     }
   }
 
-  // Söz əsasında geniş axtarış
-  const words = lower.split(/\s+/).filter(w => w.length > 2);
-  for (const entry of FAQ_DATA) {
-    for (const kw of entry.keywords) {
-      const kwl = kw.toLowerCase();
-      for (const word of words) {
-        if (kwl.includes(word) || word.includes(kwl)) return entry.answer;
+  // 2. Söz əsasında geniş axtarış (≥3 hərf)
+  const words = lower.split(/\s+/).filter(w => w.length >= 3);
+  if (words.length > 0) {
+    for (const { entry, kwLower } of index) {
+      for (const kw of kwLower) {
+        for (const word of words) {
+          if (kw.includes(word) || word.includes(kw)) return entry.answer;
+        }
       }
     }
   }
 
-  return 'Üzr istəyirəm, bu mövzu haqqında məlumatım yoxdur. 🙏\n\nMəsələn bu sualları verə bilərsiniz:\n• "Korpuslar harada yerləşir?"\n• "Dərs saatları nə vaxtdır?"\n• "Yataqxana haqqında məlumat ver"\n• "BDU reytinqi necədir?"\n• "Fakültə sayı neçədir?"';
+  return 'Üzr istəyirəm, bu mövzu haqqında məlumatım yoxdur. 🙏\n\nBu sualları verə bilərsiniz:\n• "Korpuslar harada yerləşir?"\n• "Dərs saatları nə vaxtdır?"\n• "Yataqxana haqqında məlumat ver"\n• "BDU reytinqi necədir?"\n• "Fakültə sayı neçədir?"';
 }
 
 /* =========================================================
-   INIT
+   INIT — DOMContentLoaded
    ========================================================= */
 document.addEventListener('DOMContentLoaded', () => {
   buildFacultyGrid();
   buildKorpusGrid();
 
+  // Filter chip init
   document.querySelectorAll('.filter-chip[data-group]').forEach(el => {
     const gName = el.dataset.group;
     const f     = el.dataset.filter;
@@ -1144,23 +1294,25 @@ document.addEventListener('DOMContentLoaded', () => {
     if (group && group.active.has(f)) el.classList.add('active');
     updateGroupIndicator(gName);
   });
-
   document.querySelectorAll('.filter-chip[data-standalone]').forEach(el => {
     if (standaloneFilters.has(el.dataset.filter)) el.classList.add('active');
   });
 
-  // Korpus modal — ESC ilə bağla
+  // ESC — modal və chat bağla
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
       closeKorpusModal();
       if (bduluOpen) toggleBdulu();
     }
-  });
+  }, { passive: true });
 
-  // Viewport height fix — mobile browsers (address bar)
+  // Viewport height fix — mobil brauzer ünvan paneli
   function setVh() {
     document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
   }
   setVh();
   window.addEventListener('resize', setVh, { passive: true });
+
+  // Preload FAQ index
+  getFaqIndex();
 });
