@@ -354,6 +354,9 @@ function showPage(pageId) {
   }
   currentPage = pageId;
   document.getElementById('backBtn').classList.toggle('visible', pageId !== 'page-home');
+  // Bal Hesabla düyməsi: calc səhifəsində gizlən
+  const calcBtn = document.getElementById('headerCalcBtn');
+  if (calcBtn) calcBtn.classList.toggle('hidden', pageId === 'page-calculator');
   window.scrollTo({ top: 0, behavior: 'instant' });
   // Lazy build: yalnız lazım olduqda qur
   if (pageId === 'page-faculties') buildFacultyGrid();
@@ -369,6 +372,9 @@ function goBack() {
     if (pg) pg.classList.add('active');
     currentPage = prev;
     document.getElementById('backBtn').classList.toggle('visible', prev !== 'page-home');
+    // Bal Hesabla düyməsi: calc səhifəsindən çıxışdıqda görünsün
+    const calcBtn = document.getElementById('headerCalcBtn');
+    if (calcBtn) calcBtn.classList.toggle('hidden', prev === 'page-calculator');
     window.scrollTo({ top: 0, behavior: 'instant' });
   } else {
     goHome();
@@ -383,6 +389,9 @@ function goHome() {
   if (pg) pg.classList.add('active');
   currentPage = 'page-home';
   document.getElementById('backBtn').classList.remove('visible');
+  // Bal Hesabla düyməsi: ana səhifədə görünsün
+  const calcBtn = document.getElementById('headerCalcBtn');
+  if (calcBtn) calcBtn.classList.remove('hidden');
   window.scrollTo({ top: 0, behavior: 'instant' });
 }
 

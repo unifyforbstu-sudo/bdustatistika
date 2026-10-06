@@ -27,6 +27,9 @@
       Bakı Dövlət Universiteti
       <span>Qəbul Statistikası 2026/2027</span>
     </div>
+    <button class="header-calc-btn" id="headerCalcBtn" onclick="showPage('page-calculator')" type="button">
+      🧮 Bal Hesabla
+    </button>
     <button class="header-back-btn" id="backBtn" onclick="goBack()" type="button">
       ← Geri
     </button>
@@ -68,25 +71,6 @@
       </button>
     </div>
 
-    <!-- Qısa statistika -->
-    <div class="home-stats-row">
-      <div class="home-stat">
-        <div class="home-stat-num">16</div>
-        <div class="home-stat-lbl">Fakültə</div>
-      </div>
-      <div class="home-stat">
-        <div class="home-stat-num">76</div>
-        <div class="home-stat-lbl">Bakalavr proqramı</div>
-      </div>
-      <div class="home-stat">
-        <div class="home-stat-num">25K+</div>
-        <div class="home-stat-lbl">Tələbə</div>
-      </div>
-      <div class="home-stat">
-        <div class="home-stat-num">107</div>
-        <div class="home-stat-lbl">İllik tarix</div>
-      </div>
-    </div>
   </div>
 </div>
 
@@ -233,11 +217,6 @@
   </div>
 </div>
 </main>
-
-<!-- FOOTER -->
-<footer>
-  © 2026 Bakı Dövlət Universiteti – Qəbul Statistikası &nbsp;|&nbsp; bsu.edu.az
-</footer>
 
 <!-- ===== KORPUS MODAL ===== -->
 <div class="korpus-modal-overlay" id="korpusModal" onclick="handleModalOverlayClick(event)">
