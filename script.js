@@ -361,13 +361,11 @@ function showPage(pageId) {
   }
   currentPage = pageId;
   document.getElementById('backBtn').classList.toggle('visible', pageId !== 'page-home');
-  // Uğurlu məzunlar — yalnız ana səhifədə göstər
-  const gradSection = document.getElementById('graduatesSection');
-  if (gradSection) gradSection.style.display = pageId === 'page-home' ? '' : 'none';
   window.scrollTo({ top: 0, behavior: 'instant' });
   // Lazy build: yalnız lazım olduqda qur
   if (pageId === 'page-faculties') buildFacultyGrid();
   if (pageId === 'page-korpuslar') buildKorpusGrid();
+  if (pageId === 'page-graduates') buildGraduatesGrid();
 }
 
 function goBack() {
@@ -379,10 +377,8 @@ function goBack() {
     if (pg) pg.classList.add('active');
     currentPage = prev;
     document.getElementById('backBtn').classList.toggle('visible', prev !== 'page-home');
-    // Uğurlu məzunlar görünürlüyü
-    const gradSec = document.getElementById('graduatesSection');
-    if (gradSec) gradSec.style.display = prev === 'page-home' ? '' : 'none';
     window.scrollTo({ top: 0, behavior: 'instant' });
+    if (prev === 'page-graduates') buildGraduatesGrid();
   } else {
     goHome();
   }
@@ -396,10 +392,23 @@ function goHome() {
   if (pg) pg.classList.add('active');
   currentPage = 'page-home';
   document.getElementById('backBtn').classList.remove('visible');
-  // Uğurlu məzunlar — ana səhifəyə qayıdanda göstər
-  const gradSection = document.getElementById('graduatesSection');
-  if (gradSection) gradSection.style.display = '';
   window.scrollTo({ top: 0, behavior: 'instant' });
+}
+
+/* =========================================================
+   BUILD GRADUATES GRID — page-graduates üçün
+   ========================================================= */
+function buildGraduatesGrid() {
+  const grid = document.getElementById('graduatesGrid');
+  if (!grid) return;
+  // Artıq məzmun varsa yenidən qurma
+  if (grid.querySelector('.graduate-card')) return;
+  // Hazırda məlumat yoxdur — boş vəziyyət göstər
+  grid.innerHTML = `
+    <div class="graduates-empty-page">
+      <div class="graduates-empty-icon">🎓</div>
+      <div class="graduates-empty-text">Məlumatlar hazırlanır...<br><small style="font-weight:400;opacity:.7;">Tezliklə uğurlu məzunların məlumatları burada əks olunacaq</small></div>
+    </div>`;
 }
 
 /* =========================================================
@@ -1237,109 +1246,6 @@ function getFaqIndex() {
   return _faqIndex;
 }
 
-let bduluOpen = false;
-
-function toggleBdulu() {
-  bduluOpen = !bduluOpen;
-  const panel = document.getElementById('bduluPanel');
-  const badge = document.getElementById('bduluBadge');
-  panel.classList.toggle('open', bduluOpen);
-  if (bduluOpen) {
-    badge.style.display = 'none';
-    requestAnimationFrame(() => {
-      // Panel a\u00e7\u0131ld\u0131qda \u0259n son mesaja scroll et
-      const container = document.getElementById('bduluMessages');
-      if (container) scrollBduluToBottom(container);
-      const input = document.getElementById('bduluInput');
-      if (input) input.focus();
-    });
-  }
-}
-
-function sendSuggestion(text) {
-  const input = document.getElementById('bduluInput');
-  input.value = text;
-  sendBdulu();
-}
-
-function sendBdulu() {
-  const input = document.getElementById('bduluInput');
-  const text  = input.value.trim();
-  if (!text) return;
-  input.value = '';
-  input.style.height = '';
-
-  appendBduluMsg(text, 'user');
-
-  const suggestions = document.getElementById('bduluSuggestions');
-  if (suggestions) suggestions.style.display = 'none';
-
-  const typingId = showBduluTyping();
-
-  setTimeout(() => {
-    removeBduluTyping(typingId);
-    const answer = getBduluAnswer(text);
-    appendBduluMsg(answer, 'bot');
-  }, 400 + Math.random() * 300);
-}
-
-function scrollBduluToBottom(container) {
-  // requestAnimationFrame: DOM render tam tamamlandıqdan sonra scroll — mobil üçün etibarlı
-  requestAnimationFrame(() => {
-    container.scrollTop = container.scrollHeight;
-    // Bir frame daha gözlə (bəzi mobil brauzerlər üçün)
-    requestAnimationFrame(() => {
-      container.scrollTop = container.scrollHeight;
-    });
-  });
-}
-
-function appendBduluMsg(text, role) {
-  const container = document.getElementById('bduluMessages');
-  const div = document.createElement('div');
-  div.className = `bdulu-msg bdulu-msg-${role}`;
-  if (role === 'bot') {
-    div.innerHTML = `
-      <img src="images/bdulu-logo.png" alt="BDULU" class="bdulu-msg-avatar" loading="lazy"/>
-      <div class="bdulu-msg-bubble">${text.replace(/\n/g, '<br>')}</div>`;
-  } else {
-    div.innerHTML = `<div class="bdulu-msg-bubble bdulu-msg-bubble-user">${escHtml(text)}</div>`;
-  }
-  container.appendChild(div);
-  // Mobil üçün etibarlı scroll: həmişə ən son mesaj görünsün
-  scrollBduluToBottom(container);
-}
-
-function escHtml(str) {
-  return str
-    .replace(/&/g,'&amp;')
-    .replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;')
-    .replace(/"/g,'&quot;');
-}
-
-let typingCounter = 0;
-function showBduluTyping() {
-  const container = document.getElementById('bduluMessages');
-  const id  = 'typing-' + (++typingCounter);
-  const div = document.createElement('div');
-  div.className = 'bdulu-msg bdulu-msg-bot';
-  div.id = id;
-  div.innerHTML = `
-    <img src="images/bdulu-logo.png" alt="" class="bdulu-msg-avatar" loading="lazy"/>
-    <div class="bdulu-msg-bubble bdulu-typing">
-      <span></span><span></span><span></span>
-    </div>`;
-  container.appendChild(div);
-  scrollBduluToBottom(container);
-  return id;
-}
-
-function removeBduluTyping(id) {
-  const el = document.getElementById(id);
-  if (el) el.remove();
-}
-
 function getBduluAnswer(text) {
   const lower = text.toLowerCase().trim();
   const index = getFaqIndex();
@@ -1380,19 +1286,14 @@ window.toggleFilter          = toggleFilter;
 window.onGroupChange         = onGroupChange;
 window.updateTotal           = updateTotal;
 window.calculate             = calculate;
-window.toggleBdulu           = toggleBdulu;
-window.sendBdulu             = sendBdulu;
-window.sendSuggestion        = sendSuggestion;
 window.handleModalOverlayClick = handleModalOverlayClick;
 
 /* =========================================================
    INIT — DOMContentLoaded
    ========================================================= */
 document.addEventListener('DOMContentLoaded', () => {
-  // Grids lazy build edilir — showPage() çağırdıqda qurulur
-  // Performans: ilk yükləmədə gərəksiz DOM işi yoxdur
 
-  // Filter chip init
+  // ── Filter chip init ──
   document.querySelectorAll('.filter-chip[data-group]').forEach(el => {
     const gName = el.dataset.group;
     const f     = el.dataset.filter;
@@ -1404,113 +1305,366 @@ document.addEventListener('DOMContentLoaded', () => {
     if (standaloneFilters.has(el.dataset.filter)) el.classList.add('active');
   });
 
-  // ESC — modal və chat bağla
+  // ── ESC — modal və chat bağla ──
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
       closeKorpusModal();
-      if (bduluOpen) toggleBdulu();
+      if (bduluOpen) closeBdulu();
     }
   }, { passive: true });
 
-  // Viewport height fix — mobil brauzer ünvan paneli
+  // ── Viewport height fix — mobil brauzer ünvan paneli ──
   function setVh() {
     document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
   }
   setVh();
   window.addEventListener('resize', setVh, { passive: true });
 
-  // Preload FAQ index
+  // ── FAQ indexini öncədən yüklə ──
   getFaqIndex();
 
-  // ── BDULU Widget Drag & Drop (mouse + touch) ──
-  initBduluDrag();
+  // ── BDULU Widget başlat ──
+  initBduluWidget();
 });
 
-let _dragMoved = false; // qlobal — click handler üçün
+/* =========================================================
+   BDULU WIDGET
+   
+   ARXİTEKTURA:
+   - #bduluWidget (toggle konteyneri): drag edilir
+   - #bduluPanel (chat paneli): həmişə fixed, ekranın sağ alt küncündə,
+     drag edilmir, widget pozisiyasından asılı deyil
+   
+   PROBLEMLƏRİN HƏLLİ:
+   1. Drag: widget öz mövqeyini dəyişir, panel HƏMİŞƏ sağ alt küncdə qalır
+   2. Click/Touch: drag olmayıbsa — panel açılır/bağlanır
+   3. Mobil: touch events düzgün işlənir, zoom olmur
+   ========================================================= */
 
-function initBduluDrag() {
-  const widget = document.getElementById('bduluWidget');
-  const toggle = document.getElementById('bduluToggle');
-  if (!widget || !toggle) return;
+let bduluOpen = false;
 
-  let dragging = false;
-  let startX = 0, startY = 0;
-  let initRight = 0, initBottom = 0;
-  let moved = false;
+function openBdulu() {
+  if (bduluOpen) return;
+  bduluOpen = true;
+  const panel = document.getElementById('bduluPanel');
+  const badge = document.getElementById('bduluBadge');
+  if (panel) panel.classList.add('open');
+  if (badge) badge.style.display = 'none';
+  // Fokus + scroll
+  requestAnimationFrame(() => {
+    const messages = document.getElementById('bduluMessages');
+    if (messages) scrollBduluToBottom(messages);
+    const input = document.getElementById('bduluInput');
+    if (input) {
+      // Mobil klaviatura açmasın dərhal — istifadəçi özü seçsin
+      // input.focus();
+    }
+  });
+}
 
-  function getPos(e) {
-    return e.touches ? { x: e.touches[0].clientX, y: e.touches[0].clientY }
-                     : { x: e.clientX, y: e.clientY };
+function closeBdulu() {
+  if (!bduluOpen) return;
+  bduluOpen = false;
+  const panel = document.getElementById('bduluPanel');
+  if (panel) panel.classList.remove('open');
+}
+
+function toggleBdulu() {
+  if (bduluOpen) closeBdulu();
+  else openBdulu();
+}
+
+function sendSuggestion(text) {
+  const input = document.getElementById('bduluInput');
+  if (input) {
+    input.value = text;
+    sendBdulu();
+  }
+}
+
+function sendBdulu() {
+  const input = document.getElementById('bduluInput');
+  if (!input) return;
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+
+  appendBduluMsg(text, 'user');
+
+  const suggestions = document.getElementById('bduluSuggestions');
+  if (suggestions) suggestions.style.display = 'none';
+
+  const typingId = showBduluTyping();
+  setTimeout(() => {
+    removeBduluTyping(typingId);
+    const answer = getBduluAnswer(text);
+    appendBduluMsg(answer, 'bot');
+  }, 400 + Math.random() * 300);
+}
+
+function scrollBduluToBottom(container) {
+  requestAnimationFrame(() => {
+    container.scrollTop = container.scrollHeight;
+    requestAnimationFrame(() => {
+      container.scrollTop = container.scrollHeight;
+    });
+  });
+}
+
+function appendBduluMsg(text, role) {
+  const container = document.getElementById('bduluMessages');
+  if (!container) return;
+  const div = document.createElement('div');
+  div.className = `bdulu-msg bdulu-msg-${role}`;
+  if (role === 'bot') {
+    div.innerHTML = `
+      <img src="images/bdulu-logo.png" alt="BDULU" class="bdulu-msg-avatar" loading="lazy"/>
+      <div class="bdulu-msg-bubble">${text.replace(/\n/g, '<br>')}</div>`;
+  } else {
+    div.innerHTML = `<div class="bdulu-msg-bubble bdulu-msg-bubble-user">${escHtml(text)}</div>`;
+  }
+  container.appendChild(div);
+  scrollBduluToBottom(container);
+}
+
+function escHtml(str) {
+  return str
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;');
+}
+
+let typingCounter = 0;
+function showBduluTyping() {
+  const container = document.getElementById('bduluMessages');
+  if (!container) return null;
+  const id  = 'typing-' + (++typingCounter);
+  const div = document.createElement('div');
+  div.className = 'bdulu-msg bdulu-msg-bot';
+  div.id = id;
+  div.innerHTML = `
+    <img src="images/bdulu-logo.png" alt="" class="bdulu-msg-avatar" loading="lazy"/>
+    <div class="bdulu-msg-bubble bdulu-typing">
+      <span></span><span></span><span></span>
+    </div>`;
+  container.appendChild(div);
+  scrollBduluToBottom(container);
+  return id;
+}
+
+function removeBduluTyping(id) {
+  if (!id) return;
+  const el = document.getElementById(id);
+  if (el) el.remove();
+}
+
+/* ─────────────────────────────────────────────────
+   BDULU Widget başlatma funksiyası
+   ─────────────────────────────────────────────── */
+function initBduluWidget() {
+  const widget  = document.getElementById('bduluWidget');
+  const toggle  = document.getElementById('bduluToggle');
+  const panel   = document.getElementById('bduluPanel');
+  const closeBtn = document.getElementById('bduluClose');
+  const sendBtn = document.getElementById('bduluSendBtn');
+  const input   = document.getElementById('bduluInput');
+  const suggestionsEl = document.getElementById('bduluSuggestions');
+
+  if (!widget || !toggle || !panel) return;
+
+  // ── Suggestion düymələri ──
+  if (suggestionsEl) {
+    const suggestionTexts = [
+      'Korpuslar harada yerləşir?',
+      'Dərs saatları nə vaxtdır?',
+      'Yataqxana haqqında məlumat ver',
+      'BDU reytinqi necədir?'
+    ];
+    suggestionsEl.querySelectorAll('.bdulu-suggestion-btn').forEach((btn, i) => {
+      const txt = suggestionTexts[i] || btn.textContent.trim();
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        sendSuggestion(txt);
+      });
+      btn.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        sendSuggestion(txt);
+      }, { passive: false });
+    });
   }
 
-  function onStart(e) {
-    // Yalnız toggle düyməsindən başlasın
-    if (!e.target.closest('.bdulu-toggle')) return;
-    dragging = true;
-    moved    = false;
-    const pos = getPos(e);
-    startX = pos.x;
-    startY = pos.y;
-    // Mövcud mövqeyi al (right/bottom based)
-    const rect = widget.getBoundingClientRect();
-    initRight  = window.innerWidth  - rect.right;
-    initBottom = window.innerHeight - rect.bottom;
+  // ── Bağla düyməsi ──
+  if (closeBtn) {
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeBdulu();
+    });
+    closeBtn.addEventListener('touchend', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      closeBdulu();
+    }, { passive: false });
+  }
+
+  // ── Göndər düyməsi ──
+  if (sendBtn) {
+    sendBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      sendBdulu();
+    });
+    sendBtn.addEventListener('touchend', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      sendBdulu();
+    }, { passive: false });
+  }
+
+  // ── Input Enter ──
+  if (input) {
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendBdulu();
+      }
+    });
+    // Panel içindəki klikləri widget drag-ına ötürmə
+    input.addEventListener('click', (e) => e.stopPropagation());
+    input.addEventListener('touchstart', (e) => e.stopPropagation(), { passive: true });
+  }
+
+  // ── Panel içindəki click-ləri drag-a keçirmə ──
+  panel.addEventListener('click', (e) => e.stopPropagation());
+  panel.addEventListener('touchstart', (e) => e.stopPropagation(), { passive: true });
+
+  // ─────────────────────────────────────────────────────────
+  // DRAG MEXANİZMİ — Yalnız widget (toggle düyməsi) drag edilir
+  // Panel həmişə sabit sağ alt küncdə qalır
+  // ─────────────────────────────────────────────────────────
+  let isDragging = false;
+  let dragMoved  = false;
+  let startClientX = 0;
+  let startClientY = 0;
+  let startRight   = 0;
+  let startBottom  = 0;
+  const DRAG_THRESHOLD = 6; // px — bu məsafədən az olsa drag sayılmaz
+
+  function getEventPos(e) {
+    if (e.touches && e.touches.length > 0) {
+      return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    }
+    return { x: e.clientX, y: e.clientY };
+  }
+
+  function onDragStart(e) {
+    // Panel içindən gəlibsə keç
+    if (e.target.closest('#bduluPanel')) return;
+
+    isDragging   = true;
+    dragMoved    = false;
+
+    const pos    = getEventPos(e);
+    startClientX = pos.x;
+    startClientY = pos.y;
+
+    // Widget-in mövcud right/bottom mövqeyini al
+    const rect   = widget.getBoundingClientRect();
+    startRight   = window.innerWidth  - rect.right;
+    startBottom  = window.innerHeight - rect.bottom;
+
     widget.style.transition = 'none';
+    toggle.classList.add('dragging');
+
     if (e.cancelable) e.preventDefault();
   }
 
-  function onMove(e) {
-    if (!dragging) return;
-    const pos  = getPos(e);
-    const dx   = pos.x - startX;
-    const dy   = pos.y - startY;
-    if (Math.abs(dx) > 4 || Math.abs(dy) > 4) { moved = true; _dragMoved = true; }
-    if (!moved) return;
+  function onDragMove(e) {
+    if (!isDragging) return;
 
-    const rect   = widget.getBoundingClientRect();
-    const W      = window.innerWidth;
-    const H      = window.innerHeight;
-    let newRight  = initRight  - dx;
-    let newBottom = initBottom + dy;
+    const pos = getEventPos(e);
+    const dx  = pos.x - startClientX;
+    const dy  = pos.y - startClientY;
 
-    // Ekrandan çıxmasın
-    newRight  = Math.max(8, Math.min(W  - rect.width  - 8, newRight));
-    newBottom = Math.max(8, Math.min(H  - rect.height - 8, newBottom));
+    if (!dragMoved && (Math.abs(dx) > DRAG_THRESHOLD || Math.abs(dy) > DRAG_THRESHOLD)) {
+      dragMoved = true;
+    }
+    if (!dragMoved) return;
+
+    const W = window.innerWidth;
+    const H = window.innerHeight;
+    const wW = widget.offsetWidth;
+    const wH = widget.offsetHeight;
+
+    let newRight  = startRight  - dx;
+    let newBottom = startBottom + dy;
+
+    // Ekran hüdudları — minimum boşluq 6px
+    newRight  = Math.max(6, Math.min(W  - wW  - 6, newRight));
+    newBottom = Math.max(6, Math.min(H  - wH  - 6, newBottom));
 
     widget.style.right  = newRight  + 'px';
     widget.style.bottom = newBottom + 'px';
     widget.style.left   = 'auto';
     widget.style.top    = 'auto';
+
     if (e.cancelable) e.preventDefault();
   }
 
-  function onEnd(e) {
-    if (!dragging) return;
-    dragging = false;
+  function onMouseEnd(e) {
+    if (!isDragging) return;
+    isDragging = false;
     widget.style.transition = '';
-    // Əgər hərəkət olmayıbsa — normal klik kimi işlə (toggleBdulu çağırılır)
-    if (moved) {
-      // Klik hadisəsini ləğv et
-      e.stopPropagation && e.stopPropagation();
-    }
-    moved = false;
-    // _dragMoved-i qısa müddətdən sonra sıfırla ki klik işləsin
-    if (!_dragMoved) _dragMoved = false;
-    setTimeout(() => { _dragMoved = false; }, 50);
+    toggle.classList.remove('dragging');
+    // Mouse üçün: click event özü toggle edəcək
+    // dragMoved saxlanır — click handler oxuyacaq
   }
 
-  // Mouse events
-  toggle.addEventListener('mousedown',  onStart, { passive: false });
-  document.addEventListener('mousemove', onMove,  { passive: false });
-  document.addEventListener('mouseup',   onEnd);
+  function onTouchEnd(e) {
+    if (!isDragging) return;
+    isDragging = false;
+    widget.style.transition = '';
+    toggle.classList.remove('dragging');
 
-  // Touch events
-  toggle.addEventListener('touchstart', onStart, { passive: false });
-  document.addEventListener('touchmove', onMove,  { passive: false });
-  document.addEventListener('touchend',  onEnd);
+    if (!dragMoved) {
+      // Touch üçün: synthetic click gəlmir bəzi brauzərlərdə
+      // manual toggleBdulu() çağır
+      // Qısa gecikmə ilə — DOM-un hazır olmasını gözlə
+      setTimeout(() => { toggleBdulu(); }, 10);
+    }
+    dragMoved = false;
+  }
 
-  // Əgər drag olubsa klik hadisəsini ləğv et
-  toggle.addEventListener('click', e => {
-    if (_dragMoved) { e.stopImmediatePropagation(); e.preventDefault(); }
-  }, true);
+  // Mouse events (masaüstü)
+  toggle.addEventListener('mousedown', onDragStart, { passive: false });
+  document.addEventListener('mousemove', onDragMove, { passive: false });
+  document.addEventListener('mouseup', onMouseEnd);
+
+  // Touch events (mobil)
+  toggle.addEventListener('touchstart', onDragStart, { passive: false });
+  document.addEventListener('touchmove', onDragMove, { passive: false });
+  document.addEventListener('touchend', onTouchEnd, { passive: true });
+
+  // Desktop üçün click handler:
+  // mousedown → (move?) → mouseup → click
+  // onDragEnd-də toggle etmiririk — yalnız click-dən edirik
+  // Drag olubsa click-i ləğv edirik
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (dragMoved) {
+      // Drag edilib — click-i ləğv et
+      dragMoved = false;
+      return;
+    }
+    // Sadə klik — toggle et (YALNIZ MOUSE üçün — touch üçün onDragEnd edir)
+    // touch-dan gələn synthetic click-ləri önləmək üçün:
+    if (e.pointerType === 'touch') return;
+    toggleBdulu();
+  });
 }
+
+window.toggleBdulu   = toggleBdulu;
+window.openBdulu     = openBdulu;
+window.closeBdulu    = closeBdulu;
+window.sendBdulu     = sendBdulu;
+window.sendSuggestion = sendSuggestion;

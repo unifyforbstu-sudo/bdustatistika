@@ -8,12 +8,10 @@
   <meta name="robots" content="index, follow" />
   <title>BDU – Qəbul Statistikası</title>
   <link rel="icon" type="image/png" href="images/bdu-logo.png" />
-  <!-- Preload critical assets -->
   <link rel="preload" href="style.css" as="style" />
   <link rel="preload" href="images/bdu-logo.png" as="image" />
   <link rel="preload" href="images/bdulu-logo.png" as="image" />
   <link rel="stylesheet" href="style.css" />
-  <!-- DNS prefetch yoxdur — xarici resurs istifadə edilmir -->
   <style>
     @keyframes shake {
       0%,100%{transform:translateX(0)}
@@ -52,7 +50,8 @@
   </section>
 
   <div class="container">
-    <div class="home-nav-grid home-nav-grid-2">
+    <!-- 3 kart: Fakültələr, Korpuslar, Uğurlu Məzunlar -->
+    <div class="home-nav-grid home-nav-grid-3">
       <!-- Fakültələr -->
       <button class="home-nav-card home-nav-faculties" onclick="showPage('page-faculties')" type="button">
         <div class="home-nav-icon">🎓</div>
@@ -68,8 +67,15 @@
         <div class="home-nav-desc">BDU-nun korpusları, yerləşmə məntəqələri və fakültə bölgüsü</div>
         <div class="home-nav-arrow">→</div>
       </button>
-    </div>
 
+      <!-- Uğurlu Məzunlar -->
+      <button class="home-nav-card home-nav-graduates" onclick="showPage('page-graduates')" type="button">
+        <div class="home-nav-icon">🏆</div>
+        <div class="home-nav-title">Uğurlu Məzunlar</div>
+        <div class="home-nav-desc">Bakı Dövlət Universitetinin fəxri məzunları</div>
+        <div class="home-nav-arrow">→</div>
+      </button>
+    </div>
   </div>
 </div>
 
@@ -96,6 +102,25 @@
   </div>
   <div class="container">
     <div class="korpus-grid" id="korpusGrid"></div>
+  </div>
+</div>
+
+<!-- =================== UĞURLU MƏZUNLAR SƏHİFƏSİ =================== -->
+<div class="page" id="page-graduates">
+  <div class="graduates-page-header page-header-bar" style="background: linear-gradient(135deg, #6a3093 55%, #8e44ad);">
+    <div class="container">
+      <h2 class="graduates-page-title page-header-title">🏆 Uğurlu Məzunlar</h2>
+      <p class="graduates-page-desc page-header-desc">Bakı Dövlət Universitetinin fəxri məzunları</p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="graduates-grid-page" id="graduatesGrid">
+      <!-- Məlumatlar JS-dən yüklənir -->
+      <div class="graduates-empty-page">
+        <div class="graduates-empty-icon">🎓</div>
+        <div class="graduates-empty-text">Məlumatlar hazırlanır...</div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -208,7 +233,7 @@
       <div id="resultsList"></div>
     </div>
 
-    <!-- RI Diaqramları — YALNIZ BAL HESABLAMADAN SONRA GÖRÜNÜR -->
+    <!-- RI Diaqramları -->
     <div id="calc-ri-charts-section" style="display:none;margin-top:24px;">
       <h3 class="section-title">📊 RI Alt Qrupu – Bal Statistikası</h3>
       <div class="ri-charts-wrapper" id="calcRiChartsWrapper"></div>
@@ -217,22 +242,6 @@
 </div>
 </main>
 
-<!-- ===== UĞURLU MƏZUNLAR — ana səhifə altında ===== -->
-<section class="graduates-section" id="graduatesSection">
-  <div class="container">
-    <h2 class="graduates-title">🎓 Uğurlu Məzunlar</h2>
-    <p class="graduates-desc">Bakı Dövlət Universitetinin fəxri məzunları</p>
-    <div class="graduates-grid" id="graduatesGrid">
-      <!-- Məlumatlar tezliklə əlavə olunacaq -->
-      <div class="graduates-empty">
-        <div class="graduates-empty-icon">🎓</div>
-        <div class="graduates-empty-text">Məlumatlar hazırlanır...</div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- Uğurlu məzunlar görünürlüyü JS-dən idarə edilir -->
-
 <!-- ===== KORPUS MODAL ===== -->
 <div class="korpus-modal-overlay" id="korpusModal" onclick="handleModalOverlayClick(event)">
   <div class="korpus-modal" id="korpusModalInner" role="dialog" aria-modal="true">
@@ -240,52 +249,57 @@
   </div>
 </div>
 
-<!-- ===== BDULU CHAT WIDGET ===== -->
-<div class="bdulu-widget" id="bduluWidget">
-  <button class="bdulu-toggle" id="bduluToggle" onclick="toggleBdulu()" aria-label="BDULU köməkçi" type="button">
-    <img src="images/bdulu-logo.png" alt="BDULU" class="bdulu-toggle-img" />
+<!-- ===== BDULU CHAT WIDGET =====
+     Widget: yalnız toggle düyməsi — drag edilir
+     Panel: həmişə fixed sağ alt küncdə, drag edilmir
+     ===================================== -->
+
+<!-- Toggle düyməsi (drag edilən) -->
+<div class="bdulu-widget" id="bduluWidget" aria-hidden="true">
+  <button class="bdulu-toggle" id="bduluToggle" aria-label="BDULU köməkçi" type="button">
+    <img src="images/bdulu-logo.png" alt="BDULU" class="bdulu-toggle-img" draggable="false" />
     <span class="bdulu-badge" id="bduluBadge">1</span>
   </button>
+</div>
 
-  <div class="bdulu-panel" id="bduluPanel" role="dialog" aria-label="BDULU Chat">
-    <div class="bdulu-panel-header">
-      <img src="images/bdulu-logo.png" alt="BDULU" class="bdulu-header-img" />
-      <div class="bdulu-header-info">
-        <div class="bdulu-header-name">BDULU</div>
-        <div class="bdulu-header-status"><span class="bdulu-online-dot"></span> Onlayn</div>
+<!-- Chat Paneli (sabit, drag edilmir) -->
+<div class="bdulu-panel" id="bduluPanel" role="dialog" aria-label="BDULU Chat" aria-modal="true">
+  <div class="bdulu-panel-header">
+    <img src="images/bdulu-logo.png" alt="BDULU" class="bdulu-header-img" />
+    <div class="bdulu-header-info">
+      <div class="bdulu-header-name">BDULU</div>
+      <div class="bdulu-header-status"><span class="bdulu-online-dot"></span> Onlayn</div>
+    </div>
+    <button class="bdulu-close" id="bduluClose" aria-label="Bağla" type="button">✕</button>
+  </div>
+
+  <div class="bdulu-messages" id="bduluMessages">
+    <div class="bdulu-msg bdulu-msg-bot">
+      <img src="images/bdulu-logo.png" alt="BDULU" class="bdulu-msg-avatar" />
+      <div class="bdulu-msg-bubble">
+        Salam! Mən <strong>BDULU</strong>yam — Bakı Dövlət Universitetinin köməkçi assistantı. 🎓<br><br>
+        BDU haqqında hər cür sualınızı mənə verə bilərsiniz!
       </div>
-      <button class="bdulu-close" onclick="toggleBdulu()" aria-label="Bağla" type="button">✕</button>
     </div>
+  </div>
 
-    <div class="bdulu-messages" id="bduluMessages">
-      <div class="bdulu-msg bdulu-msg-bot">
-        <img src="images/bdulu-logo.png" alt="BDULU" class="bdulu-msg-avatar" />
-        <div class="bdulu-msg-bubble">
-          Salam! Mən <strong>BDULU</strong>yam — Bakı Dövlət Universitetinin köməkçi assistantı. 🎓<br><br>
-          BDU haqqında hər cür sualınızı mənə verə bilərsiniz!
-        </div>
-      </div>
-    </div>
+  <div class="bdulu-suggestions" id="bduluSuggestions">
+    <button class="bdulu-suggestion-btn" type="button">📍 Korpuslar</button>
+    <button class="bdulu-suggestion-btn" type="button">🕐 Dərs saatları</button>
+    <button class="bdulu-suggestion-btn" type="button">🏠 Yataqxana</button>
+    <button class="bdulu-suggestion-btn" type="button">🏆 Reytinq</button>
+  </div>
 
-    <div class="bdulu-suggestions" id="bduluSuggestions">
-      <button class="bdulu-suggestion-btn" onclick="sendSuggestion('Korpuslar harada yerləşir?')" type="button">📍 Korpuslar</button>
-      <button class="bdulu-suggestion-btn" onclick="sendSuggestion('Dərs saatları nə vaxtdır?')" type="button">🕐 Dərs saatları</button>
-      <button class="bdulu-suggestion-btn" onclick="sendSuggestion('Yataqxana haqqında məlumat ver')" type="button">🏠 Yataqxana</button>
-      <button class="bdulu-suggestion-btn" onclick="sendSuggestion('BDU reytinqi necədir?')" type="button">🏆 Reytinq</button>
-    </div>
-
-    <div class="bdulu-input-row">
-      <input type="text" id="bduluInput" class="bdulu-input" placeholder="Sualınızı yazın..."
-             onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendBdulu();}"
-             autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
-             inputmode="text" enterkeyhint="send" />
-      <button class="bdulu-send-btn" onclick="sendBdulu()" aria-label="Göndər" type="button">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-          <line x1="22" y1="2" x2="11" y2="13"></line>
-          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-        </svg>
-      </button>
-    </div>
+  <div class="bdulu-input-row">
+    <input type="text" id="bduluInput" class="bdulu-input" placeholder="Sualınızı yazın..."
+           autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+           inputmode="text" enterkeyhint="send" />
+    <button class="bdulu-send-btn" id="bduluSendBtn" aria-label="Göndər" type="button">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+        <line x1="22" y1="2" x2="11" y2="13"></line>
+        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+      </svg>
+    </button>
   </div>
 </div>
 
