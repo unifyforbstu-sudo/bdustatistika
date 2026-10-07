@@ -4,9 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#0a1433" />
+  <meta name="description" content="BDU Qəbul Statistikası – Bakı Dövlət Universitetinə qəbul ehtimalını hesablayın, fakültələr və korpuslar haqqında məlumat əldə edin." />
+  <meta name="robots" content="index, follow" />
   <title>BDU – Qəbul Statistikası</title>
   <link rel="icon" type="image/png" href="images/bdu-logo.png" />
+  <!-- Preload critical assets -->
+  <link rel="preload" href="style.css" as="style" />
+  <link rel="preload" href="images/bdu-logo.png" as="image" />
+  <link rel="preload" href="images/bdulu-logo.png" as="image" />
   <link rel="stylesheet" href="style.css" />
+  <!-- DNS prefetch yoxdur — xarici resurs istifadə edilmir -->
   <style>
     @keyframes shake {
       0%,100%{transform:translateX(0)}
@@ -22,14 +29,11 @@
 <!-- ===== HEADER ===== -->
 <header>
   <div class="header-inner">
-    <img src="images/bdu-logo.png" alt="BDU Loqo" class="header-logo" />
+    <img src="images/bdu-logo.png" alt="BDU Loqo" class="header-logo" decoding="async" />
     <div class="header-title">
       Bakı Dövlət Universiteti
       <span>Qəbul Statistikası 2026/2027</span>
     </div>
-    <button class="header-calc-btn" id="headerCalcBtn" onclick="showPage('page-calculator')" type="button">
-      🧮 Bal Hesabla
-    </button>
     <button class="header-back-btn" id="backBtn" onclick="goBack()" type="button">
       ← Geri
     </button>
@@ -213,6 +217,22 @@
 </div>
 </main>
 
+<!-- ===== UĞURLU MƏZUNLAR — ana səhifə altında ===== -->
+<section class="graduates-section" id="graduatesSection">
+  <div class="container">
+    <h2 class="graduates-title">🎓 Uğurlu Məzunlar</h2>
+    <p class="graduates-desc">Bakı Dövlət Universitetinin fəxri məzunları</p>
+    <div class="graduates-grid" id="graduatesGrid">
+      <!-- Məlumatlar tezliklə əlavə olunacaq -->
+      <div class="graduates-empty">
+        <div class="graduates-empty-icon">🎓</div>
+        <div class="graduates-empty-text">Məlumatlar hazırlanır...</div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Uğurlu məzunlar görünürlüyü JS-dən idarə edilir -->
+
 <!-- ===== KORPUS MODAL ===== -->
 <div class="korpus-modal-overlay" id="korpusModal" onclick="handleModalOverlayClick(event)">
   <div class="korpus-modal" id="korpusModalInner" role="dialog" aria-modal="true">
@@ -269,11 +289,6 @@
   </div>
 </div>
 
-<script>
-function handleModalOverlayClick(e) {
-  if (e.target === document.getElementById('korpusModal')) closeKorpusModal();
-}
-</script>
-<script src="script.js"></script>
+<script src="script.js" defer></script>
 </body>
 </html>

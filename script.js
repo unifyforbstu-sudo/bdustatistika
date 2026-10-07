@@ -337,6 +337,13 @@ const KORPUSLAR = [
 ];
 
 /* =========================================================
+   MODAL OVERLAY CLICK HANDLER
+   ========================================================= */
+function handleModalOverlayClick(e) {
+  if (e.target === document.getElementById('korpusModal')) closeKorpusModal();
+}
+
+/* =========================================================
    PAGE NAVIGATION
    ========================================================= */
 let currentPage = 'page-home';
@@ -354,9 +361,9 @@ function showPage(pageId) {
   }
   currentPage = pageId;
   document.getElementById('backBtn').classList.toggle('visible', pageId !== 'page-home');
-  // Bal Hesabla düyməsi: calc səhifəsində gizlən
-  const calcBtn = document.getElementById('headerCalcBtn');
-  if (calcBtn) calcBtn.classList.toggle('hidden', pageId === 'page-calculator');
+  // Uğurlu məzunlar — yalnız ana səhifədə göstər
+  const gradSection = document.getElementById('graduatesSection');
+  if (gradSection) gradSection.style.display = pageId === 'page-home' ? '' : 'none';
   window.scrollTo({ top: 0, behavior: 'instant' });
   // Lazy build: yalnız lazım olduqda qur
   if (pageId === 'page-faculties') buildFacultyGrid();
@@ -372,9 +379,9 @@ function goBack() {
     if (pg) pg.classList.add('active');
     currentPage = prev;
     document.getElementById('backBtn').classList.toggle('visible', prev !== 'page-home');
-    // Bal Hesabla düyməsi: calc səhifəsindən çıxışdıqda görünsün
-    const calcBtn = document.getElementById('headerCalcBtn');
-    if (calcBtn) calcBtn.classList.toggle('hidden', prev === 'page-calculator');
+    // Uğurlu məzunlar görünürlüyü
+    const gradSec = document.getElementById('graduatesSection');
+    if (gradSec) gradSec.style.display = prev === 'page-home' ? '' : 'none';
     window.scrollTo({ top: 0, behavior: 'instant' });
   } else {
     goHome();
@@ -389,9 +396,9 @@ function goHome() {
   if (pg) pg.classList.add('active');
   currentPage = 'page-home';
   document.getElementById('backBtn').classList.remove('visible');
-  // Bal Hesabla düyməsi: ana səhifədə görünsün
-  const calcBtn = document.getElementById('headerCalcBtn');
-  if (calcBtn) calcBtn.classList.remove('hidden');
+  // Uğurlu məzunlar — ana səhifəyə qayıdanda göstər
+  const gradSection = document.getElementById('graduatesSection');
+  if (gradSection) gradSection.style.display = '';
   window.scrollTo({ top: 0, behavior: 'instant' });
 }
 
@@ -997,11 +1004,11 @@ const FAQ_DATA = [
   },
   {
     keywords: ['hələlik', 'görüşərik', 'bye', 'gedirəm', 'xudahafiz', 'sağolun'],
-    answer: 'Hələlik! Uğurlar! 🎓👋'
+    answer: 'Hələlik! Görüşənəcən! 👋'
   },
   {
-    keywords: ['uğur', 'uğurlar', 'uğur arzu', 'imtahan', 'dərs'],
-    answer: 'Sizə dərslərinizdə və imtahanlarınızda bol uğurlar arzulayıram! 🍀🎓 BDU-da müvəffəqiyyət sizin üçün!'
+    keywords: ['uğur', 'uğurlar', 'uğur arzu'],
+    answer: 'Çox sağ olun! 😊 Başqa sualınız varsa, buyurun.'
   },
   {
     keywords: ['maraqlı fakt', 'fakt de', 'darıxıram', 'bir fakt de', 'maraqlı bir'],
@@ -1063,12 +1070,16 @@ const FAQ_DATA = [
   },
   // ── Dərs saatları ──
   {
-    keywords: ['dərs saatı', 'dərs neçədə', 'dərslər neçədə', 'dərs vaxtı', 'başlayır', 'növbə', 'neçə başlayır'],
-    answer: 'Bakalavr tələbələri üçün dərs vaxtları:\n• 1-ci və 3-cü kurslar: Səhər — 08:30-da\n• 2-ci və 4-cü kurslar: Günorta — 13:50-də başlayır. 🕐'
+    keywords: ['dərs saatı', 'dərs neçədə', 'dərslər neçədə', 'dərs vaxtı', 'başlayır', 'növbə', 'neçə başlayır', 'dərs saatları'],
+    answer: 'BDU-da bakalavr tələbələri üçün dərs vaxtları:\n🕗 1-ci və 3-cü kurslar — səhər 08:30-da başlayır\n🕑 2-ci və 4-cü kurslar — günorta 13:50-də başlayır\n\nDərslər adətən 90 dəqiqədir. 📚'
   },
   {
     keywords: ['həftədə neçə', 'həftəlik dərs', 'neçə gün dərs', 'neçə dəfə dərs', 'həftədə neçə dəfə'],
-    answer: 'Həftədə 4 dəfə dərs olur. 📅'
+    answer: 'BDU-da həftədə 4 gün dərs olur. 📅'
+  },
+  {
+    keywords: ['imtahan', 'sınaq', 'sessiya', 'yekun imtahan'],
+    answer: 'BDU-da iki sessiya var: qış sessiyası (yanvar) və yay sessiyası (iyun). Hər fənndən imtahan verilir. Yaxşı hazırlaşın! 📝'
   },
   // ── Fakültələr ──
   {
@@ -1352,8 +1363,27 @@ function getBduluAnswer(text) {
     }
   }
 
-  return 'Üzr istəyirəm, bu mövzu haqqında məlumatım yoxdur. 🙏\n\nBu sualları verə bilərsiniz:\n• "Korpuslar harada yerləşir?"\n• "Dərs saatları nə vaxtdır?"\n• "Yataqxana haqqında məlumat ver"\n• "BDU reytinqi necədir?"\n• "Fakültə sayı neçədir?"';
+  return 'Bu barədə məlumatım yoxdur. 🙏\n\nAşağıdakı mövzularda kömək edə bilərəm:\n• Korpusların yeri\n• Dərs saatları\n• Yataqxana\n• BDU reytinqi\n• Fakültələr\n• Qəbul məlumatları';
 }
+
+/* =========================================================
+   GLOBAL EXPORTS — defer ilə yüklənən skriptdə onclick işləsin
+   ========================================================= */
+window.showPage              = showPage;
+window.goBack                = goBack;
+window.goHome                = goHome;
+window.openFaculty           = openFaculty;
+window.openFacultyFromKorpus = openFacultyFromKorpus;
+window.openKorpusModal       = openKorpusModal;
+window.closeKorpusModal      = closeKorpusModal;
+window.toggleFilter          = toggleFilter;
+window.onGroupChange         = onGroupChange;
+window.updateTotal           = updateTotal;
+window.calculate             = calculate;
+window.toggleBdulu           = toggleBdulu;
+window.sendBdulu             = sendBdulu;
+window.sendSuggestion        = sendSuggestion;
+window.handleModalOverlayClick = handleModalOverlayClick;
 
 /* =========================================================
    INIT — DOMContentLoaded
@@ -1391,4 +1421,96 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Preload FAQ index
   getFaqIndex();
+
+  // ── BDULU Widget Drag & Drop (mouse + touch) ──
+  initBduluDrag();
 });
+
+let _dragMoved = false; // qlobal — click handler üçün
+
+function initBduluDrag() {
+  const widget = document.getElementById('bduluWidget');
+  const toggle = document.getElementById('bduluToggle');
+  if (!widget || !toggle) return;
+
+  let dragging = false;
+  let startX = 0, startY = 0;
+  let initRight = 0, initBottom = 0;
+  let moved = false;
+
+  function getPos(e) {
+    return e.touches ? { x: e.touches[0].clientX, y: e.touches[0].clientY }
+                     : { x: e.clientX, y: e.clientY };
+  }
+
+  function onStart(e) {
+    // Yalnız toggle düyməsindən başlasın
+    if (!e.target.closest('.bdulu-toggle')) return;
+    dragging = true;
+    moved    = false;
+    const pos = getPos(e);
+    startX = pos.x;
+    startY = pos.y;
+    // Mövcud mövqeyi al (right/bottom based)
+    const rect = widget.getBoundingClientRect();
+    initRight  = window.innerWidth  - rect.right;
+    initBottom = window.innerHeight - rect.bottom;
+    widget.style.transition = 'none';
+    if (e.cancelable) e.preventDefault();
+  }
+
+  function onMove(e) {
+    if (!dragging) return;
+    const pos  = getPos(e);
+    const dx   = pos.x - startX;
+    const dy   = pos.y - startY;
+    if (Math.abs(dx) > 4 || Math.abs(dy) > 4) { moved = true; _dragMoved = true; }
+    if (!moved) return;
+
+    const rect   = widget.getBoundingClientRect();
+    const W      = window.innerWidth;
+    const H      = window.innerHeight;
+    let newRight  = initRight  - dx;
+    let newBottom = initBottom + dy;
+
+    // Ekrandan çıxmasın
+    newRight  = Math.max(8, Math.min(W  - rect.width  - 8, newRight));
+    newBottom = Math.max(8, Math.min(H  - rect.height - 8, newBottom));
+
+    widget.style.right  = newRight  + 'px';
+    widget.style.bottom = newBottom + 'px';
+    widget.style.left   = 'auto';
+    widget.style.top    = 'auto';
+    if (e.cancelable) e.preventDefault();
+  }
+
+  function onEnd(e) {
+    if (!dragging) return;
+    dragging = false;
+    widget.style.transition = '';
+    // Əgər hərəkət olmayıbsa — normal klik kimi işlə (toggleBdulu çağırılır)
+    if (moved) {
+      // Klik hadisəsini ləğv et
+      e.stopPropagation && e.stopPropagation();
+    }
+    moved = false;
+    // _dragMoved-i qısa müddətdən sonra sıfırla ki klik işləsin
+    if (!_dragMoved) _dragMoved = false;
+    setTimeout(() => { _dragMoved = false; }, 50);
+  }
+
+  // Mouse events
+  toggle.addEventListener('mousedown',  onStart, { passive: false });
+  document.addEventListener('mousemove', onMove,  { passive: false });
+  document.addEventListener('mouseup',   onEnd);
+
+  // Touch events
+  toggle.addEventListener('touchstart', onStart, { passive: false });
+  document.addEventListener('touchmove', onMove,  { passive: false });
+  document.addEventListener('touchend',  onEnd);
+
+  // Əgər drag olubsa klik hadisəsini ləğv et
+  toggle.addEventListener('click', e => {
+    if (_dragMoved) { e.stopImmediatePropagation(); e.preventDefault(); }
+  }, true);
+}
