@@ -21,11 +21,6 @@ const FACULTIES = [
       { id: 'komp-elm-en', name: 'Kompüter elmləri (tədris ingilis dilində)',       code: '6005009', subgroup: 'ri', lang: 'en', type: 'eyani', free: 525.1, paid: 465.1 },
       { id: 'inf-muel',    name: 'İnformatika müəllimliyi',                        code: '6001010', subgroup: 'ri', lang: 'az', type: 'eyani', free: 307.3, paid: 247.3 },
       { id: 'inf-teh',     name: 'İnformasiya təhlükəsizliyi',                     code: '6006017', subgroup: 'ri', lang: 'az', type: 'eyani', free: 552.5, paid: 492.5 },
-    ],
-    topStudents: [
-      { name: 'Aytən Həsənova',  score: 552.5, specialty: 'İnformasiya təhlükəsizliyi' },
-      { name: 'Rauf Məmmədov',   score: 525.1, specialty: 'Kompüter elmləri (ing.)' },
-      { name: 'Lalə Quliyeva',   score: 414.8, specialty: 'Kompüter elmləri' },
     ]
   },
 
@@ -46,11 +41,6 @@ const FACULTIES = [
       { id: 'fiz-muel-qaz',  name: 'Fizika müəllimliyi (Qazax filialı)',                  code: '6001005', subgroup: 'rk', lang: 'az', type: 'eyani', free: 417.8, paid: 140.0, isQazax: true },
       { id: 'riy-muel-qaz',  name: 'Riyaziyyat müəllimliyi (Qazax filialı)',              code: '6001015', subgroup: 'rk', lang: 'az', type: 'eyani', free: 535.5, paid: 140.0, isQazax: true },
       { id: 'riy-inf-qaz',   name: 'Riyaziyyat və informatika müəllimliyi (Qazax filialı)', code: '6001015', subgroup: 'rk', lang: 'az', type: 'eyani', free: 308.4, paid: 140.0, isQazax: true },
-    ],
-    topStudents: [
-      { name: 'Nigar Əliyeva',     score: 629.7, specialty: 'Riyaziyyat müəllimliyi (ing.)' },
-      { name: 'Fuad İsmayılov',    score: 544.7, specialty: 'Riyaziyyat müəllimliyi' },
-      { name: 'Sevinc Hüseynova',  score: 513.9, specialty: 'Riyaziyyat (ing.)' },
     ]
   },
 
@@ -68,11 +58,6 @@ const FACULTIES = [
       { id: 'fiz-muel',    name: 'Fizika müəllimliyi',                              code: '6001005', subgroup: 'rk', lang: 'az', type: 'eyani', free: 387.2, paid: 327.2 },
       { id: 'fiz-muel-en', name: 'Fizika müəllimliyi (tədris ingilis dilində)',     code: '6001005', subgroup: 'rk', lang: 'en', type: 'eyani', free: 427.4, paid: 367.4 },
       { id: 'muh-fiz',     name: 'Mühəndis fizikası',                               code: '6006034', subgroup: 'rk', lang: 'az', type: 'eyani', free: 268.3, paid: 208.3 },
-    ],
-    topStudents: [
-      { name: 'Kamran Nəsirov',  score: 427.4, specialty: 'Fizika müəllimliyi (ing.)' },
-      { name: 'Gülnar Babayeva', score: 387.2, specialty: 'Fizika müəllimliyi' },
-      { name: 'Tural Qədirov',   score: 333.7, specialty: 'Fizika (ing.)' },
     ]
   },
 
@@ -90,11 +75,6 @@ const FACULTIES = [
       { id: 'geo-geo-muh-en', name: 'Geologiya və geofizika mühəndisliyi (tədris ingilis dilində)', code: '6006010', subgroup: 'rk', lang: 'en', type: 'eyani', free: 248.0, paid: 140.0 },
       { id: 'med-muh',        name: 'Mədən mühəndisliyi',                                    code: '6006033', subgroup: 'rk', lang: 'az', type: 'eyani', free: 208.9, paid: 140.0 },
       { id: 'mel-muh',        name: 'Meliorasiya mühəndisliyi',                               code: '6006030', subgroup: 'rk', lang: 'az', type: 'eyani', free: 265.8, paid: 196.5 },
-    ],
-    topStudents: [
-      { name: 'Rəşad Mustafayev', score: 265.8, specialty: 'Meliorasiya mühəndisliyi' },
-      { name: 'Xədicə Orucova',   score: 248.0, specialty: 'Geologiya və geofizika mühəndisliyi (ing.)' },
-      { name: 'Elnur Şıxlinski',  score: 230.0, specialty: 'Geologiya və geofizika mühəndisliyi' },
     ]
   },
 
@@ -114,11 +94,6 @@ const FACULTIES = [
       { id: 'turizm',    name: 'Turizm işinin təşkili',                          code: '6008008', subgroup: 'rk', lang: 'az', type: 'eyani', free: 223.3, paid: 140.0 },
       { id: 'yerq-az',   name: 'Yerquruluşu və daşınmaz əmlakın kadastrı',       code: '6006049', subgroup: 'rk', lang: 'az', type: 'eyani', free: 290.6, paid: 230.6 },
       { id: 'yerq-q',    name: 'Yerquruluşu və daşınmaz əmlakın kadastrı (qiyabi)', code: '6006049', subgroup: 'rk', lang: 'az', type: 'qiyabi', free: 255.4, paid: 195.0 },
-    ],
-    topStudents: [
-      { name: 'Arzu Kərimova',    score: 290.6, specialty: 'Yerquruluşu kadastrı' },
-      { name: 'Vüsal Abdullayev', score: 255.4, specialty: 'Yerquruluşu kadastrı (qiyabi)' },
-      { name: 'Günel Ramazanova', score: 223.3, specialty: 'Coğrafiya' },
     ]
   },
 
@@ -134,11 +109,6 @@ const FACULTIES = [
       { id: 'eko-muh', name: 'Ekologiya mühəndisliyi',     code: '6006007', subgroup: 'rk', lang: 'az', type: 'eyani', free: 272.2, paid: 209.4 },
       { id: 'qida',    name: 'Qida mühəndisliyi',           code: '6006036', subgroup: 'rk', lang: 'az', type: 'eyani', free: 366.9, paid: 306.9 },
       { id: 'torpaq',  name: 'Torpaqşünaslıq və aqrokimya', code: '6004008', subgroup: 'rk', lang: 'az', type: 'eyani', free: 267.2, paid: 207.2 },
-    ],
-    topStudents: [
-      { name: 'Leyla Hüseynova', score: 366.9, specialty: 'Qida mühəndisliyi' },
-      { name: 'Cavid Rzayev',    score: 272.2, specialty: 'Ekologiya mühəndisliyi' },
-      { name: 'Şəbnəm Əliyeva',  score: 267.2, specialty: 'Torpaqşünaslıq' },
     ]
   },
 
@@ -153,11 +123,6 @@ const FACULTIES = [
     specialties: [
       { id: 'kim-muh',    name: 'Kimya mühəndisliyi',                            code: '6006020', subgroup: 'rk', lang: 'az', type: 'eyani', free: 437.1, paid: 357.7 },
       { id: 'kim-muh-en', name: 'Kimya mühəndisliyi (tədris ingilis dilində)',    code: '6006020', subgroup: 'rk', lang: 'en', type: 'eyani', free: 513.6, paid: 453.6 },
-    ],
-    topStudents: [
-      { name: 'Nərmin Süleymanova', score: 513.6, specialty: 'Kimya mühəndisliyi (ing.)' },
-      { name: 'Əli Hüseynov',       score: 437.1, specialty: 'Kimya mühəndisliyi' },
-      { name: 'Zəhra Qasımova',     score: 357.7, specialty: 'Kimya mühəndisliyi' },
     ]
   },
 
@@ -169,8 +134,7 @@ const FACULTIES = [
     logo: 'images/logo-tarix.png',
     group: 2,
     about: 'Tarix fakültəsi Azərbaycan tarixi, ümumi tarix, arxeologiya, etnoqrafiya və muzeyşünaslıq üzrə mütəxəssislər hazırlayır.',
-    specialties: [],
-    topStudents: []
+    specialties: []
   },
 
   /* ── 9. Biologiya ── */
@@ -181,8 +145,7 @@ const FACULTIES = [
     logo: 'images/logo-biologiya.png',
     group: 2,
     about: 'Biologiya fakültəsi molekulyar biologiya, genetika, mikrobiologiya, botanika, zoologiya sahələrini əhatə edir.',
-    specialties: [],
-    topStudents: []
+    specialties: []
   },
 
   /* ── 10. Hüquq ── */
@@ -193,8 +156,7 @@ const FACULTIES = [
     logo: 'images/logo-huquq.png',
     group: 2,
     about: 'Hüquq fakültəsi mülki hüquq, cinayət hüququ, beynəlxalq hüquq sahələrini əhatə edir.',
-    specialties: [],
-    topStudents: []
+    specialties: []
   },
 
   /* ── 11. Beynəlxalq Münasibətlər ── */
@@ -205,8 +167,7 @@ const FACULTIES = [
     logo: 'images/logo-bmi.png',
     group: 2,
     about: 'BMİ fakültəsi beynəlxalq münasibətlər, iqtisadiyyat, beynəlxalq ticarət sahəsindəki kadrlar hazırlayır.',
-    specialties: [],
-    topStudents: []
+    specialties: []
   },
 
   /* ── 12. İnformasiya və Sənəd Menecmenti ── */
@@ -217,8 +178,7 @@ const FACULTIES = [
     logo: 'images/logo-ism.png',
     group: 2,
     about: 'İSM fakültəsi sənəd dövriyyəsi, arxiv işi, informasiya menecmenti sahəsindəki mütəxəssislər hazırlayır.',
-    specialties: [],
-    topStudents: []
+    specialties: []
   },
 
   /* ── 13. Sosial Elmlər və Psixologiya ── */
@@ -229,8 +189,7 @@ const FACULTIES = [
     logo: 'images/logo-sep.png',
     group: 2,
     about: 'SEP fakültəsi psixologiya, sosiologiya, sosial iş sahəsindəki mütəxəssislər hazırlayır.',
-    specialties: [],
-    topStudents: []
+    specialties: []
   },
 
   /* ── 14. Şərqşünaslıq ── */
@@ -241,8 +200,7 @@ const FACULTIES = [
     logo: 'images/logo-serqsunasliq.png',
     group: 2,
     about: 'Şərqşünaslıq fakültəsi Şərq dilləri, tarix, mədəniyyəti üzrə mütəxəssislər hazırlayır.',
-    specialties: [],
-    topStudents: []
+    specialties: []
   },
 
   /* ── 15. Jurnalistika ── */
@@ -253,8 +211,7 @@ const FACULTIES = [
     logo: 'images/logo-jurnalistika.png',
     group: 2,
     about: 'Jurnalistika fakültəsi media, televiziya, radio jurnalistikası, reklam, ictimai əlaqələr üzrə kadrlar hazırlayır.',
-    specialties: [],
-    topStudents: []
+    specialties: []
   },
 
   /* ── 16. Filologiya ── */
@@ -265,8 +222,7 @@ const FACULTIES = [
     logo: 'images/logo-filologiya.png',
     group: 2,
     about: 'Filologiya fakültəsi Azərbaycan dili və ədəbiyyatı, xarici dillər, dilçilik üzrə mütəxəssislər hazırlayır.',
-    specialties: [],
-    topStudents: []
+    specialties: []
   },
 ];
 
@@ -284,7 +240,7 @@ const KORPUSLAR = [
     faculties: ['Kimya Fakültəsi','Fizika Fakültəsi','Biologiya Fakültəsi','Geologiya Fakültəsi'],
     facultyIds: ['kimya', 'fizika', 'bio', 'geo'],
     desc: 'Universitetin əsas inzibati binası. Rektorat, dekanatlıqlar və əsas tədris otaqları buradadır.',
-    image: 'images/bdu-esas.jpg'
+    image: ''
   },
   {
     id: 'birinci',
@@ -296,7 +252,7 @@ const KORPUSLAR = [
     faculties: ['Hüquq Fakültəsi','Filologiya Fakültəsi','Beynəlxalq Münasibətlər və İqtisadiyyat Fakültəsi'],
     facultyIds: ['huquq', 'fil', 'bmi'],
     desc: '1 saylı korpus humanitar elmlər sahəsindəki fakültələrə ev sahibliyi edir.',
-    image: 'images/bdu-1.jpg'
+    image: ''
   },
   {
     id: 'ikinci',
@@ -308,7 +264,7 @@ const KORPUSLAR = [
     faculties: ['İnformasiya və Sənəd Menecmenti Fakültəsi','Sosial Elmlər və Psixologiya Fakültəsi','Şərqşünaslıq Fakültəsi','Jurnalistika Fakültəsi'],
     facultyIds: ['ism', 'sep', 'serk', 'jour'],
     desc: '2 saylı korpus BDU-nun ən böyük binalarından biridir. Çoxsaylı fakültə və ixtisaslar buradadır.',
-    image: 'images/bdu-2.jpg'
+    image: ''
   },
   {
     id: 'ucuncu',
@@ -320,7 +276,7 @@ const KORPUSLAR = [
     faculties: ['Mexanika-Riyaziyyat Fakültəsi','Tətbiqi Riyaziyyat və Kibernetika Fakültəsi','Tarix Fakültəsi'],
     facultyIds: ['mr', 'trk', 'tarix'],
     desc: '3 saylı korpus riyaziyyat, kompüter elmləri və tarix fakültələrinin tədris mərkəzidir.',
-    image: 'images/bdu-3.jpg'
+    image: ''
   },
   {
     id: 'c',
@@ -332,7 +288,7 @@ const KORPUSLAR = [
     faculties: ['Coğrafiya Fakültəsi','Ekologiya və Torpaqşünaslıq Fakültəsi'],
     facultyIds: ['cografiya', 'eko'],
     desc: 'C korpusu 28 Noyabr metro stansiyasının yaxınlığında yerləşir. Coğrafiya və Ekologiya fakültələri buradadır.',
-    image: 'images/bdu-c.jpg'
+    image: ''
   },
 ];
 
@@ -464,7 +420,7 @@ function buildKorpusGrid() {
 
     card.innerHTML = `
       <div class="korpus-card-top" style="background:${k.color};">
-        <div class="korpus-card-bg" style="background-image:url('${k.image}');"></div>
+        ${k.image ? `<div class="korpus-card-bg" style="background-image:url('${k.image}');"></div>` : ''}
         <div class="korpus-card-overlay"></div>
         <div class="korpus-card-top-content">
           <div class="korpus-card-emoji">${k.emoji}</div>
@@ -515,7 +471,7 @@ function openKorpusModal(id) {
 
   modalInner.innerHTML = `
     <div class="km-header" style="background:${k.color};">
-      <div class="km-header-bg" style="background-image:url('${k.image}');"></div>
+      ${k.image ? `<div class="km-header-bg" style="background-image:url('${k.image}');"></div>` : ''}
       <div class="km-header-overlay"></div>
       <div class="km-header-content">
         <div class="km-emoji">${k.emoji}</div>
@@ -559,30 +515,6 @@ function openFaculty(id) {
         <p>${f.about || 'Bu fakültə haqqında ətraflı məlumat hazırlanır.'}</p>
       </div>
     </div>`;
-
-  // Gallery
-  const gallery = document.getElementById('facultyGallery');
-  gallery.innerHTML = '';
-  const students = (f.topStudents && f.topStudents.length > 0) ? f.topStudents : [{}, {}, {}];
-  const gFrag = document.createDocumentFragment();
-  for (let i = 0; i < 3; i++) {
-    const s = students[i] || {};
-    const item = document.createElement('div');
-    item.className = 'gallery-item';
-    if (s.name) {
-      item.innerHTML = `
-        <div class="gallery-placeholder"><span>👤</span></div>
-        <div class="gallery-student-info">
-          <div class="sname">${s.name}</div>
-          <div class="sscore">Bal: ${s.score}</div>
-          <div>${s.specialty || ''}</div>
-        </div>`;
-    } else {
-      item.innerHTML = `<div class="gallery-placeholder"><span>📸</span><small>Şəkil yoxdur</small></div>`;
-    }
-    gFrag.appendChild(item);
-  }
-  gallery.appendChild(gFrag);
 
   // RI Charts section — FAKÜLTƏ SƏHİFƏSİNDƏ GİZLƏT, yalnız bal hesablamada göstər
   const riSection = document.getElementById('ri-charts-section');
@@ -1542,27 +1474,55 @@ function initBduluWidget() {
   // DRAG MEXANİZMİ — Yalnız widget (toggle düyməsi) drag edilir
   // Panel həmişə sabit sağ alt küncdə qalır
   // ─────────────────────────────────────────────────────────
-  let isDragging = false;
-  let dragMoved  = false;
+  let isDragging   = false;
+  let dragMoved    = false;
   let startClientX = 0;
   let startClientY = 0;
   let startRight   = 0;
   let startBottom  = 0;
+  let rafId        = null; // requestAnimationFrame id
+  let pendingX     = 0;    // son üfüqi hərəkət (px)
+  let pendingY     = 0;    // son şaquli hərəkət (px)
+  let lastTouchEnd = 0;    // touch-dan gələn synthetic click-ləri süzmək üçün
   const DRAG_THRESHOLD = 6; // px — bu məsafədən az olsa drag sayılmaz
 
   function getEventPos(e) {
     if (e.touches && e.touches.length > 0) {
       return { x: e.touches[0].clientX, y: e.touches[0].clientY };
     }
+    if (e.changedTouches && e.changedTouches.length > 0) {
+      return { x: e.changedTouches[0].clientX, y: e.changedTouches[0].clientY };
+    }
     return { x: e.clientX, y: e.clientY };
+  }
+
+  // document səviyyəsindəki drag dinləyiciləri YALNIZ drag ərzində əlavə olunur
+  // (daimi, passive olmayan touchmove/mousemove dinləyicisi olmur → performans)
+  function addDragListeners() {
+    document.addEventListener('mousemove', onDragMove, { passive: false });
+    document.addEventListener('mouseup', onDragEnd);
+    document.addEventListener('touchmove', onDragMove, { passive: false });
+    document.addEventListener('touchend', onDragEnd, { passive: true });
+    document.addEventListener('touchcancel', onDragEnd, { passive: true });
+  }
+  function removeDragListeners() {
+    document.removeEventListener('mousemove', onDragMove);
+    document.removeEventListener('mouseup', onDragEnd);
+    document.removeEventListener('touchmove', onDragMove);
+    document.removeEventListener('touchend', onDragEnd);
+    document.removeEventListener('touchcancel', onDragEnd);
   }
 
   function onDragStart(e) {
     // Panel içindən gəlibsə keç
     if (e.target.closest('#bduluPanel')) return;
+    // Yalnız əsas düymə (mouse)
+    if (e.type === 'mousedown' && e.button !== 0) return;
 
     isDragging   = true;
     dragMoved    = false;
+    pendingX     = 0;
+    pendingY     = 0;
 
     const pos    = getEventPos(e);
     startClientX = pos.x;
@@ -1576,89 +1536,82 @@ function initBduluWidget() {
     widget.style.transition = 'none';
     toggle.classList.add('dragging');
 
+    addDragListeners();
+
     if (e.cancelable) e.preventDefault();
+  }
+
+  // rAF callback — mövqeyi hesablayıb tətbiq edir (hər move-da DOM yazmırıq)
+  function applyDragPosition() {
+    rafId = null;
+    const W  = window.innerWidth;
+    const H  = window.innerHeight;
+    const wW = widget.offsetWidth;
+    const wH = widget.offsetHeight;
+
+    // bottom aşağıdan ölçülür → aşağı dartma (dy>0) bottom-u AZALDIR
+    let newRight  = startRight  - pendingX;
+    let newBottom = startBottom - pendingY;
+
+    // Ekran hüdudları — minimum boşluq 6px
+    newRight  = Math.max(6, Math.min(W - wW - 6, newRight));
+    newBottom = Math.max(6, Math.min(H - wH - 6, newBottom));
+
+    widget.style.right  = newRight  + 'px';
+    widget.style.bottom = newBottom + 'px';
+    widget.style.left   = 'auto';
+    widget.style.top    = 'auto';
   }
 
   function onDragMove(e) {
     if (!isDragging) return;
 
     const pos = getEventPos(e);
-    const dx  = pos.x - startClientX;
-    const dy  = pos.y - startClientY;
+    pendingX  = pos.x - startClientX;
+    pendingY  = pos.y - startClientY;
 
-    if (!dragMoved && (Math.abs(dx) > DRAG_THRESHOLD || Math.abs(dy) > DRAG_THRESHOLD)) {
+    if (!dragMoved && (Math.abs(pendingX) > DRAG_THRESHOLD || Math.abs(pendingY) > DRAG_THRESHOLD)) {
       dragMoved = true;
     }
     if (!dragMoved) return;
 
-    const W = window.innerWidth;
-    const H = window.innerHeight;
-    const wW = widget.offsetWidth;
-    const wH = widget.offsetHeight;
-
-    let newRight  = startRight  - dx;
-    let newBottom = startBottom + dy;
-
-    // Ekran hüdudları — minimum boşluq 6px
-    newRight  = Math.max(6, Math.min(W  - wW  - 6, newRight));
-    newBottom = Math.max(6, Math.min(H  - wH  - 6, newBottom));
-
-    widget.style.right  = newRight  + 'px';
-    widget.style.bottom = newBottom + 'px';
-    widget.style.left   = 'auto';
-    widget.style.top    = 'auto';
+    if (rafId === null) rafId = requestAnimationFrame(applyDragPosition);
 
     if (e.cancelable) e.preventDefault();
   }
 
-  function onMouseEnd(e) {
+  function onDragEnd(e) {
     if (!isDragging) return;
     isDragging = false;
+
+    if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; }
     widget.style.transition = '';
     toggle.classList.remove('dragging');
-    // Mouse üçün: click event özü toggle edəcək
-    // dragMoved saxlanır — click handler oxuyacaq
-  }
+    removeDragListeners();
 
-  function onTouchEnd(e) {
-    if (!isDragging) return;
-    isDragging = false;
-    widget.style.transition = '';
-    toggle.classList.remove('dragging');
-
-    if (!dragMoved) {
-      // Touch üçün: synthetic click gəlmir bəzi brauzərlərdə
-      // manual toggleBdulu() çağır
-      // Qısa gecikmə ilə — DOM-un hazır olmasını gözlə
-      setTimeout(() => { toggleBdulu(); }, 10);
+    const isTouch = e && (e.type === 'touchend' || e.type === 'touchcancel');
+    if (isTouch) {
+      lastTouchEnd = Date.now();
+      // Touch üçün: bəzi brauzerlərdə synthetic click gəlmir — manual toggle
+      if (!dragMoved) setTimeout(() => { toggleBdulu(); }, 10);
+      dragMoved = false;
     }
-    dragMoved = false;
+    // Mouse üçün: click event özü toggle edəcək; dragMoved saxlanılır — click handler oxuyub sıfırlayır
   }
 
-  // Mouse events (masaüstü)
+  // Mouse events (masaüstü) — document dinləyiciləri drag başlayanda əlavə olunur
   toggle.addEventListener('mousedown', onDragStart, { passive: false });
-  document.addEventListener('mousemove', onDragMove, { passive: false });
-  document.addEventListener('mouseup', onMouseEnd);
 
   // Touch events (mobil)
   toggle.addEventListener('touchstart', onDragStart, { passive: false });
-  document.addEventListener('touchmove', onDragMove, { passive: false });
-  document.addEventListener('touchend', onTouchEnd, { passive: true });
 
   // Desktop üçün click handler:
   // mousedown → (move?) → mouseup → click
-  // onDragEnd-də toggle etmiririk — yalnız click-dən edirik
-  // Drag olubsa click-i ləğv edirik
+  // Drag olubsa click-i ləğv edirik; touch-dan gələn synthetic click-ləri süzürük.
   toggle.addEventListener('click', (e) => {
     e.stopPropagation();
-    if (dragMoved) {
-      // Drag edilib — click-i ləğv et
-      dragMoved = false;
-      return;
-    }
-    // Sadə klik — toggle et (YALNIZ MOUSE üçün — touch üçün onDragEnd edir)
-    // touch-dan gələn synthetic click-ləri önləmək üçün:
-    if (e.pointerType === 'touch') return;
+    if (Date.now() - lastTouchEnd < 600) return;
+    if (dragMoved) { dragMoved = false; return; }
     toggleBdulu();
   });
 }
