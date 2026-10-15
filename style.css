@@ -1476,6 +1476,10 @@ button, [role="button"], .filter-chip, .faculty-card, .korpus-card, .dir-row, .k
   transition: background .14s, border-color .14s, color .14s;
   white-space: nowrap;
 }
+/* Seçilmiş (istifadə olunmuş) Quick Reply gizlədilir.
+   [hidden] atributu təkbaşına kifayət etmir, çünki
+   .bdulu-suggestion-btn display: inline-flex təyin edir. */
+.bdulu-suggestion-btn[hidden] { display: none; }
 .bdulu-suggestion-btn .ico { color: var(--gold); }
 .bdulu-suggestion-btn:hover {
   background: var(--navy);

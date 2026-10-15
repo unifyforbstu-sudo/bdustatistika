@@ -32,6 +32,7 @@ webapp/
 | **Korpuslar** | 5 korpus, yerləşmə məlumatı və korpusdakı fakültələr (modal pəncərə) |
 | **RI statistikası** | RI alt qrupu üçün bal müqayisəsi diaqramları |
 | **BDULU köməkçi** | Sürüklənə bilən chat vidjeti; BDU haqqında ~50 mövzuda cavab verir |
+| **Quick Replies** | Hər mesajdan sonra yenidən görünən sürətli sual düymələri; seçilmiş sual təkrar göstərilmir |
 | **Uğurlu məzunlar** | Bölmə hazırdır, məlumat gözlənilir |
 
 ## Dizayn qərarları

@@ -1298,6 +1298,64 @@ function toggleBdulu() {
   else openBdulu();
 }
 
+/* =========================================================
+   QUICK REPLIES
+   ---------------------------------------------------------
+   • Hər mesajdan sonra yenidən görünür (sabitdir, gizlədilmir)
+   • İstifadəçinin seçdiyi sual təkrar göstərilmir
+   • Bütün suallar istifadə olunubsa, panel gizlədilir
+   ========================================================= */
+let bduluQuickBtns  = [];    // [{ btn, qNorm, hidden }] - bir dəfə keşlənir
+let bduluQuickBox   = null;  // #bduluSuggestions
+let bduluQuickShown = true;  // panelin cari görünmə vəziyyəti (artıq yazmanı önləyir)
+
+/* Sual mətnini müqayisə üçün normallaşdırır */
+function bduluNormQ(str) {
+  return String(str || '')
+    .toLowerCase()
+    .replace(/\s+/g, ' ')
+    .replace(/[?!.,;:]+$/g, '')
+    .trim();
+}
+
+/* Quick Replies elementlərini bir dəfə keşlə */
+function cacheBduluQuickReplies() {
+  bduluQuickBox = document.getElementById('bduluSuggestions');
+  if (!bduluQuickBox) return;
+  bduluQuickBtns = Array.prototype.map.call(
+    bduluQuickBox.querySelectorAll('.bdulu-suggestion-btn'),
+    btn => ({ btn, qNorm: bduluNormQ(btn.dataset.q || btn.textContent), hidden: false })
+  );
+  bduluQuickShown = true;
+}
+
+/* Görünən sual qalıbsa paneli göstər, heç biri qalmayıbsa gizlət.
+   Dəyişiklik olmadıqda DOM-a heç bir yazma edilmir. */
+function refreshBduluQuickReplies() {
+  if (!bduluQuickBox) return;
+  const anyVisible = bduluQuickBtns.some(it => !it.hidden);
+  if (anyVisible === bduluQuickShown) return;
+  bduluQuickShown = anyVisible;
+  bduluQuickBox.style.display = anyVisible ? '' : 'none';
+}
+
+/* İstifadə olunan sualı gizlət (yalnız dəyişiklik olanda DOM-a toxunur) */
+function markBduluQuickReplyUsed(text) {
+  if (!bduluQuickBtns.length) return;
+  const norm = bduluNormQ(text);
+  if (!norm) return;
+
+  let changed = false;
+  for (const item of bduluQuickBtns) {
+    if (!item.hidden && item.qNorm === norm) {
+      item.hidden = true;
+      item.btn.hidden = true;
+      changed = true;
+    }
+  }
+  if (changed) refreshBduluQuickReplies();
+}
+
 function sendSuggestion(text) {
   const input = document.getElementById('bduluInput');
   if (input) { input.value = text; sendBdulu(); }
@@ -1312,13 +1370,15 @@ function sendBdulu() {
 
   appendBduluMsg(text, 'user');
 
-  const suggestions = document.getElementById('bduluSuggestions');
-  if (suggestions) suggestions.style.display = 'none';
+  /* Seçilmiş sual Quick Replies-dən çıxarılır, qalanlar görünür qalır */
+  markBduluQuickReplyUsed(text);
 
   const typingId = showBduluTyping();
   setTimeout(() => {
     removeBduluTyping(typingId);
     appendBduluMsg(getBduluAnswer(text), 'bot');
+    /* Hər mesajdan sonra Quick Replies yenidən görünür */
+    refreshBduluQuickReplies();
   }, 400 + Math.random() * 300);
 }
 
@@ -1389,25 +1449,25 @@ function initBduluWidget() {
   const closeBtn      = document.getElementById('bduluClose');
   const sendBtn       = document.getElementById('bduluSendBtn');
   const input         = document.getElementById('bduluInput');
-  const suggestionsEl = document.getElementById('bduluSuggestions');
 
   if (!widget || !toggle || !panel) return;
 
-  /* Təklif düymələri */
-  if (suggestionsEl) {
-    const suggestionTexts = [
-      'Korpuslar harada yerləşir?',
-      'Dərs saatları nə vaxtdır?',
-      'Yataqxana haqqında məlumat ver',
-      'BDU reytinqi necədir?'
-    ];
-    suggestionsEl.querySelectorAll('.bdulu-suggestion-btn').forEach((btn, i) => {
-      const txt = suggestionTexts[i] || btn.textContent.trim();
-      btn.addEventListener('click', (e) => { e.stopPropagation(); sendSuggestion(txt); });
-      btn.addEventListener('touchend', (e) => {
-        e.preventDefault(); e.stopPropagation(); sendSuggestion(txt);
-      }, { passive: false });
+  /* Təklif düymələri (Quick Replies) */
+  cacheBduluQuickReplies();
+  if (bduluQuickBtns.length) {
+    /* İdarəetmə birbaşa #bduluSuggestions üzərində, hər düyməyə ayrı listener lazım deyil */
+    bduluQuickBox.addEventListener('click', (e) => {
+      const btn = e.target.closest('.bdulu-suggestion-btn');
+      if (!btn || btn.hidden) return;
+      e.stopPropagation();
+      sendSuggestion(btn.dataset.q || btn.textContent.trim());
     });
+    bduluQuickBox.addEventListener('touchend', (e) => {
+      const btn = e.target.closest('.bdulu-suggestion-btn');
+      if (!btn || btn.hidden) return;
+      e.preventDefault(); e.stopPropagation();
+      sendSuggestion(btn.dataset.q || btn.textContent.trim());
+    }, { passive: false });
   }
 
   if (closeBtn) {
