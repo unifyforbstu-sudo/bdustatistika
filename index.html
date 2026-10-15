@@ -3,88 +3,108 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#0a1433" />
-  <meta name="description" content="BDU Qəbul Statistikası – Bakı Dövlət Universitetinə qəbul ehtimalını hesablayın, fakültələr və korpuslar haqqında məlumat əldə edin." />
+  <meta name="theme-color" content="#0b1b3a" />
+  <meta name="description" content="Bakı Dövlət Universitetinə qəbul ehtimalını hesablayın. Fakültələr, ixtisaslar, qəbul balları və korpuslar haqqında məlumat." />
   <meta name="robots" content="index, follow" />
-  <title>BDU – Qəbul Statistikası</title>
+  <title>BDU Qəbul Statistikası</title>
   <link rel="icon" type="image/png" href="images/bdu-logo.png" />
-  <link rel="preload" href="style.css" as="style" />
+  <link rel="preload" href="fonts/sourceserif4-700-latin-ext.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/publicsans-400-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/publicsans-400-latin-ext.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="images/bdu-logo.png" as="image" />
-  <link rel="preload" href="images/bdulu-logo.png" as="image" />
   <link rel="stylesheet" href="style.css" />
-  <style>
-    @keyframes shake {
-      0%,100%{transform:translateX(0)}
-      20%{transform:translateX(-5px)}
-      40%{transform:translateX(5px)}
-      60%{transform:translateX(-4px)}
-      80%{transform:translateX(4px)}
-    }
-  </style>
 </head>
 <body>
 
-<!-- ===== HEADER ===== -->
-<header>
+<!-- ===== SITE HEADER ===== -->
+<header class="site-header">
   <div class="header-inner">
-    <img src="images/bdu-logo.png" alt="BDU Loqo" class="header-logo" decoding="async" />
+    <img src="images/bdu-logo.png" alt="Bakı Dövlət Universitetinin gerbi" class="header-logo" width="42" height="42" decoding="async" />
     <div class="header-title">
       Bakı Dövlət Universiteti
-      <span>Qəbul Statistikası 2026/2027</span>
+      <span>Qəbul statistikası 2026/2027</span>
     </div>
     <button class="header-back-btn" id="backBtn" onclick="goBack()" type="button">
-      ← Geri
+      <svg class="ico" aria-hidden="true"><use href="#i-arrow-left" /></svg>
+      <span>Geri</span>
     </button>
   </div>
 </header>
 
-<!-- =================== ANA SƏHİFƏ =================== -->
 <main>
+
+<!-- =================== ANA SƏHİFƏ =================== -->
 <div class="page active" id="page-home">
+
   <section class="hero">
-    <h1>BDU Qəbul Statistikası</h1>
-    <p>İxtisasınıza qəbul ehtimalınızı hesablayın, fakültələr və korpuslar haqqında məlumat əldə edin.</p>
-    <button class="hero-calc-btn" onclick="showPage('page-calculator')" type="button">
-      🧮 Bal Hesabla
-    </button>
+    <div class="container">
+      <p class="hero-eyebrow">2026/2027 qəbul kampaniyası</p>
+      <h1 class="hero-title">BDU Qəbul Statistikası</h1>
+      <p class="hero-lead">
+        Qrupunuzu, alt qrupunuzu və balınızı daxil edin. Bakı Dövlət Universitetinin
+        ixtisasları üzrə qəbul həddini və seçdiyiniz ixtisasa uyğunluğunuzu görün.
+      </p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" onclick="showPage('page-calculator')" type="button">
+          <svg class="ico" aria-hidden="true"><use href="#i-calculator" /></svg>
+          <span>Bal hesabla</span>
+        </button>
+        <button class="btn btn-quiet" onclick="showPage('page-faculties')" type="button">
+          <svg class="ico" aria-hidden="true"><use href="#i-mortarboard" /></svg>
+          <span>Fakültələrə bax</span>
+        </button>
+      </div>
+    </div>
   </section>
 
   <div class="container">
-    <!-- 3 kart: Fakültələr, Korpuslar, Uğurlu Məzunlar -->
-    <div class="home-nav-grid home-nav-grid-3">
-      <!-- Fakültələr -->
-      <button class="home-nav-card home-nav-faculties" onclick="showPage('page-faculties')" type="button">
-        <div class="home-nav-icon">🎓</div>
-        <div class="home-nav-title">Fakültələr</div>
-        <div class="home-nav-desc">BDU-nun bütün fakültələri, ixtisaslar və qəbul balları</div>
-        <div class="home-nav-arrow">→</div>
-      </button>
-
-      <!-- Korpuslar -->
-      <button class="home-nav-card home-nav-korpuslar" onclick="showPage('page-korpuslar')" type="button">
-        <div class="home-nav-icon">🏛️</div>
-        <div class="home-nav-title">Korpuslar</div>
-        <div class="home-nav-desc">BDU-nun korpusları, yerləşmə məntəqələri və fakültə bölgüsü</div>
-        <div class="home-nav-arrow">→</div>
-      </button>
-
-      <!-- Uğurlu Məzunlar -->
-      <button class="home-nav-card home-nav-graduates" onclick="showPage('page-graduates')" type="button">
-        <div class="home-nav-icon">🏆</div>
-        <div class="home-nav-title">Uğurlu Məzunlar</div>
-        <div class="home-nav-desc">Bakı Dövlət Universitetinin fəxri məzunları</div>
-        <div class="home-nav-arrow">→</div>
-      </button>
-    </div>
+    <section class="directory" aria-labelledby="directoryHeading">
+      <h2 class="section-heading" id="directoryHeading">Bölmələr</h2>
+      <ul class="dir-list" id="homeNavList">
+        <li>
+          <button class="dir-row" onclick="showPage('page-faculties')" type="button">
+            <span class="dir-icon"><svg class="ico" aria-hidden="true"><use href="#i-mortarboard" /></svg></span>
+            <span class="dir-text">
+              <span class="dir-title">Fakültələr</span>
+              <span class="dir-desc">16 fakültə üzrə ixtisaslar, tədris dili və qəbul balları</span>
+            </span>
+            <svg class="ico dir-chev" aria-hidden="true"><use href="#i-chevron-right" /></svg>
+          </button>
+        </li>
+        <li>
+          <button class="dir-row" onclick="showPage('page-korpuslar')" type="button">
+            <span class="dir-icon"><svg class="ico" aria-hidden="true"><use href="#i-building" /></svg></span>
+            <span class="dir-text">
+              <span class="dir-title">Korpuslar</span>
+              <span class="dir-desc">5 korpusun yerləşməsi və korpuslara görə fakültə bölgüsü</span>
+            </span>
+            <svg class="ico dir-chev" aria-hidden="true"><use href="#i-chevron-right" /></svg>
+          </button>
+        </li>
+        <li>
+          <button class="dir-row" onclick="showPage('page-graduates')" type="button">
+            <span class="dir-icon"><svg class="ico" aria-hidden="true"><use href="#i-award" /></svg></span>
+            <span class="dir-text">
+              <span class="dir-title">Uğurlu məzunlar</span>
+              <span class="dir-desc">Bakı Dövlət Universitetinin fəxri məzunları</span>
+            </span>
+            <svg class="ico dir-chev" aria-hidden="true"><use href="#i-chevron-right" /></svg>
+          </button>
+        </li>
+      </ul>
+    </section>
   </div>
 </div>
 
-<!-- =================== FAKÜLTƏlər SƏHİFƏSİ =================== -->
+<!-- =================== FAKÜLTƏLƏR SƏHİFƏSİ =================== -->
 <div class="page" id="page-faculties">
   <div class="page-header-bar">
     <div class="container">
-      <h2 class="page-header-title">🎓 Bakı Dövlət Universitetində Fakültələr</h2>
-      <p class="page-header-desc">Fakültəyə basaraq ixtisaslar və qəbul balları ilə tanış olun</p>
+      <h2 class="page-header-title">
+        <svg class="ico ico-lg" aria-hidden="true"><use href="#i-mortarboard" /></svg>
+        Bakı Dövlət Universitetində fakültələr
+      </h2>
+      <p class="page-header-desc">Fakültəni seçin, ixtisaslar və qəbul balları ilə tanış olun.</p>
     </div>
   </div>
   <div class="container">
@@ -96,8 +116,11 @@
 <div class="page" id="page-korpuslar">
   <div class="page-header-bar">
     <div class="container">
-      <h2 class="page-header-title">🏛️ Bakı Dövlət Universitetində Korpuslar</h2>
-      <p class="page-header-desc">Korpusa basaraq fakültə bölgüsü və məkan məlumatını görün</p>
+      <h2 class="page-header-title">
+        <svg class="ico ico-lg" aria-hidden="true"><use href="#i-building" /></svg>
+        Bakı Dövlət Universitetində korpuslar
+      </h2>
+      <p class="page-header-desc">Korpusu seçin, fakültə bölgüsü və yerləşmə məlumatına baxın.</p>
     </div>
   </div>
   <div class="container">
@@ -107,45 +130,52 @@
 
 <!-- =================== UĞURLU MƏZUNLAR SƏHİFƏSİ =================== -->
 <div class="page" id="page-graduates">
-  <div class="graduates-page-header page-header-bar" style="background: linear-gradient(135deg, #6a3093 55%, #8e44ad);">
+  <div class="page-header-bar">
     <div class="container">
-      <h2 class="graduates-page-title page-header-title">🏆 Uğurlu Məzunlar</h2>
-      <p class="graduates-page-desc page-header-desc">Bakı Dövlət Universitetinin fəxri məzunları</p>
+      <h2 class="page-header-title">
+        <svg class="ico ico-lg" aria-hidden="true"><use href="#i-award" /></svg>
+        Uğurlu məzunlar
+      </h2>
+      <p class="page-header-desc">Bakı Dövlət Universitetinin fəxri məzunları</p>
     </div>
   </div>
   <div class="container">
     <div class="graduates-grid-page" id="graduatesGrid">
       <!-- Məlumatlar JS-dən yüklənir -->
       <div class="graduates-empty-page">
-        <div class="graduates-empty-icon">🎓</div>
-        <div class="graduates-empty-text">Məlumatlar hazırlanır...</div>
+        <svg class="ico graduates-empty-icon" aria-hidden="true"><use href="#i-award" /></svg>
+        <div class="graduates-empty-text">Məlumatlar hazırlanır</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- =================== FACULTY DETAIL PAGE =================== -->
+<!-- =================== FAKÜLTƏ DETAL SƏHİFƏSİ =================== -->
 <div class="page" id="page-faculty">
   <div class="faculty-detail-header" id="facultyDetailHeader"></div>
   <div class="container">
-    <h3 class="section-title">İxtisaslar</h3>
-    <div id="ri-charts-section" style="display:none;">
-      <div class="ri-charts-wrapper" id="riChartsWrapper"></div>
+    <h3 class="section-heading">İxtisaslar</h3>
+    <div id="ri-charts-section" class="ri-charts-wrapper" style="display:none;">
+      <div id="riChartsWrapper"></div>
     </div>
     <div class="spec-list" id="facultySpecList"></div>
   </div>
 </div>
 
-<!-- =================== CALCULATOR PAGE =================== -->
+<!-- =================== KALKULYATOR SƏHİFƏSİ =================== -->
 <div class="page" id="page-calculator">
-  <div class="calc-header">
+  <div class="page-header-bar">
     <div class="container">
-      <h2>🧮 Qəbul Ehtimalı Hesablayıcı</h2>
-      <p>Qrup, alt qrup və balınızı daxil edin – ixtisaslara qəbul faizini görün.</p>
+      <h2 class="page-header-title">
+        <svg class="ico ico-lg" aria-hidden="true"><use href="#i-calculator" /></svg>
+        Qəbul ehtimalı hesablayıcısı
+      </h2>
+      <p class="page-header-desc">Qrup, alt qrup və balınızı daxil edin, ixtisaslar üzrə nəticəni görün.</p>
     </div>
   </div>
+
   <div class="container">
-    <div class="calc-form">
+    <form class="calc-form" onsubmit="return false;">
       <div class="form-row">
         <div class="form-group">
           <label for="groupSelect">Qrup</label>
@@ -164,140 +194,246 @@
           </select>
         </div>
         <div class="form-group">
-          <label for="exitScore">Buraxılış balı <small style="color:#999;">(0–300)</small></label>
-          <input type="number" id="exitScore" min="0" max="300" placeholder="0 – 300" inputmode="decimal" oninput="updateTotal()" />
+          <label for="exitScore">Buraxılış balı <span class="label-hint">0–300</span></label>
+          <input type="number" id="exitScore" min="0" max="300" placeholder="0–300" inputmode="decimal" oninput="updateTotal()" />
         </div>
         <div class="form-group">
-          <label for="blockScore">Blok balı <small style="color:#999;">(0–400)</small></label>
-          <input type="number" id="blockScore" min="0" max="400" placeholder="0 – 400" inputmode="decimal" oninput="updateTotal()" />
+          <label for="blockScore">Blok balı <span class="label-hint">0–400</span></label>
+          <input type="number" id="blockScore" min="0" max="400" placeholder="0–400" inputmode="decimal" oninput="updateTotal()" />
         </div>
       </div>
 
       <div id="totalScoreBox" class="score-total-box" style="display:none;"></div>
 
-      <!-- ===== FILTERS ===== -->
-      <div class="filter-section" style="margin-top:20px;">
+      <!-- ===== FİLTRLƏR ===== -->
+      <div class="filter-section">
         <div class="filter-group">
           <div class="filter-label">
-            Ödəniş növü
-            <span class="filter-req ok" id="req-payment">✓</span>
+            <span>Ödəniş növü</span>
+            <span class="filter-req ok" id="req-payment"><svg class="ico ico-sm" aria-hidden="true"><use href="#i-check" /></svg></span>
           </div>
           <div class="filter-chips">
-            <div class="filter-chip active" data-filter="free"  data-group="payment" onclick="toggleFilter(this)">Ödənişsiz</div>
-            <div class="filter-chip active" data-filter="paid"  data-group="payment" onclick="toggleFilter(this)">Ödənişli</div>
+            <div class="filter-chip active" data-filter="free" data-group="payment" onclick="toggleFilter(this)" role="switch" aria-checked="true" tabindex="0">Ödənişsiz</div>
+            <div class="filter-chip active" data-filter="paid" data-group="payment" onclick="toggleFilter(this)" role="switch" aria-checked="true" tabindex="0">Ödənişli</div>
           </div>
           <div class="filter-warning" id="warn-payment">Ödəniş növündən ən azı birini seçməlisiniz.</div>
         </div>
 
         <div class="filter-group">
           <div class="filter-label">
-            Tədris dili
-            <span class="filter-req ok" id="req-lang">✓</span>
+            <span>Tədris dili</span>
+            <span class="filter-req ok" id="req-lang"><svg class="ico ico-sm" aria-hidden="true"><use href="#i-check" /></svg></span>
           </div>
           <div class="filter-chips">
-            <div class="filter-chip active" data-filter="az" data-group="lang" onclick="toggleFilter(this)">Azərbaycanca</div>
-            <div class="filter-chip active" data-filter="en" data-group="lang" onclick="toggleFilter(this)">İngiliscə</div>
+            <div class="filter-chip active" data-filter="az" data-group="lang" onclick="toggleFilter(this)" role="switch" aria-checked="true" tabindex="0">Azərbaycanca</div>
+            <div class="filter-chip active" data-filter="en" data-group="lang" onclick="toggleFilter(this)" role="switch" aria-checked="true" tabindex="0">İngiliscə</div>
           </div>
           <div class="filter-warning" id="warn-lang">Tədris dilindən ən azı birini seçməlisiniz.</div>
         </div>
 
         <div class="filter-group">
           <div class="filter-label">
-            Tədris forması
-            <span class="filter-req ok" id="req-form">✓</span>
+            <span>Tədris forması</span>
+            <span class="filter-req ok" id="req-form"><svg class="ico ico-sm" aria-hidden="true"><use href="#i-check" /></svg></span>
           </div>
           <div class="filter-chips">
-            <div class="filter-chip active" data-filter="eyani"  data-group="form" onclick="toggleFilter(this)">Əyani</div>
-            <div class="filter-chip active" data-filter="qiyabi" data-group="form" onclick="toggleFilter(this)">Qiyabi</div>
+            <div class="filter-chip active" data-filter="eyani" data-group="form" onclick="toggleFilter(this)" role="switch" aria-checked="true" tabindex="0">Əyani</div>
+            <div class="filter-chip active" data-filter="qiyabi" data-group="form" onclick="toggleFilter(this)" role="switch" aria-checked="true" tabindex="0">Qiyabi</div>
           </div>
           <div class="filter-warning" id="warn-form">Tədris formasından ən azı birini seçməlisiniz.</div>
         </div>
 
         <div class="filter-group">
-          <div class="filter-label">Digər</div>
+          <div class="filter-label"><span>Filial</span></div>
           <div class="filter-chips">
-            <div class="filter-chip active" data-filter="qazax" data-standalone="true" onclick="toggleFilter(this)">Qazax filialı</div>
+            <div class="filter-chip active" data-filter="qazax" data-standalone="true" onclick="toggleFilter(this)" role="switch" aria-checked="true" tabindex="0">Qazax filialı</div>
           </div>
         </div>
       </div>
 
-      <button class="calc-btn" onclick="calculate()" type="button">Hesabla →</button>
-    </div>
+      <button class="btn btn-primary btn-block" onclick="calculate()" type="button">
+        <span>Hesabla</span>
+        <svg class="ico" aria-hidden="true"><use href="#i-arrow-right" /></svg>
+      </button>
+    </form>
 
     <div class="results-container" id="resultsContainer" style="display:none;">
       <div class="results-header" id="resultsHeader"></div>
       <div id="resultsList"></div>
     </div>
 
-    <!-- RI Diaqramları -->
-    <div id="calc-ri-charts-section" style="display:none;margin-top:24px;">
-      <h3 class="section-title">📊 RI Alt Qrupu – Bal Statistikası</h3>
+    <!-- RI diaqramları -->
+    <div id="calc-ri-charts-section" style="display:none;">
+      <h3 class="section-heading">
+        <svg class="ico" aria-hidden="true"><use href="#i-chart" /></svg>
+        RI alt qrupu üzrə bal statistikası
+      </h3>
       <div class="ri-charts-wrapper" id="calcRiChartsWrapper"></div>
     </div>
   </div>
 </div>
+
 </main>
 
 <!-- ===== KORPUS MODAL ===== -->
 <div class="korpus-modal-overlay" id="korpusModal" onclick="handleModalOverlayClick(event)">
-  <div class="korpus-modal" id="korpusModalInner" role="dialog" aria-modal="true">
-    <!-- Injected by JS -->
+  <div class="korpus-modal" id="korpusModalInner" role="dialog" aria-modal="true" aria-label="Korpus məlumatı">
+    <!-- JS tərəfindən doldurulur -->
   </div>
 </div>
 
-<!-- ===== BDULU CHAT WIDGET =====
-     Widget: yalnız toggle düyməsi — drag edilir
-     Panel: həmişə fixed sağ alt küncdə, drag edilmir
+<!-- ===== BDULU CHAT VİDGETİ =====
+     Widget: yalnız toggle düyməsi, drag edilir
+     Panel: fixed sağ alt künc, drag edilmir
      ===================================== -->
 
-<!-- Toggle düyməsi (drag edilən) -->
-<div class="bdulu-widget" id="bduluWidget" aria-hidden="true">
-  <button class="bdulu-toggle" id="bduluToggle" aria-label="BDULU köməkçi" type="button">
-    <img src="images/bdulu-logo.png" alt="BDULU" class="bdulu-toggle-img" draggable="false" />
+<div class="bdulu-widget" id="bduluWidget">
+  <button class="bdulu-toggle" id="bduluToggle" aria-label="BDULU köməkçini aç" type="button">
+    <img src="images/bdulu-logo.png" alt="BDULU" class="bdulu-toggle-img" width="200" height="200" draggable="false" />
     <span class="bdulu-badge" id="bduluBadge">1</span>
   </button>
 </div>
 
-<!-- Chat Paneli (sabit, drag edilmir) -->
-<div class="bdulu-panel" id="bduluPanel" role="dialog" aria-label="BDULU Chat" aria-modal="true">
+<div class="bdulu-panel" id="bduluPanel" role="dialog" aria-label="BDULU söhbət pəncərəsi" aria-modal="true">
   <div class="bdulu-panel-header">
-    <img src="images/bdulu-logo.png" alt="BDULU" class="bdulu-header-img" />
+    <img src="images/bdulu-logo.png" alt="BDULU" class="bdulu-header-img" width="200" height="200" />
     <div class="bdulu-header-info">
       <div class="bdulu-header-name">BDULU</div>
       <div class="bdulu-header-status"><span class="bdulu-online-dot"></span> Onlayn</div>
     </div>
-    <button class="bdulu-close" id="bduluClose" aria-label="Bağla" type="button">✕</button>
+    <button class="bdulu-close" id="bduluClose" aria-label="Bağla" type="button">
+      <svg class="ico ico-sm" aria-hidden="true"><use href="#i-close" /></svg>
+    </button>
   </div>
 
   <div class="bdulu-messages" id="bduluMessages">
     <div class="bdulu-msg bdulu-msg-bot">
-      <img src="images/bdulu-logo.png" alt="BDULU" class="bdulu-msg-avatar" />
+      <img src="images/bdulu-logo.png" alt="BDULU" class="bdulu-msg-avatar" width="200" height="200" />
       <div class="bdulu-msg-bubble">
-        Salam! Mən <strong>BDULU</strong>yam — Bakı Dövlət Universitetinin köməkçi assistantı. 🎓<br><br>
-        BDU haqqında hər cür sualınızı mənə verə bilərsiniz!
+        Salam! Mən <strong>BDULU</strong>yam, Bakı Dövlət Universitetinin köməkçi assistantı.
+        <br /><br />
+        Korpuslar, fakültələr, qəbul, yataqxana və dərs saatları barədə sual verə bilərsiniz.
       </div>
     </div>
   </div>
 
   <div class="bdulu-suggestions" id="bduluSuggestions">
-    <button class="bdulu-suggestion-btn" type="button">📍 Korpuslar</button>
-    <button class="bdulu-suggestion-btn" type="button">🕐 Dərs saatları</button>
-    <button class="bdulu-suggestion-btn" type="button">🏠 Yataqxana</button>
-    <button class="bdulu-suggestion-btn" type="button">🏆 Reytinq</button>
+    <button class="bdulu-suggestion-btn" type="button">
+      <svg class="ico ico-sm" aria-hidden="true"><use href="#i-map-pin" /></svg>
+      <span>Korpuslar</span>
+    </button>
+    <button class="bdulu-suggestion-btn" type="button">
+      <svg class="ico ico-sm" aria-hidden="true"><use href="#i-clock" /></svg>
+      <span>Dərs saatları</span>
+    </button>
+    <button class="bdulu-suggestion-btn" type="button">
+      <svg class="ico ico-sm" aria-hidden="true"><use href="#i-home" /></svg>
+      <span>Yataqxana</span>
+    </button>
+    <button class="bdulu-suggestion-btn" type="button">
+      <svg class="ico ico-sm" aria-hidden="true"><use href="#i-chart" /></svg>
+      <span>Reytinq</span>
+    </button>
   </div>
 
   <div class="bdulu-input-row">
-    <input type="text" id="bduluInput" class="bdulu-input" placeholder="Sualınızı yazın..."
-           autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
-           inputmode="text" enterkeyhint="send" />
+    <input type="text" id="bduluInput" class="bdulu-input" placeholder="Sualınızı yazın"
+           aria-label="Sualınızı yazın" autocomplete="off" autocorrect="off" autocapitalize="off"
+           spellcheck="false" inputmode="text" enterkeyhint="send" />
     <button class="bdulu-send-btn" id="bduluSendBtn" aria-label="Göndər" type="button">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-        <line x1="22" y1="2" x2="11" y2="13"></line>
-        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-      </svg>
+      <svg class="ico ico-sm" aria-hidden="true"><use href="#i-send" /></svg>
     </button>
   </div>
 </div>
+
+<svg xmlns="http://www.w3.org/2000/svg" class="icon-sprite" aria-hidden="true">
+  <!--
+    BDU Statistika ikon dəsti. Tək 24px grid, 1.7px cizgi, yuvarlaq uclar.
+    Yalnız saytda istifadə olunan ikonlar saxlanılıb ki, artıq yük olmasın.
+  -->
+  <symbol id="i-mortarboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M2.6 8.4 12 4.2l9.4 4.2L12 12.6Z"/>
+    <path d="M6.4 10.4v4.9c0 1.6 2.4 2.9 5.6 2.9s5.6-1.3 5.6-2.9v-4.9"/>
+    <path d="M21.4 8.4v6.3"/>
+  </symbol>
+  <symbol id="i-building" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3.6 20.2h16.8"/>
+    <path d="M5.4 20.2V4.6a1.2 1.2 0 0 1 1.2-1.2h6.6a1.2 1.2 0 0 1 1.2 1.2v15.6"/>
+    <path d="M14.4 20.2V9.4h3.2a1.2 1.2 0 0 1 1.2 1.2v9.6"/>
+    <path d="M8.2 7.4h3.4M8.2 11h3.4M8.2 14.6h3.4"/>
+  </symbol>
+  <symbol id="i-award" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="9.2" r="5.4"/>
+    <path d="M8.6 13.9 7.4 20.6l4.6-2.4 4.6 2.4-1.2-6.7"/>
+  </symbol>
+  <symbol id="i-calculator" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="4.4" y="2.8" width="15.2" height="18.4" rx="2"/>
+    <rect x="7.6" y="6" width="8.8" height="3.2" rx="0.8"/>
+    <path d="M8.2 13h.01M12 13h.01M15.8 13h.01M8.2 17h.01M12 17h.01M15.8 17h.01"/>
+  </symbol>
+  <symbol id="i-arrow-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M19 12H5"/><path d="m11 6-6 6 6 6"/>
+  </symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M5 12h14"/><path d="m13 6 6 6-6 6"/>
+  </symbol>
+  <symbol id="i-chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m9.5 5.5 6.5 6.5-6.5 6.5"/>
+  </symbol>
+  <symbol id="i-train" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="5.2" y="3.4" width="13.6" height="12.8" rx="3.2"/>
+    <path d="M5.2 10.6h13.6"/>
+    <path d="M9 3.4V1.8M15 3.4V1.8"/>
+    <path d="M8.4 16.8 6.6 21M15.6 16.8 17.4 21"/>
+    <path d="M7.4 13.4h.01M16.6 13.4h.01"/>
+  </symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3.8 20.2h16.4"/>
+    <path d="M6.6 20.2v-6.4M11.2 20.2v-11M15.8 20.2v-8.4M20.4 20.2V5.4"/>
+  </symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m5 12.6 4.6 4.6L19 7.4"/>
+  </symbol>
+  <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6 6l12 12M18 6 6 18"/>
+  </symbol>
+  <symbol id="i-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21.2 2.8 10.8 13.2"/>
+    <path d="M21.2 2.8 14.6 21.2l-3.8-8-8-3.8Z"/>
+  </symbol>
+  <symbol id="i-map-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 21.4s6.6-5.6 6.6-11a6.6 6.6 0 1 0-13.2 0c0 5.4 6.6 11 6.6 11Z"/>
+    <circle cx="12" cy="10.2" r="2.5"/>
+  </symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="9"/>
+    <path d="M12 7v5.4l3.4 2"/>
+  </symbol>
+  <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3.8 10.4 12 3.6l8.2 6.8"/>
+    <path d="M5.6 9.4v10.8h12.8V9.4"/>
+    <path d="M10 20.2v-5.6h4v5.6"/>
+  </symbol>
+  <symbol id="i-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="8.6"/>
+    <circle cx="12" cy="12" r="4.6"/>
+    <circle cx="12" cy="12" r="1.1" fill="currentColor" stroke="none"/>
+  </symbol>
+  <symbol id="i-people" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="9.4" cy="8.6" r="3.6"/>
+    <path d="M3 20a6.4 6.4 0 0 1 12.8 0"/>
+    <path d="M15.8 5.4a3.6 3.6 0 0 1 0 6.7"/>
+    <path d="M17.4 14.6a6.4 6.4 0 0 1 3.6 5.4"/>
+  </symbol>
+  <symbol id="i-scale" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 3.6v16.8M7 20.4h10M4.6 7.4h14.8"/>
+    <path d="M4.6 7.4 2 14.2h5.2ZM19.4 7.4l-2.6 6.8h5.2Z"/>
+  </symbol>
+  <symbol id="i-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4.4 20.2C2 12.6 7 4.4 19.6 3.4c.8 11-6 16.8-11.6 16.8"/>
+    <path d="M8 20.2c1.4-5 4-8.6 8-11.4"/>
+  </symbol>
+</svg>
 
 <script src="script.js" defer></script>
 </body>
