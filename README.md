@@ -87,7 +87,7 @@ Sayt heç bir verilənlər bazası və ya server istifadə etmir. Bütün məlum
 ## Yerləşdirmə
 
 - **Növ**: statik sayt (build tələb etmir).
-- **Repozitoriya**: https://github.com/unifyforbstu-sudo/bdustatika
+- **Repozitoriya**: https://github.com/unifyforbstu-sudo/bdustatistika
 - **Yerli baxış**: qovluqda sadə HTTP server işə salmaq kifayətdir:
   ```bash
   python3 -m http.server 8000
