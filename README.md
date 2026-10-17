@@ -28,6 +28,8 @@ webapp/
 |---|---|
 | **Bal hesabla** | Qrup, alt qrup, buraxılış və blok balına görə ixtisaslar üzrə qəbul faizini hesablayır |
 | **Filtr sistemi** | Ödəniş növü, tədris dili, tədris forması və Qazax filialı üzrə süzgəc |
+| **Bütün qruplar** | 1, 2, 3 və 4-cü qruplar üzrə ixtisas və bal statistikası (cəmi 111 ixtisas) |
+| **Alt qruplar** | 1-ci qrup üçün RI / RK, 3-cü qrup üçün DT / TC alt qrupları |
 | **Fakültələr** | 16 fakültə, hər biri üçün ixtisas siyahısı və qəbul balları |
 | **Korpuslar** | 5 korpus, yerləşmə məlumatı və korpusdakı fakültələr (modal pəncərə) |
 | **RI statistikası** | RI alt qrupu üçün bal müqayisəsi diaqramları |
@@ -55,8 +57,11 @@ Sayt şablon görünüşündən uzaqlaşdırılmaq üçün aşağıdakı prinsip
 ## İstifadə qaydası
 
 1. Saytı açın və **Bal hesabla** düyməsini basın.
-2. Qrup seçin (2026/2027 üçün statistikalar yalnız 1-ci qrup üzrə açıqlanıb).
-3. 1-ci qrup üçün alt qrupu seçin: RI və ya RK.
+2. Qrup seçin: 1, 2, 3 və ya 4-cü qrup.
+3. Alt qrup tələb olunarsa seçin:
+   - **1-ci qrup** → RI (Riyaziyyat-İnformatika) və ya RK (Riyaziyyat-Kimya);
+   - **3-cü qrup** → DT (Dil-Tarix) və ya TC (Tarix-Coğrafiya).
+   - 2-ci və 4-cü qruplarda alt qrup yoxdur.
 4. Buraxılış balını (0–300) və blok balını (0–400) daxil edin.
 5. Lazım gələrsə filtr çiplərindən istifadə edin.
 6. **Hesabla** düyməsini basın. Nəticələr bal uyğunluğuna görə sıralanır.
@@ -66,22 +71,41 @@ RI alt qrupu seçildikdə əlavə olaraq bal statistikası diaqramları göstər
 > RI alt qrupu üçün blok balı 100-dən, RK alt qrupu üçün isə 50-dən az olarsa
 > bütün ixtisaslarda qəbul faizi 0% qəbul edilir.
 
+> **Qeyd:** yalnız ödənişsiz (dövlət sifarişi) yeri olmayan ixtisaslarda
+> ödənişsiz sütununda `—` işarəsi göstərilir.
+
 ## Məlumat strukturu
 
 Sayt heç bir verilənlər bazası və ya server istifadə etmir. Bütün məlumat
 `script.js` faylındakı JavaScript obyektlərində saxlanılır:
 
-- **`FACULTIES`** – fakültə adı, loqo, qrup nömrəsi, təsviri və ixtisas siyahısı.
-  Hər ixtisasın kodu, alt qrupu, tədris dili, tədris forması, ödənişsiz və
-  ödənişli qəbul balları var.
+- **`FACULTIES`** – fakültə adı, loqo, təsviri və ixtisas siyahısı. Hər ixtisasın
+  kodu, **qrupu (1–4)**, **alt qrupu** (RI / RK / DT / TC), tədris dili, tədris
+  forması, ödənişsiz və ödənişli qəbul balları var. Ödənişsiz yer olmadıqda
+  `free: null` yazılır və interfeysdə `—` kimi göstərilir.
 - **`KORPUSLAR`** – korpus adı, ikonu, yerləşməsi, rəngi və aid fakültələr.
 - **`FAQ_DATA`** – BDULU köməkçisinin açar sözləri və cavabları.
+
+### İxtisas sayı (qruplar üzrə)
+
+| Qrup | Alt qrup | İxtisas sayı |
+|---|---|---|
+| 1-ci qrup | RI | 4 |
+| 1-ci qrup | RK | 23 |
+| 2-ci qrup | — | 16 |
+| 3-cü qrup | DT | 36 |
+| 3-cü qrup | TC | 17 |
+| 4-cü qrup | — | 15 |
+| **Cəmi** | | **111** |
+
+> 3-cü qrup üçün beynəlxalq münasibətlər və regionşünaslıq ixtisasları yalnız
+> **TC** alt qrupuna, qalan ixtisaslar isə **DT** alt qrupuna aiddir.
+> 4-cü qrupda alt qrup yoxdur.
 
 ## Sonrakı addımlar
 
 - Uğurlu məzunlar bölməsi üçün real məlumatların əlavə edilməsi.
-- 2, 3 və 4-cü qruplar üzrə ixtisas və bal statistikasının əlavə edilməsi.
-- 2-ci qrupdan sonrakı fakültələr üçün ixtisas məlumatlarının tamamlanması.
+- Subbakalavrlar üzrə müsabiqə sətirlərinin əlavə edilməsi.
 - Qəbul faizi hesablamasının rəsmi keçid balı məlumatları ilə dəqiqləşdirilməsi.
 
 ## Yerləşdirmə

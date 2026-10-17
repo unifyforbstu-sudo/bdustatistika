@@ -888,6 +888,14 @@ button, [role="button"], .filter-chip, .faculty-card, .korpus-card, .dir-row, .k
 .tag-qazax  { background: #faeae8; color: #8a231c; border-color: #eed1cd; }
 .tag-qiyabi { background: #f1edf6; color: #4d3269; border-color: #ddd2e8; }
 
+.spec-item-group {
+  margin-top: var(--s2);
+  font-size: .6875rem;
+  font-weight: 600;
+  letter-spacing: .03em;
+  color: var(--ink-mute);
+}
+
 .spec-scores {
   display: flex;
   gap: var(--s5);
