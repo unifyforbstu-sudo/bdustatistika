@@ -17,7 +17,7 @@ const FACULTIES = [
     id: 'ism',
     name: 'İnformasiya və Sənəd Menecmenti Fakültəsi',
     short: 'İSM Fakültəsi',
-    logo: 'images/logo-ism.png',
+    logo: 'images/logo-ism.webp',
     about: 'İnformasiya və Sənəd Menecmenti fakültəsi kitabxanaçılıq, arxiv işi, muzeyşünaslıq və informasiya menecmenti sahəsində mütəxəssislər hazırlayır.',
     specialties: [
       { id: 'kitabxana', name: 'Kitabxanaçılıq və informasiya fəaliyyəti', code: '6002010', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: 424, paid: 337.7 },
@@ -31,7 +31,7 @@ const FACULTIES = [
     id: 'cografiya',
     name: 'Coğrafiya Fakültəsi',
     short: 'Coğrafiya Fakültəsi',
-    logo: 'images/logo-cografiya.png',
+    logo: 'images/logo-cografiya.webp',
     about: 'Coğrafiya fakültəsi coğrafiya, hidrometeorologiya, geomatika və geodeziya mühəndisliyi, turizm işinin təşkili və coğrafiya müəllimliyi üzrə mütəxəssislər hazırlayır.',
     specialties: [
       { id: 'coq', name: 'Coğrafiya', code: '6005003', group: 2, subgroup: null, lang: 'az', type: 'eyani', free: 237.8, paid: 237.8 },
@@ -49,7 +49,7 @@ const FACULTIES = [
     id: 'geo',
     name: 'Geologiya Fakültəsi',
     short: 'Geologiya Fakültəsi',
-    logo: 'images/logo-geologiya.png',
+    logo: 'images/logo-geologiya.webp',
     about: 'Geologiya fakültəsi geologiya, geologiya və geofizika mühəndisliyi, mədən və meliorasiya mühəndisliyi sahələrində mütəxəssislər hazırlayır.',
     specialties: [
       { id: 'geo-spec', name: 'Geologiya', code: '6005006', group: 1, subgroup: 'rk', lang: 'az', type: 'eyani', free: 234.1, paid: 234.1 },
@@ -64,7 +64,7 @@ const FACULTIES = [
     id: 'sep',
     name: 'Sosial Elmlər və Psixologiya Fakültəsi',
     short: 'SEP Fakültəsi',
-    logo: 'images/logo-sep.png',
+    logo: 'images/logo-sep.webp',
     about: 'Sosial Elmlər və Psixologiya fakültəsi psixologiya, sosiologiya, sosial iş, fəlsəfə və pedaqoji sahələr üzrə mütəxəssislər hazırlayır.',
     specialties: [
       { id: 'psix', name: 'Psixologiya', code: '6002013', group: 4, subgroup: null, lang: 'az', type: 'eyani', free: 492.5, paid: 489 },
@@ -86,7 +86,7 @@ const FACULTIES = [
     id: 'mr',
     name: 'Mexanika-Riyaziyyat Fakültəsi',
     short: 'MR Fakültəsi',
-    logo: 'images/logo-mexanika-riyaziyyat.png',
+    logo: 'images/logo-mexanika-riyaziyyat.webp',
     about: 'Mexanika-Riyaziyyat fakültəsi riyaziyyat, mexanika və riyaziyyat müəllimliyi üzrə mütəxəssislər hazırlayır.',
     specialties: [
       { id: 'riy', name: 'Riyaziyyat', code: '6005011', group: 1, subgroup: 'rk', lang: 'az', type: 'eyani', free: 362.5, paid: 362.5 },
@@ -103,7 +103,7 @@ const FACULTIES = [
     id: 'serk',
     name: 'Şərqşünaslıq Fakültəsi',
     short: 'Şərqşünaslıq',
-    logo: 'images/logo-serqsunasliq.png',
+    logo: 'images/logo-serqsunasliq.webp',
     about: 'Şərqşünaslıq fakültəsi Şərq dilləri, regionşünaslıq, filologiya və tərcümə sahələri üzrə mütəxəssislər hazırlayır.',
     specialties: [
       { id: 'fil-arab', name: 'Filologiya (ərəb dili və ədəbiyyatı)', code: '6002006', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: null, paid: 348.5 },
@@ -130,7 +130,7 @@ const FACULTIES = [
     id: 'trk',
     name: 'Tətbiqi Riyaziyyat və Kibernetika Fakültəsi',
     short: 'TRK Fakültəsi',
-    logo: 'images/logo-trk.png',
+    logo: 'images/logo-trk.webp',
     about: 'Tətbiqi Riyaziyyat və Kibernetika fakültəsi proqramlaşdırma, alqoritmlər, süni intellekt, kibertəhlükəsizlik və idarəetmə sistemləri üzrə kadrlar hazırlayır.',
     specialties: [
       { id: 'komp-elm', name: 'Kompüter elmləri', code: '6005009', group: 1, subgroup: 'ri', lang: 'az', type: 'eyani', free: 406.3, paid: 406.3 },
@@ -145,7 +145,7 @@ const FACULTIES = [
     id: 'jour',
     name: 'Jurnalistika Fakültəsi',
     short: 'Jurnalistika',
-    logo: 'images/logo-jurnalistika.png',
+    logo: 'images/logo-jurnalistika.webp',
     about: 'Jurnalistika fakültəsi media, televiziya, radio jurnalistikası, reklam və ictimai əlaqələr üzrə kadrlar hazırlayır.',
     specialties: [
       { id: 'jur', name: 'Jurnalistika (Qabiliyyət imtahanı)', code: '6002009', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: 431.1, paid: 431.1 },
@@ -158,7 +158,7 @@ const FACULTIES = [
     id: 'eko',
     name: 'Ekologiya və Torpaqşünaslıq Fakültəsi',
     short: 'Ekologiya Fakültəsi',
-    logo: 'images/logo-ekologiya.png',
+    logo: 'images/logo-ekologiya.webp',
     about: 'Ekologiya və Torpaqşünaslıq fakültəsi ekologiya, torpaqşünaslıq, aqrokimya, kadastr və ekologiya mühəndisliyi sahələrini əhatə edir.',
     specialties: [
       { id: 'ekologiya', name: 'Ekologiya', code: '6005004', group: 4, subgroup: null, lang: 'az', type: 'eyani', free: 315.4, paid: 296 },
@@ -174,7 +174,7 @@ const FACULTIES = [
     id: 'tarix',
     name: 'Tarix Fakültəsi',
     short: 'Tarix Fakültəsi',
-    logo: 'images/logo-tarix.png',
+    logo: 'images/logo-tarix.webp',
     about: 'Tarix fakültəsi Azərbaycan tarixi, ümumi tarix, regionşünaslıq və tarix müəllimliyi üzrə mütəxəssislər hazırlayır.',
     specialties: [
       { id: 'tar', name: 'Tarix', code: '6002016', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: 519.3, paid: 519.3 },
@@ -196,7 +196,7 @@ const FACULTIES = [
     id: 'fil',
     name: 'Filologiya Fakültəsi',
     short: 'Filologiya',
-    logo: 'images/logo-filologiya.png',
+    logo: 'images/logo-filologiya.webp',
     about: 'Filologiya fakültəsi Azərbaycan dili və ədəbiyyatı, xarici dillər, dilçilik və dil müəllimliyi üzrə mütəxəssislər hazırlayır.',
     specialties: [
       { id: 'az-dil-muel', name: 'Azərbaycan dili və ədəbiyyatı müəllimliyi', code: '6001001', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: 582, paid: 582 },
@@ -215,7 +215,7 @@ const FACULTIES = [
     id: 'fizika',
     name: 'Fizika Fakültəsi',
     short: 'Fizika Fakültəsi',
-    logo: 'images/logo-fizika.png',
+    logo: 'images/logo-fizika.webp',
     about: 'Fizika fakültəsi fundamental və tətbiqi fizika, mühəndislik fizikası və fizika müəllimliyi üzrə mütəxəssislər hazırlayır.',
     specialties: [
       { id: 'fiz', name: 'Fizika', code: '6005005', group: 1, subgroup: 'rk', lang: 'az', type: 'eyani', free: 274.9, paid: 274.9 },
@@ -231,7 +231,7 @@ const FACULTIES = [
     id: 'kimya',
     name: 'Kimya Fakültəsi',
     short: 'Kimya Fakültəsi',
-    logo: 'images/logo-kimya.png',
+    logo: 'images/logo-kimya.webp',
     about: 'Kimya fakültəsi kimya, kimya mühəndisliyi və kimya müəllimliyi sahələrini əhatə edir.',
     specialties: [
       { id: 'kimya', name: 'Kimya', code: '6005008', group: 4, subgroup: null, lang: 'az', type: 'eyani', free: 466.6, paid: 200 },
@@ -246,7 +246,7 @@ const FACULTIES = [
     id: 'bmi',
     name: 'Beynəlxalq Münasibətlər və İqtisadiyyat Fakültəsi',
     short: 'BMİ Fakültəsi',
-    logo: 'images/logo-bmi.png',
+    logo: 'images/logo-bmi.webp',
     about: 'BMİ fakültəsi beynəlxalq münasibətlər, politologiya, iqtisadiyyat, maliyyə, biznes və menecment sahəsində kadrlar hazırlayır.',
     specialties: [
       { id: 'beyn-int', name: 'Beynəlxalq münasibətlər', code: '6002001', group: 3, subgroup: 'tc', lang: 'az', type: 'eyani', free: 494.3, paid: 434.7 },
@@ -269,7 +269,7 @@ const FACULTIES = [
     id: 'bio',
     name: 'Biologiya Fakültəsi',
     short: 'Biologiya Fakültəsi',
-    logo: 'images/logo-biologiya.png',
+    logo: 'images/logo-biologiya.webp',
     about: 'Biologiya fakültəsi biologiya, biotexnologiya, bitki mühafizəsi, qida mühəndisliyi və su bioehtiyatları sahələrini əhatə edir.',
     specialties: [
       { id: 'bio', name: 'Biologiya', code: '6005001', group: 4, subgroup: null, lang: 'az', type: 'eyani', free: 466.9, paid: 466.9 },
@@ -288,7 +288,7 @@ const FACULTIES = [
     id: 'huquq',
     name: 'Hüquq Fakültəsi',
     short: 'Hüquq Fakültəsi',
-    logo: 'images/logo-huquq.png',
+    logo: 'images/logo-huquq.webp',
     about: 'Hüquq fakültəsi mülki hüquq, cinayət hüququ və beynəlxalq hüquq sahələrini əhatə edir.',
     specialties: [
       { id: 'huq-az', name: 'Hüquqşünaslıq', code: '6002007', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: 608.9, paid: 608.9 },
@@ -372,7 +372,7 @@ const GRADUATES = [
     country: 'Böyük Britaniya və Şimali İrlandiya Birləşmiş Krallığı',
     university: 'Edinburq Universiteti',
     specialty: 'Tibbi və bioloji kimya',
-    image: 'images/mezunlar/mezun-jale-elizade.jpg'
+    image: 'images/mezunlar/mezun-jale-elizade.webp'
   },
   {
     id: 'nazim-hesenov',
@@ -380,7 +380,7 @@ const GRADUATES = [
     country: 'Avstraliya İttifaqı',
     university: 'Sidney Universiteti',
     specialty: 'İctimai siyasət',
-    image: 'images/mezunlar/mezun-nazim-hesenov.jpg'
+    image: 'images/mezunlar/mezun-nazim-hesenov.webp'
   },
   {
     id: 'meleyke-heybetova',
@@ -388,7 +388,7 @@ const GRADUATES = [
     country: 'Böyük Britaniya və Şimali İrlandiya Birləşmiş Krallığı',
     university: 'Birminqem Universiteti',
     specialty: 'Kibertəhlükəsizlik',
-    image: 'images/mezunlar/mezun-meleyke-heybetova.jpg'
+    image: 'images/mezunlar/mezun-meleyke-heybetova.webp'
   },
   {
     id: 'ilkin-bayramov',
@@ -396,7 +396,7 @@ const GRADUATES = [
     country: 'Sinqapur Respublikası',
     university: 'Sinqapur Milli Universiteti',
     specialty: 'Beynəlxalq arbitraj və mübahisələrin həlli',
-    image: 'images/mezunlar/mezun-ilkin-bayramov.jpg'
+    image: 'images/mezunlar/mezun-ilkin-bayramov.webp'
   },
   {
     id: 'gunay-mahmudova',
@@ -404,7 +404,7 @@ const GRADUATES = [
     country: 'ABŞ',
     university: 'Berkli Kaliforniya Universiteti',
     specialty: 'Hüquq',
-    image: 'images/mezunlar/mezun-gunay-mahmudova.jpg'
+    image: 'images/mezunlar/mezun-gunay-mahmudova.webp'
   },
   {
     id: 'ramil-nebiyev',
@@ -412,7 +412,522 @@ const GRADUATES = [
     country: 'ABŞ',
     university: 'Berkli Kaliforniya Universiteti',
     specialty: 'Hüquq',
-    image: 'images/mezunlar/mezun-ramil-nebiyev.jpg'
+    image: 'images/mezunlar/mezun-ramil-nebiyev.webp'
+  },
+];
+
+/* =========================================================
+   DATA - TƏLƏBƏ HƏYATI
+   ---------------------------------------------------------
+   BDU-nun rəsmi mənbələrinə (bsu.edu.az, tetym.bsu.edu.az,
+   sdg.bsu.edu.az, TGT/TEC/TETYM açıqlamaları) əsaslanan
+   tələbə təşkilatları, klublar və mərkəzlər.
+   Kateqoriyalar: org = təşkilat, club = klub, center = mərkəz.
+   ========================================================= */
+const SL_CATEGORIES = {
+  org:    { label: 'Tələbə təşkilatı', icon: 'i-people' },
+  club:   { label: 'Tələbə klubu',     icon: 'i-club' },
+  center: { label: 'Mərkəz',           icon: 'i-bulb' },
+};
+
+const STUDENT_LIFE = [
+  /* ---------- TƏŞKİLATLAR ---------- */
+  {
+    id: 'tgt',
+    name: 'Tələbə Gənclər Təşkilatı (TGT)',
+    cat: 'org',
+    icon: 'i-people',
+    meta: '2005-ci ildən · ATGTİ üzvü',
+    tags: ['Təşkilat', 'Tələbə hüquqları', 'İctimai fəaliyyət'],
+    where: 'Əsas korpus, Humanitar məsələlər və gənclər siyasəti şöbəsi',
+    about: '“Tələbə-Gənclər Təşkilatı” Bakı Dövlət Universitetində 2005-ci il iyunun 3-də yaradılıb və Azərbaycan Tələbə Gənclər Təşkilatları İttifaqının (ATGTİ) üzvüdür. TGT tələbələrin hüquqlarını müdafiə edir, asudə vaxtlarının səmərəli keçirilməsini təmin edir, onların universitetin və ölkənin ictimai həyatına fəal qoşulmasına şərait yaradır.',
+    facts: [
+      'Tələbələrin hüquqlarının müdafiəsi və problemlərinin həlli',
+      'Müsabiqə, olimpiada, festival və sərgilərdə iştirakın təmin edilməsi',
+      'Diskussiya klubları, dəyirmi masalar və görkəmli şəxslərlə görüşlər',
+      'TGT nəzdində onlarla klub fəaliyyət göstərir',
+      'Sədri tələbələr arasından seçilir və Universitetin Elmi Şurasında təmsil olunur',
+    ],
+  },
+  {
+    id: 'thik',
+    name: 'Tələbə Həmkarlar İttifaqı Komitəsi (THİK)',
+    cat: 'org',
+    icon: 'i-heart',
+    meta: 'Sosial dəstək və tələbə təmsilçiliyi',
+    tags: ['Təşkilat', 'Sosial dəstək'],
+    where: 'Əsas korpus',
+    about: 'Tələbə Həmkarlar İttifaqı Komitəsi tələbələrin sosial müdafiəsi, maraqlarının təmsili və asudə vaxtının təşkili ilə məşğul olur. Komitə tələbələrin elmə və biliyə marağının artırılmasına, cismən və ruhən sağlam gəncin formalaşmasına dəstək verir.',
+    facts: [
+      'Tələbələrə sosial dəstək və təqaüdlərlə bağlı məsələlər',
+      'Debat Klubunun təşkilatçılığı və universitetlərarası debat turnirləri',
+      'İdman, mədəniyyət və maarifləndirmə tədbirləri',
+      'Sədri tələbələr arasından seçilir və Elmi Şurada təmsil olunur',
+    ],
+  },
+  {
+    id: 'tec',
+    name: 'Tələbə Elmi Cəmiyyəti (TEC)',
+    cat: 'org',
+    icon: 'i-book',
+    meta: 'Elmi tədqiqat və tələbə elmi fəaliyyəti',
+    tags: ['Təşkilat', 'Elm', 'Tədqiqat'],
+    where: 'Elmi fəaliyyətin təşkili və innovasiyalar Mərkəzi',
+    about: 'Tələbə Elmi Cəmiyyəti tələbələrin elmi potensialını inkişaf etdirmək, onları tədqiqatlara cəlb etmək və elmi mühitin bir hissəsinə çevirmək məqsədilə fəaliyyət göstərir. TEC universitetdə elmi və tədris fəaliyyəti arasında körpü rolunu oynayır.',
+    facts: [
+      'Elmi tədqiqatlar və tələbə layihələri',
+      'Məqalə və tezis yazılışı, elmi jurnallarda nəşr imkanı',
+      'Konfrans, seminar və infosessiyaların təşkili',
+      'Fakültələr üzrə tələbə elmi dərnəkləri (məs. “Kitab qurdu” klubu)',
+      'Elmi mühitə inteqrasiya və peşəkar bacarıqların inkişafı',
+    ],
+  },
+  {
+    id: 'konulluleri',
+    name: '“BDU könüllüləri” təşkilatı',
+    cat: 'org',
+    icon: 'i-heart',
+    meta: 'Könüllü fəaliyyət və sosial layihələr',
+    tags: ['Təşkilat', 'Könüllülük'],
+    where: 'Kampus üzrə',
+    about: '“BDU könüllüləri” təşkilatı universitetdə könüllü hərəkatını təşkil edir, sosial, maarifləndirici və intellektual layihələr həyata keçirir. Təşkilat abituriyentlər üçün “Açıq qapı” günləri, tələbələr arasında intellektual yarışlar və etika mövzulu forumlar təşkil edir.',
+    facts: [
+      '“Açıq qapı” günləri — abituriyentlər üçün universitetə tanışlıq',
+      '“BDU İntellekt Liqası” — “Nə? Harada? Nə vaxt?” intellektual oyunları',
+      '“Qeyri-səlis məntiqin izi ilə: Lütfi Zadə 105” kimi intellektual yarışlar',
+      'Süni intellekt etikası üzrə gənclər forumları və təlimlər',
+      'İdarə heyətinə üzv seçimi və vakansiyalar',
+    ],
+  },
+  {
+    id: 'ganc-alimler',
+    name: 'Gənc Alimlər Şurası',
+    cat: 'org',
+    icon: 'i-target',
+    meta: 'Gənc tədqiqatçılar üçün',
+    tags: ['Təşkilat', 'Elm'],
+    about: 'Gənc Alimlər Şurası universitetin gənc müəllim və tədqiqatçılarının elmi fəaliyyətini əlaqələndirir, gənc alimlərin beynəlxalq layihələrdə, qrant müsabiqələrində və konfranslarda iştirakına dəstək verir.',
+    facts: [
+      'Gənc tədqiqatçıların elmi fəaliyyətinin əlaqələndirilməsi',
+      'Qrant və beynəlxalq layihələrdə iştirak dəstəyi',
+      'Elmi konfrans və seminarların təşkili',
+    ],
+  },
+  {
+    id: 'sabah',
+    name: 'SABAH qrupları',
+    cat: 'org',
+    icon: 'i-trophy',
+    meta: 'İstedadlı tələbələr üçün xüsusi proqram',
+    tags: ['Təşkilat', 'Təhsil proqramı', 'Təqaüd'],
+    about: 'BDU-nun SABAH mərkəzində xüsusi hazırlıqlı, istedadlı tələbələr üçün ayrıca qruplar təşkil olunur. SABAH tələbələri fərdi inkişaf proqramları, əlavə təlimlər və şirkətlərlə təcrübə imkanları əldə edirlər.',
+    facts: [
+      'İstedadlı tələbələr üçün xüsusi kurikulum',
+      'Şirkətlərlə təqaüd və təcrübə proqramları (məs. Azercell)',
+      '“Dövlət Proqramı” ilə xaricdə təhsilə hazırlıq',
+      'İntellektual yarışlarda iştirak (məs. “Legal Ring”)',
+    ],
+  },
+
+  /* ---------- MƏRKƏZLƏR ---------- */
+  {
+    id: 'tim',
+    name: 'Tələbə İnkişaf Mərkəzi',
+    cat: 'center',
+    icon: 'i-bulb',
+    meta: '2025-ci il sentyabr · Bilik Günü açılışı',
+    tags: ['Mərkəz', 'Şəbəkələşmə', 'İnkişaf'],
+    where: 'Kampus ərazisi',
+    about: 'Tələbə İnkişaf Mərkəzi 2025-ci il sentyabrın 15-də, Bilik Günündə istifadəyə verilib. Mərkəz tələbələrin müxtəlif maraqlar üzrə şəbəkələşməsi, onların inkişafı, elmi və sosial təşəbbüslərinin reallaşdırılması üçün yaradılıb. Burada tələbələr layihələr üzərində işləyir, müxtəlif təlimlərdə iştirak edirlər.',
+    facts: [
+      'Tələbələrin maraqlar üzrə şəbəkələşməsi və komanda işi',
+      '“Milli Proqram” çərçivəsində “Coursera” platforması ilə təlimlər',
+      '400-ə yaxın aparıcı universitet və texnologiya şirkətinin kursları',
+      'Elmi və startap yönümlü təşəbbüslərə dəstək',
+    ],
+  },
+  {
+    id: 'tetym',
+    name: 'Tələbə Elmi-Texniki Yaradıcılıq Mərkəzi (TETYM)',
+    cat: 'center',
+    icon: 'i-robot',
+    meta: '2022-ci il iyun · 24 saat açıq',
+    tags: ['Mərkəz', 'Robototexnika', 'Proqramlaşdırma', 'Dizayn'],
+    where: 'Əsas tədris binası, I mərtəbə',
+    about: 'TETYM 2022-ci il iyunun 24-də tələbələrdə təhsil-elm-innovasiya təfəkkürünü inkişaf etdirmək və tələbə ideyalarını həyata keçirmək üçün yaradılıb. Mərkəz 24 saat açıqdır; burada tələbələr elmin müxtəlif sahələri üzrə tədqiqatlar aparır, texniki bacarıqlarını inkişaf etdirir və karyera yollarını qururlar.',
+    facts: [
+      'Elektronika, proqramlaşdırma və 3D modelləşdirmə məşğələləri',
+      '“Data Science”, süni intellekt və verilənlərin təhlili təlimləri',
+      'Qrafik dizayn və rəqəmsal texnologiyalar təlimləri (ödənişsiz)',
+      'Robototexnika və mühəndislik sektorları',
+      'Elmi-texniki müsabiqələrdə iştirak və beynəlxalq uğurlar',
+      'Direktoru İlyas Nəsibov — beynəlxalq müsabiqə qalibi',
+    ],
+  },
+  {
+    id: 'mym',
+    name: 'Mədəniyyət-yaradıcılıq Mərkəzi',
+    cat: 'center',
+    icon: 'i-music',
+    meta: '2020-ci il fevral',
+    tags: ['Mərkəz', 'Musiqi', 'Rəqs', 'Teatr'],
+    where: 'Akt zalı ətrafı',
+    about: 'Mədəniyyət-yaradıcılıq Mərkəzi özfəaliyyət klubunun bazasında yaradılıb. Mərkəz xüsusi istedadlı tələbələrin özfəaliyyətə cəlb olunması, universitetin akt zallarının və konfrans otaqlarının texniki təchizatı, əlamətdar tədbirlərin hazırlanması ilə məşğul olur.',
+    facts: [
+      'İnstrumental ansambl — universitet tələbələri',
+      '“Səda” rəqs ansamblı — 25 nəfər, xalq və bəstəkar mahnıları',
+      'Xor kollektivi — 30 nəfər, BDU himni və dünya universitetləri himni',
+      'Dram dərnəyi — tamaşalar və səhnəciklər',
+      'Sahələr: rəqs, xor ifaçılığı, solo ifa, aktyorluq, bədii qiraət, aparıcılıq',
+      'İlk direktoru Əməkdar incəsənət xadimi Nailə Mirməmmədli',
+      '“Tələbə baharı” və respublika festivallarında, qastrol səfərlərində iştirak',
+    ],
+  },
+  {
+    id: 'karyera',
+    name: 'Karyera və məzunlarla iş Mərkəzi',
+    cat: 'center',
+    icon: 'i-target',
+    meta: '2023-cü il dekabr',
+    tags: ['Mərkəz', 'Karyera', 'Məzunlar', 'Təcrübə'],
+    about: 'Karyera və məzunlarla iş Mərkəzi 2023-cü il dekabrın 30-da BDU Elmi Şurasının qərarı ilə yaradılıb. Mərkəz tələbələrin əmək bazarına hazırlanması, karyera planlaşdırılması, təcrübə və iş imkanları, məzunlarla əlaqələrin qurulması ilə məşğuldur.',
+    facts: [
+      '“Karyera yolu” layihəsi çərçivəsində təlimlər',
+      '“LinkedIn” platforması və şəxsi brendin formalaşdırılması',
+      'CV hazırlığı, iş axtarışı strategiyaları və müsahibə hazırlığı',
+      'Karyera xəritəsinin hazırlanması üzrə infosessiyalar',
+      'Təcrübə proqramları və vakansiya elanları',
+      'I kurs tələbələri üçün məlumatlandırıcı görüşlər',
+    ],
+  },
+  {
+    id: 'idman',
+    name: 'İdman-sağlamlıq Mərkəzi',
+    cat: 'center',
+    icon: 'i-trophy',
+    meta: 'Sağlam həyat tərzi',
+    tags: ['Mərkəz', 'İdman', 'Sağlamlıq'],
+    about: 'İdman-sağlamlıq Mərkəzi tələbələr və əməkdaşlar arasında sağlam həyat tərzinin təbliği, idman növlərinə marağın artırılması və universitetdaxili yarışların təşkili ilə məşğul olur.',
+    facts: [
+      'Futbol, voleybol, şahmat və digər idman növləri üzrə yarışlar',
+      'Tələbə və əməkdaşlar arasında idman turnirləri',
+      'Sağlam həyat tərzinin təbliği',
+    ],
+  },
+  {
+    id: 'psixoloji',
+    name: 'Psixoloji Yardım Sektoru',
+    cat: 'center',
+    icon: 'i-heart',
+    meta: 'Tələbə və əməkdaşlar üçün',
+    tags: ['Mərkəz', 'Psixoloji dəstək'],
+    about: 'Psixoloji Yardım Sektoru universitetin tələbə və əməkdaşlarına psixoloji dəstək göstərir. Sektor həmçinin “Oxu klubu” kimi maarifləndirici təşəbbüslər həyata keçirir.',
+    facts: [
+      'Fərdi psixoloji məsləhətləşmələr və dəstək',
+      '“Oxu klubu” görüşləri',
+      'Stress, motivasiya və şəxsi inkişaf mövzulu təlimlər',
+    ],
+  },
+  {
+    id: 'kitabxana',
+    name: 'Elmi Kitabxana',
+    cat: 'center',
+    icon: 'i-book',
+    meta: '1974-cü ildən Elmi Kitabxana statusu',
+    tags: ['Mərkəz', 'Kitabxana', 'E-resurslar'],
+    where: 'Əsas korpus',
+    about: 'BDU-nun Elmi Kitabxanasının tarixi universitetin yaranmasından başlayır; 1974-cü ildə ona Elmi Kitabxana statusu verilib. Kitabxana tələbələrə dərsliklər, elmi ədəbiyyat və elektron informasiya resursları təqdim edir.',
+    facts: [
+      'Zəngin kitab fondu və elmi ədəbiyyat',
+      'Elektron kitabxana: elibrary.bsu.edu.az',
+      'Oxu zalları və dərslik bazası',
+      'Elektron informasiya resurslarından istifadə imkanı',
+    ],
+  },
+  {
+    id: 'itmrk',
+    name: 'İnformasiya Texnologiyaları Mərkəzi',
+    cat: 'center',
+    icon: 'i-code',
+    meta: 'İT infrastrukturu və rəqəmsal xidmətlər',
+    tags: ['Mərkəz', 'İT', 'Rəqəmsal'],
+    about: 'İnformasiya Texnologiyaları Mərkəzi universitetin rəqəmsal infrastrukturunu idarə edir, tələbələr üçün kompüter otaqları və şəbəkə xidmətləri təmin edir. Azərbaycan-Koreya Kompüter Elmləri Mərkəzi ilə birlikdə rəqəmsal bacarıqlar üzrə təlimlər keçirilir.',
+    facts: [
+      'Kompüter otaqları və şəbəkə xidmətləri',
+      'Rəqəmsal alətlər üzrə təlimlər',
+      'Proqramlaşdırma və rəqəmsal bacarıqlar müsabiqələri',
+      '“Müəllim-tələbə dialoqu: rəqəmsal alətlər” təlimləri',
+    ],
+  },
+  {
+    id: 'ekomekan',
+    name: '“Eko Məkan” və “Tələbə məkanı”',
+    cat: 'center',
+    icon: 'i-leaf',
+    meta: 'COP29 çərçivəsində “Ekoməkan”',
+    tags: ['Mərkəz', 'Ekologiya', 'Tələbə məkanı'],
+    about: 'Kampus ərazisində tələbəyönümlü məkanlar fəaliyyət göstərir. “Eko Məkan” 2024-cü il noyabrın 14-də COP29 çərçivəsində açılıb və tələbə və tədqiqatçıların ətraf mühitin qorunması sahəsində bilik və təcrübə qazanmasına xidmət edir. “Tələbə məkanı” isə tələbələrin asudə vaxtını səmərəli keçirməsi üçün yaradılıb.',
+    facts: [
+      '“Eko Məkan” — ekologiya və dayanıqlı inkişaf mövzulu tədbirlər',
+      'Eco-Energy Station — yaşıl enerji təşəbbüsləri',
+      '“Tələbə məkanı” (Student Space) — görüş və istirahət zonası',
+      'Dayanıqlı İnkişaf Məqsədləri (SDG) klubu ilə əməkdaşlıq',
+    ],
+  },
+
+  /* ---------- KLUBLAR ---------- */
+  {
+    id: 'yeni-klub',
+    name: '“YENİ Klub”',
+    cat: 'club',
+    icon: 'i-club',
+    meta: 'Universitetdaxili ictimai-siyasi klub',
+    tags: ['Klub', 'İctimai fəaliyyət', 'Vətənpərvərlik'],
+    about: '“YENİ Klub” BDU-da fəaliyyət göstərən fəal tələbə klublarından biridir. Klub layihələri əsasən dövlətçilik, milli ideologiya və vətənpərvərlik mövzularını əhatə edir.',
+    facts: [
+      '“Heydər Əliyevin siyasi irsi və dövlətçilik baxışları” layihələri',
+      'Beynəlxalq Ana Dili Gününə həsr olunmuş tədbirlər',
+      'Xocalı faciəsinin ildönümü ilə bağlı anım tədbirləri',
+      'Zəfər Parkına və Siyasi Repressiya Qurbanlarının Muzeyinə ziyarətlər',
+      'Digər klublarla birgə tədbirlər (məs. “İstiqlal klubu”, “Model İƏT”)',
+    ],
+  },
+  {
+    id: 'c-club',
+    name: '“C Club”',
+    cat: 'club',
+    icon: 'i-code',
+    meta: 'Rəqəmsal və texnoloji yönümlü tələbə klubu',
+    tags: ['Klub', 'Texnologiya', 'Rəqəmsal'],
+    about: '“C Club” BDU tələbələrinin rəqəmsal texnologiyalar, proqramlaşdırma və texnoloji layihələr ətrafında birləşdiyi tələbə klubudur. Klub universitetdə rəqəmsal bacarıqların inkişafı üzrə təşəbbüslərdə və müsabiqələrdə iştirak edir.',
+    facts: [
+      'Proqramlaşdırma və rəqəmsal alətlər üzrə təlimlər',
+      'Texnoloji layihələr və komanda işi',
+      'Rəqəmsal bacarıqlar və proqramlaşdırma müsabiqələrində iştirak',
+      'TETYM-in texnologiya təlimləri ilə əlaqəli fəaliyyət',
+    ],
+  },
+  {
+    id: 'zade-club',
+    name: '“Zadə Club”',
+    cat: 'club',
+    icon: 'i-target',
+    meta: 'Lütfi Zadə irsi və qeyri-səlis məntiq üzrə klub',
+    tags: ['Klub', 'Riyaziyyat', 'Süni intellekt'],
+    about: '“Zadə Club” dünya şöhrətli azərbaycanlı alim, qeyri-səlis məntiq nəzəriyyəsinin banisi Lütfi Zadənin elmi irsini təbliğ edən tələbə klubudur. Klub riyaziyyat, məntiq və süni intellekt mövzularında tələbələri bir araya gətirir.',
+    facts: [
+      'Lütfi Zadənin elmi irsinin təbliği',
+      'Qeyri-səlis məntiq və süni intellekt mövzulu tədbirlər',
+      'İntellektual yarışlar və elmi müzakirələr',
+      '“Lütfi Zadə 105” kimi yubiley tədbirləri ilə əlaqəli fəaliyyət',
+      'Lütfi Zadə adına təqaüd proqramı ilə tanışlıq',
+    ],
+  },
+  {
+    id: 'moic',
+    name: '“İƏT Modeli” klubu (MOIC Club)',
+    cat: 'club',
+    icon: 'i-globe',
+    meta: 'İslam Əməkdaşlıq Təşkilatı Modeli',
+    tags: ['Klub', 'Diplomatiya', 'Beynəlxalq'],
+    about: '“İƏT Modeli” (Model OIS / MOIC) klubu İslam Əməkdaşlıq Təşkilatının iş prinsiplərini simulyasiya edən tələbə klubudur. Klub tələbələrə diplomatiya, danışıqlar və beynəlxalq münasibətlər bacarıqları qazandırır.',
+    facts: [
+      'İslam Əməkdaşlıq Təşkilatının modelləşdirilməsi',
+      'Diplomatiya və danışıqlar bacarıqlarının inkişafı',
+      'Beynəlxalq mövzularda simulyasiya sessiyaları',
+      'Digər klublarla birgə tədbirlər (məs. “YENİ Klub”)',
+      'Muzey və səfər təşkilatları',
+    ],
+  },
+  {
+    id: 'debat',
+    name: 'Debat Klubu',
+    cat: 'club',
+    icon: 'i-mic',
+    meta: 'Natiqlik və müzakirə bacarıqları',
+    tags: ['Klub', 'Debat', 'Natiqlik'],
+    about: 'Debat Klubu tələbələrin natiqlik, arqument qurma və tənqidi düşünmə bacarıqlarını inkişaf etdirir. Klub Tələbə Həmkarlar İttifaqı Komitəsinin təşkilatçılığı ilə universitetlərarası debat turnirləri keçirir.',
+    facts: [
+      'Universitetlərarası debat turnirləri (BDU-nun 105 illik yubileyi turniri)',
+      'Natiqlik və ritorika məşqləri',
+      'Rəsmi debat formatları üzrə hazırlıq',
+      'Hüquq fakültəsinin “Hüquqi Debat Klubu” ilə əlaqəli fəaliyyət',
+    ],
+  },
+  {
+    id: 'istiqlal',
+    name: '“İstiqlal klubu”',
+    cat: 'club',
+    icon: 'i-club',
+    meta: 'Tarix fakültəsi nəzdində',
+    tags: ['Klub', 'Tarix', 'Vətənpərvərlik'],
+    where: 'Tarix fakültəsi',
+    about: '“İstiqlal klubu” Tarix fakültəsi nəzdində fəaliyyət göstərir. Klub tarix, milli yaddaş və vətənpərvərlik mövzularında tədbirlər təşkil edir.',
+    facts: [
+      '“Anım və Qürur” kimi tarixi tədbirlər',
+      'Xocalı faciəsi ilə bağlı anım tədbirləri',
+      'Tələbə Gənclər Təşkilatı və TEC ilə birgə layihələr',
+    ],
+  },
+  {
+    id: 'creart',
+    name: '“CreArt” klubu (Creative Creators Club)',
+    cat: 'club',
+    icon: 'i-music',
+    meta: 'Mədəniyyət, dizayn və yaradıcılıq',
+    tags: ['Klub', 'Yaradıcılıq', 'Dizayn', 'İncəsənət'],
+    about: '“CreArt” (Creative Creators Club) Tələbə Gənclər Təşkilatının nəzdində fəaliyyət göstərən yaradıcılıq klubudur. Klub sənətə, dizayna və yaradıcılığa marağı olan tələbələrin bir araya gəldiyi kreativ məkandır.',
+    facts: [
+      'Sənət, dizayn və yaradıcılıq üzrə tədbirlər',
+      'Yeni üzv qəbulu və idarə heyəti',
+      'Tələbələrin yaradıcı layihələrinin təqdimatı',
+      'Mədəniyyət-yaradıcılıq Mərkəzi ilə əlaqəli fəaliyyət',
+    ],
+  },
+  {
+    id: 'ted',
+    name: 'TED Club',
+    cat: 'club',
+    icon: 'i-mic',
+    meta: 'İdeyaların təqdimatı və çıxışlar',
+    tags: ['Klub', 'İdeya', 'Təqdimat'],
+    about: 'TED Club Tələbə Gənclər Təşkilatının nəzdində fəaliyyətə başlayıb. Klub tələbələrin ideyalarını təqdim etməsi, çıxış və təqdimat bacarıqlarının inkişafı üzrə təlimlər keçirir.',
+    facts: [
+      '“Yaradıcı olmaq üçün özünə fürsət ver” kimi təlimlər',
+      'Çıxış və təqdimat bacarıqlarının inkişafı',
+      'İdeyaların səhnədən təqdimatı',
+    ],
+  },
+  {
+    id: 'price',
+    name: '“Price” Xarici Dillər Klubu',
+    cat: 'club',
+    icon: 'i-lang',
+    meta: 'TGT nəzdində · Xarici dillər',
+    tags: ['Klub', 'Xarici dil', 'Danışıq'],
+    about: '“Price” Xarici Dillər Klubu Tələbə Gənclər Təşkilatının nəzdində fəaliyyət göstərir. Klubun əsas məqsədi tələbələrin fərdi inkişafına dəstək olmaq və asudə vaxtlarını səmərəli təşkil etməkdir.',
+    facts: [
+      'Xarici dil danışıq bacarıqlarının inkişafı',
+      'Mütəmadi təlim və görüşlər',
+      'Tələbələrin fərdi inkişafına dəstək',
+    ],
+  },
+  {
+    id: 'lingua',
+    name: '“Lingua Conversation Club”',
+    cat: 'club',
+    icon: 'i-lang',
+    meta: 'TGT nəzdində · Danışıq klubu',
+    tags: ['Klub', 'Dil', 'Danışıq'],
+    about: '“Lingua Conversation Club” Tələbə Gənclər Təşkilatının nəzdində fəaliyyət göstərən danışıq klubudur. Klub müxtəlif fakültələrin tələbələri üçün dil praktikası sessiyaları təşkil edir.',
+    facts: [
+      'Dil praktikası və danışıq sessiyaları',
+      'Müxtəlif fakültələr üzrə təlimlər (məs. Kimya fakültəsi)',
+      'Yeni üzv qəbulu',
+    ],
+  },
+  {
+    id: 'art',
+    name: '“Art Club” (İncəsənət klubu)',
+    cat: 'club',
+    icon: 'i-music',
+    meta: 'Filologiya fakültəsi nəzdində',
+    tags: ['Klub', 'İncəsənət'],
+    where: 'Filologiya fakültəsi',
+    about: '“Art Club” (“İncəsənət” klubu) Filologiya fakültəsinin Tələbə Gənclər Təşkilatının nəzdində fəaliyyət göstərir. Klub tələbələrin yaradıcılıq qabiliyyətlərini inkişaf etdirmək üçün təlimlər və tədbirlər keçirir.',
+    facts: [
+      'İncəsənət üzrə müntəzəm təlimlər',
+      'Ədəbi və mədəni tədbirlər',
+      'Tələbələrin yaradıcılıq işlərinin təqdimatı',
+    ],
+  },
+  {
+    id: 'kitab-qurdu',
+    name: '“Kitab qurdu” klubu',
+    cat: 'club',
+    icon: 'i-book',
+    meta: 'Jurnalistika fakültəsi · TEC təşəbbüsü',
+    tags: ['Klub', 'Kitab', 'Oxu'],
+    where: 'Jurnalistika fakültəsi',
+    about: '“Kitab qurdu” klubu Jurnalistika fakültəsində Tələbə Elmi Cəmiyyətinin təşəbbüsü ilə 2019-cu ildə yaradılıb. Klub oxu mədəniyyətini və kitab müzakirələrini təşviq edir.',
+    facts: [
+      'Kitab müzakirələri və oxu görüşləri',
+      'Ədəbi təhlil və müzakirə bacarıqları',
+      'TEC ilə birgə elmi-ədəbi tədbirlər',
+    ],
+  },
+  {
+    id: 'ideya-kitab',
+    name: 'İdeya və Kitab klubları',
+    cat: 'club',
+    icon: 'i-book',
+    meta: 'Filologiya fakültəsi TGT nəzdində',
+    tags: ['Klub', 'Kitab', 'İdeya'],
+    where: 'Filologiya fakültəsi',
+    about: 'Filologiya fakültəsinin Tələbə Gənclər Təşkilatı nəzdində “İdeya” və “Kitab” klubları fəaliyyət göstərir. Klublar tələbələri oxuya və fikir mübadiləsinə təşviq edir.',
+    facts: [
+      'Əsər müzakirələri və ideya mübadiləsi',
+      'Tələbələrin təqdimatları',
+      'Ədəbi görüşlər',
+    ],
+  },
+  {
+    id: 'in-club',
+    name: '“IN Club” — intellektual oyunlar klubu',
+    cat: 'club',
+    icon: 'i-target',
+    meta: '“Nə? Harada? Nə vaxt?” oyunları',
+    tags: ['Klub', 'İntellektual oyun'],
+    about: '“IN Club” BDU-da intellektual oyunlar (“Nə? Harada? Nə vaxt?”) üzrə tələbə klubudur. Klub universitetdaxili intellektual marafonlar və yarışlar təşkil edir.',
+    facts: [
+      '“Nə? Harada? Nə vaxt?” oyunları və marafonlar',
+      'Universitetdaxili və şəhərlərarası yarışlarda iştirak',
+      '“BDU İntellekt Liqası” ilə əlaqəli fəaliyyət',
+    ],
+  },
+  {
+    id: 'sdg-club',
+    name: 'Dayanıqlı İnkişaf Məqsədləri (SDG) klubu',
+    cat: 'club',
+    icon: 'i-leaf',
+    meta: 'BMT-nin Dayanıqlı İnkişaf Məqsədləri',
+    tags: ['Klub', 'Ekologiya', 'Dayanıqlı inkişaf'],
+    about: 'BDU-da BMT-nin Dayanıqlı İnkişaf Məqsədləri (SDG) ilə bağlı tələbə klubu fəaliyyət göstərir. Klub məqsədlərin təbliği, maarifləndirmə və ekoloji aksiyalar təşkil edir.',
+    facts: [
+      'Dayanıqlı inkişaf mövzulu maarifləndirmə',
+      'Ekoloji aksiyalar və yaşıl təşəbbüslər',
+      '“Ekoməkan” və Eco-Energy Station ilə əməkdaşlıq',
+      'sdg.bsu.edu.az platforması ilə əlaqəli fəaliyyət',
+    ],
+  },
+  {
+    id: 'xezər-intellekt',
+    name: 'Xəzər İntellektual Gənclər Klubu',
+    cat: 'club',
+    icon: 'i-trophy',
+    meta: 'Elmar Teymurov adına · İntellektual oyunlar',
+    tags: ['Klub', 'İntellektual oyun', 'Festival'],
+    about: 'Xəzər İntellektual Gənclər Klubu intellektual oyunlar sahəsində fəaliyyət göstərir və BDU ilə birgə turnir və festivallar təşkil edir.',
+    facts: [
+      '“Nə? Harada? Nə vaxt?” festival və çempionatları',
+      'BDU-da seçim turlarının təşkili',
+      'Şəhərlərarası intellektual oyunlar',
+    ],
+  },
+  {
+    id: 'intellekt-dunyasi',
+    name: '“İntellekt Dünyası” klubu',
+    cat: 'club',
+    icon: 'i-target',
+    meta: 'Mexanika-Riyaziyyat fakültəsi',
+    tags: ['Klub', 'İntellektual oyun'],
+    where: 'Mexanika-Riyaziyyat fakültəsi',
+    about: '“İntellekt Dünyası” klubu 2010-cu ildə Mexanika-Riyaziyyat fakültəsində yaradılıb. Klub tələbələr arasında intellektual oyunları yayır.',
+    facts: [
+      'İntellektual oyunların təşkili',
+      'Fakültələrarası yarışlar',
+      'Yeni üzvlərin cəlb edilməsi',
+    ],
   },
 ];
 
@@ -426,6 +941,9 @@ const ICON_IDS = new Set([
   'i-chart', 'i-check', 'i-chevron-right', 'i-clock', 'i-close', 'i-home',
   'i-leaf', 'i-map-pin', 'i-mortarboard', 'i-people', 'i-scale', 'i-send',
   'i-target', 'i-train',
+  /* Tələbə həyatı üçün əlavə ikonlar */
+  'i-club', 'i-bulb', 'i-music', 'i-book', 'i-globe', 'i-heart', 'i-trophy',
+  'i-code', 'i-mic', 'i-robot', 'i-lang', 'i-search',
 ]);
 
 function icon(id, size) {
@@ -536,6 +1054,7 @@ function showPage(pageId) {
   if (pageId === 'page-faculties') buildFacultyGrid();
   if (pageId === 'page-korpuslar') buildKorpusGrid();
   if (pageId === 'page-graduates') buildGraduatesGrid();
+  if (pageId === 'page-student-life') { buildStudentLife(); applyStudentLifeFilter(); }
 
   /* İrəli keçiddə səhifə yuxarıdan başlayır */
   scrollTopInstant();
@@ -615,6 +1134,166 @@ function buildGraduatesGrid() {
 }
 
 /* =========================================================
+   TƏLƏBƏ HƏYATI SƏHİFƏSİ
+   ---------------------------------------------------------
+   Kartlar bir dəfə qurulur, sonra axtarış/filtr yalnız
+   görünürlüyü dəyişir (DOM yenidən qurulmur) — performans üçün.
+   ========================================================= */
+let slBuilt   = false;
+let slActiveCat = 'all';
+let slQuery     = '';
+let slItems     = [];   /* [{ el, item }] — bir dəfə keşlənir */
+
+function slSearchText(it) {
+  return [
+    it.name,
+    it.meta,
+    it.where,
+    it.about,
+    (it.tags || []).join(' '),
+    (SL_CATEGORIES[it.cat] ? SL_CATEGORIES[it.cat].label : ''),
+    (it.facts || []).join(' '),
+  ].filter(Boolean).join(' ').toLowerCase();
+}
+
+function buildStudentLife() {
+  const grid = document.getElementById('slGrid');
+  if (!grid || slBuilt) return;
+
+  const frag = document.createDocumentFragment();
+  slItems = [];
+
+  STUDENT_LIFE.forEach(it => {
+    const cat = SL_CATEGORIES[it.cat] || { label: '', icon: 'i-club' };
+
+    const card = document.createElement('article');
+    card.className = 'sl-card';
+    card.setAttribute('role', 'button');
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('aria-label', it.name);
+    card.addEventListener('click', () => openStudentLife(it.id));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openStudentLife(it.id); }
+    });
+
+    const tagHtml = (it.tags || []).slice(0, 3)
+      .map(t => `<span class="sl-tag">${t}</span>`).join('');
+
+    card.innerHTML = `
+      <div class="sl-card-icon">${icon(it.icon || cat.icon)}</div>
+      <div class="sl-card-cat">${cat.label}</div>
+      <h3 class="sl-card-name">${it.name}</h3>
+      ${it.meta ? `<p class="sl-card-meta">${it.meta}</p>` : ''}
+      ${tagHtml ? `<div class="sl-card-tags">${tagHtml}</div>` : ''}
+      <span class="sl-card-arrow">Ətraflı bax${icon('i-arrow-right')}</span>`;
+
+    frag.appendChild(card);
+    slItems.push({ el: card, item: it, haystack: slSearchText(it) });
+  });
+
+  grid.appendChild(frag);
+  slBuilt = true;
+}
+
+/* Axtarış və kateqoriya filtrini tətbiq edir */
+function applyStudentLifeFilter() {
+  if (!slBuilt) return;
+
+  const q = slQuery.trim().toLowerCase();
+  let visible = 0;
+
+  for (let i = 0; i < slItems.length; i++) {
+    const rec = slItems[i];
+    const catOk = slActiveCat === 'all' || rec.item.cat === slActiveCat;
+    const qOk = !q || rec.haystack.indexOf(q) !== -1;
+    const show = catOk && qOk;
+    rec.el.hidden = !show;
+    if (show) visible++;
+  }
+
+  const emptyEl = document.getElementById('slEmpty');
+  if (emptyEl) emptyEl.style.display = visible === 0 ? 'block' : 'none';
+
+  const countEl = document.getElementById('slCount');
+  if (countEl) {
+    const catLabel = slActiveCat === 'all'
+      ? 'bütün kateqoriyalar'
+      : (SL_CATEGORIES[slActiveCat] ? SL_CATEGORIES[slActiveCat].label.toLowerCase() : '');
+    countEl.textContent = q
+      ? `“${slQuery.trim()}” üzrə ${visible} nəticə tapıldı (${catLabel}).`
+      : `${visible} nəticə göstərilir (${catLabel}).`;
+  }
+}
+
+function setStudentLifeCategory(cat) {
+  slActiveCat = cat;
+  const chips = document.querySelectorAll('#slFilterChips .filter-chip');
+  for (let i = 0; i < chips.length; i++) {
+    const on = chips[i].dataset.slcat === cat;
+    chips[i].classList.toggle('active', on);
+    chips[i].setAttribute('aria-pressed', on ? 'true' : 'false');
+  }
+  applyStudentLifeFilter();
+}
+
+/* Modal overlay-ə klik -> bağla */
+function handleSlModalOverlayClick(e) {
+  if (e.target === document.getElementById('slModal')) closeStudentLifeModal();
+}
+
+function openStudentLife(id) {
+  const it = STUDENT_LIFE.find(x => x.id === id);
+  if (!it) return;
+
+  const modal = document.getElementById('slModal');
+  const inner = document.getElementById('slModalInner');
+  if (!modal || !inner) return;
+
+  const cat = SL_CATEGORIES[it.cat] || { label: '', icon: 'i-club' };
+
+  const factsHtml = (it.facts && it.facts.length)
+    ? `<h3 class="km-fac-title">Əsas fəaliyyət istiqamətləri</h3>
+       <ul class="sl-fact-list">${it.facts.map(f => `<li>${f}</li>`).join('')}</ul>`
+    : '';
+
+  const tagsHtml = (it.tags && it.tags.length)
+    ? `<div class="sl-modal-tags">${it.tags.map(t => `<span class="sl-tag">${t}</span>`).join('')}</div>`
+    : '';
+
+  const whereHtml = it.where
+    ? `<p class="sl-modal-where">${icon('i-map-pin', 'sm')}<span>${it.where}</span></p>`
+    : '';
+
+  inner.innerHTML = `
+    <div class="km-header sl-modal-header">
+      <div class="km-header-overlay"></div>
+      <div class="km-header-content">
+        <div class="km-icon">${icon(it.icon || cat.icon)}</div>
+        <div class="km-title-wrap">
+          <h2 class="km-title">${it.name}</h2>
+          <p class="km-loc">${icon(cat.icon, 'sm')}<span>${cat.label}${it.meta ? ' · ' + it.meta : ''}</span></p>
+        </div>
+        <button class="km-close" onclick="closeStudentLifeModal()" aria-label="Bağla" type="button">${icon('i-close', 'sm')}</button>
+      </div>
+    </div>
+    <div class="km-body">
+      ${tagsHtml}
+      ${whereHtml}
+      <p class="km-desc">${it.about}</p>
+      ${factsHtml}
+    </div>`;
+
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeStudentLifeModal() {
+  const modal = document.getElementById('slModal');
+  if (modal) modal.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* =========================================================
    FAKÜLTƏ ŞƏBƏKƏSİ
    ========================================================= */
 function buildFacultyGrid() {
@@ -636,6 +1315,7 @@ function buildFacultyGrid() {
 
     const logoHtml = f.logo
       ? `<img src="${f.logo}" alt="${f.name} loqosu" class="faculty-card-logo" loading="lazy"
+            width="92" height="92" decoding="async"
             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
          <div class="faculty-card-logo-placeholder" style="display:none;">${icon('i-mortarboard')}</div>`
       : `<div class="faculty-card-logo-placeholder">${icon('i-mortarboard')}</div>`;
@@ -789,14 +1469,6 @@ function openFaculty(id) {
       </div>
     </div>`;
 
-  /* RI diaqramları fakültə səhifəsində göstərilmir */
-  const riSection = document.getElementById('ri-charts-section');
-  if (riSection) {
-    riSection.style.display = 'none';
-    const riWrapper = document.getElementById('riChartsWrapper');
-    if (riWrapper) riWrapper.innerHTML = '';
-  }
-
   const specList = document.getElementById('facultySpecList');
   specList.innerHTML = '';
 
@@ -854,45 +1526,108 @@ function openFacultyFromKorpus(id) {
 /* ===LOGIC_PART_2=== */
 
 /* =========================================================
-   BAL HESABLAMA - RI DİAQRAMLARI
+   BAL HESABLAMA - STATİSTİKA DİAQRAMLARI
+   ---------------------------------------------------------
+   Bütün qruplar və alt qruplar üçün eyni qaydada işləyir.
+   Hər ixtisas üçün ödənişsiz və ödənişli keçid həddi ayrıca
+   göstərilir; ödənişsiz yer yoxdursa yalnız ödənişli hədd
+   istifadə olunur.
    ========================================================= */
-function buildRiChartsForCalc(riSpecs, userBal, container) {
-  container.innerHTML = '';
-  if (!riSpecs || riSpecs.length === 0) return;
+const CHART_NOTES = {
+  az:     'Azərbaycan dilində',
+  en:     'İngilis dilində',
+  qiyabi: 'Qiyabi',
+  qazax:  'Qazax filialı',
+};
 
-  /* Yalnız ödənişsiz keçid balı olan ixtisaslar diaqramda göstərilir */
-  const specs = riSpecs.filter(s => s.free !== null && s.free !== undefined);
-  if (specs.length === 0) return;
+/* İxtisasın qısa qeydini qurur (dil / forma / filial) */
+function specChartNote(s) {
+  const bits = [];
+  if (s.lang === 'en') bits.push(CHART_NOTES.en);
+  if (s.type === 'qiyabi') bits.push(CHART_NOTES.qiyabi);
+  if (s.isQazax) bits.push(CHART_NOTES.qazax);
+  return bits.join(' · ');
+}
+
+/* İxtisasın adını və qeydini birlikdə verir */
+function chartSpecLabel(s) {
+  const note = specChartNote(s);
+  return note ? `${s.name} (${note})` : s.name;
+}
+
+/* Adı verilən uzunluqdan artıqdırsa kəsir */
+function clipName(name, max) {
+  return name.length > max ? name.substring(0, max - 3) + '...' : name;
+}
+
+function buildStatChartsForCalc(pool, userBal, container, scopeLabel) {
+  container.innerHTML = '';
+  if (!pool || pool.length === 0) return;
 
   const barColors = ['#0b1b3a', '#22426f', '#b8974a', '#3d6a9e', '#7a2418', '#1f7a4d'];
-  const maxFree = Math.max(...specs.map(s => s.free));
-  const minFree = Math.min(...specs.map(s => s.free));
-  const avgFree = specs.reduce((a, s) => a + s.free, 0) / specs.length;
-  const barMax  = Math.max(maxFree, userBal) * 1.08;
 
-  const barsHtml = specs.map((s, i) => {
-    const pctSpec = Math.round((s.free / barMax) * 100);
-    const pctUser = Math.round((userBal / barMax) * 100);
-    const color   = barColors[i % barColors.length];
-    const isAbove = userBal >= s.free;
-    const diff    = Math.abs(userBal - s.free).toFixed(1);
+  /* Diaqramda həddi olan ixtisaslar göstərilir; siyahı hədd üzrə
+     azalan sıralanır ki, yüksəkdən aşağıya oxunaqlı olsun. */
+  const specs = pool.map(s => {
+    const hasFree = s.free !== null && s.free !== undefined;
+    const hasPaid = s.paid !== null && s.paid !== undefined;
+    const thr = hasFree ? s.free : (hasPaid ? s.paid : null);
+    return { s, hasFree, hasPaid, thr, label: chartSpecLabel(s) };
+  }).filter(it => it.thr !== null)
+    .sort((a, b) => b.thr - a.thr);
+
+  if (specs.length === 0) return;
+
+  const thrValues = specs.map(it => it.thr);
+  const maxThr = Math.max(...thrValues);
+  const minThr = Math.min(...thrValues);
+  const avgThr = thrValues.reduce((a, v) => a + v, 0) / thrValues.length;
+  const barMax = Math.max(maxThr, userBal) * 1.08 || 1;
+
+  const userPct = Math.round((userBal / barMax) * 100);
+  const userBalLabel = userBal.toFixed(1);
+
+  /* --- Çubuq diaqramı: hər ixtisas üçün hədd(lər) və istifadəçi balı --- */
+  const barsHtml = specs.map((it, i) => {
+    const s = it.s;
+    const color = barColors[i % barColors.length];
+    const pctThr = Math.round((it.thr / barMax) * 100);
+    const isAbove = userBal >= it.thr;
+    const diff = Math.abs(userBal - it.thr).toFixed(1);
     const diffLabel = isAbove
       ? `<span class="ri-diff-up">${diff} bal üstündür</span>`
       : `<span class="ri-diff-down">${diff} bal çatışmır</span>`;
 
-    return `
-      <div class="ri-bar-row">
-        <div class="ri-bar-label">${s.name}</div>
-        <div class="ri-bar-tracks">
+    /* Ödənişsiz və ödənişli hədd ayrı-ayrı sətirlərdə */
+    let thrRows = '';
+    if (it.hasFree) {
+      thrRows += `
           <div class="ri-bar-track">
-            <div class="ri-bar-fill" style="width:${pctSpec}%;background:${color};">
-              <span class="ri-bar-val">${s.free}</span>
+            <div class="ri-bar-fill" style="width:${pctThr}%;background:${color};">
+              <span class="ri-bar-val">${scoreText(s.free)}</span>
             </div>
             <small class="ri-bar-desc">Ödənişsiz qəbul həddi</small>
-          </div>
+          </div>`;
+    }
+    if (it.hasPaid) {
+      const pctPaid = Math.round((s.paid / barMax) * 100);
+      thrRows += `
           <div class="ri-bar-track">
-            <div class="ri-bar-fill" style="width:${pctUser}%;background:${isAbove ? '#1f7a4d' : '#b3261e'};">
-              <span class="ri-bar-val">${userBal.toFixed(1)}</span>
+            <div class="ri-bar-fill ri-bar-fill-paid" style="width:${pctPaid}%;">
+              <span class="ri-bar-val">${scoreText(s.paid)}</span>
+            </div>
+            <small class="ri-bar-desc">Ödənişli qəbul həddi</small>
+          </div>`;
+    }
+
+    return `
+      <div class="ri-bar-row">
+        <div class="ri-bar-label">${it.label}</div>
+        <div class="ri-bar-tracks">
+          ${thrRows}
+          <div class="ri-bar-track">
+            <div class="ri-bar-fill" style="width:${userPct}%;background:${isAbove ? '#1f7a4d' : '#b3261e'};">
+              <span class="ri-bar-val">${userBalLabel}</span>
             </div>
             <small class="ri-bar-desc">Sizin balınız: ${diffLabel}</small>
           </div>
@@ -900,12 +1635,17 @@ function buildRiChartsForCalc(riSpecs, userBal, container) {
       </div>`;
   }).join('');
 
-  const donutsHtml = specs.map((s, i) => {
-    const color   = barColors[i % barColors.length];
-    const pct     = Math.round(Math.min((userBal / s.free) * 100, 150));
+  /* --- Donut diaqramları: balın həddə nisbəti ---
+     Performans üçün yalnız ilk 12 ixtisas göstərilir. */
+  const DONUT_LIMIT = 12;
+  const donutSpecs = specs.slice(0, DONUT_LIMIT);
+
+  const donutsHtml = donutSpecs.map((it, i) => {
+    const color = barColors[i % barColors.length];
+    const pct = Math.round(Math.min((userBal / it.thr) * 100, 150));
     const displayPct = Math.min(pct, 100);
     const dashVal = Math.round(displayPct * 2.83);
-    const isAbove = userBal >= s.free;
+    const isAbove = userBal >= it.thr;
     const fillColor = isAbove ? '#1f7a4d' : color;
 
     return `
@@ -919,26 +1659,40 @@ function buildRiChartsForCalc(riSpecs, userBal, container) {
                 fill="${isAbove ? '#1f7a4d' : '#b3261e'}">${pct}%</text>
           <text x="50" y="62" text-anchor="middle" font-size="9" fill="#78839b">nisbət</text>
         </svg>
-        <div class="ri-donut-label">${s.name.length > 28 ? s.name.substring(0, 25) + '...' : s.name}</div>
-        <div class="ri-donut-score" style="color:${fillColor};">${s.free} bal hədd</div>
+        <div class="ri-donut-label">${clipName(it.label, 28)}</div>
+        <div class="ri-donut-score" style="color:${fillColor};">${scoreText(it.thr)} bal hədd</div>
       </div>`;
   }).join('');
+
+  const donutNote = specs.length > DONUT_LIMIT
+    ? `<div class="ri-donut-note">${specs.length} ixtisasdan ən yüksək həddi olan ${DONUT_LIMIT} ixtisas göstərilir.</div>`
+    : '';
+
+  const paidLegend = specs.some(it => it.hasPaid)
+    ? `<div class="ri-chart-legend">
+         <span class="ri-legend-item"><i class="ri-legend-swatch ri-legend-free"></i>Ödənişsiz hədd</span>
+         <span class="ri-legend-item"><i class="ri-legend-swatch ri-legend-paid"></i>Ödənişli hədd</span>
+         <span class="ri-legend-item"><i class="ri-legend-swatch ri-legend-user"></i>Sizin balınız</span>
+       </div>`
+    : '';
 
   container.innerHTML = `
     <div class="ri-charts-inner">
       <div class="ri-stats-row">
-        <div class="ri-stat-card"><div class="ri-stat-value">${userBal.toFixed(1)}</div><div class="ri-stat-label">Sizin balınız</div></div>
-        <div class="ri-stat-card ri-stat-green"><div class="ri-stat-value">${maxFree}</div><div class="ri-stat-label">Ən yüksək hədd</div></div>
-        <div class="ri-stat-card ri-stat-orange"><div class="ri-stat-value">${avgFree.toFixed(1)}</div><div class="ri-stat-label">Orta hədd</div></div>
-        <div class="ri-stat-card ri-stat-purple"><div class="ri-stat-value">${minFree}</div><div class="ri-stat-label">Ən aşağı hədd</div></div>
+        <div class="ri-stat-card"><div class="ri-stat-value">${userBalLabel}</div><div class="ri-stat-label">Sizin balınız</div></div>
+        <div class="ri-stat-card ri-stat-green"><div class="ri-stat-value">${scoreText(maxThr)}</div><div class="ri-stat-label">Ən yüksək hədd</div></div>
+        <div class="ri-stat-card ri-stat-orange"><div class="ri-stat-value">${avgThr.toFixed(1)}</div><div class="ri-stat-label">Orta hədd</div></div>
+        <div class="ri-stat-card ri-stat-purple"><div class="ri-stat-value">${scoreText(minThr)}</div><div class="ri-stat-label">Ən aşağı hədd</div></div>
       </div>
       <div class="ri-chart-card">
-        <h4 class="ri-chart-title">${icon('i-chart')}<span>Sizin balınız və ixtisas qəbul həddi</span></h4>
+        <h4 class="ri-chart-title">${icon('i-chart')}<span>Sizin balınız və ixtisas qəbul həddi${scopeLabel ? ' — ' + scopeLabel : ''}</span></h4>
+        ${paidLegend}
         <div class="ri-bars">${barsHtml}</div>
       </div>
       <div class="ri-chart-card">
         <h4 class="ri-chart-title">${icon('i-target')}<span>Qəbul həddini keçmə faizi</span></h4>
         <div class="ri-donuts-row">${donutsHtml}</div>
+        ${donutNote}
       </div>
     </div>`;
 }
@@ -1085,10 +1839,14 @@ function calcPercent(userBal, thresholdBal) {
    ---------------------------------------------------------
    İlkin olaraq 15 ixtisas göstərilir və bu seçim balanslıdır:
    5 ən yüksək, 5 orta, 5 ən aşağı uyğunluq. "Daha çox göstər"
-   düyməsi hər basışda qalanlardan 6 ixtisas əlavə edir.
+   düyməsi hər basışda qalanlardan 6 ixtisas əlavə edir və bu
+   altılıq da balanslıdır: 2 ən yüksək + 2 orta + 2 ən aşağı.
    ========================================================= */
 const RESULTS_INITIAL = 15;
 const RESULTS_STEP    = 6;
+const STEP_HI         = 2;   /* hər addımda qalanların ən yüksəklərindən 2 */
+const STEP_MID        = 2;   /* qalanların ortasından 2 */
+const STEP_LO         = 2;   /* qalanların ən aşağılarından 2 */
 
 let calcResults   = [];   /* tam sıralanmış siyahı */
 let calcVisible   = [];   /* göstərilən ixtisaslar */
@@ -1192,10 +1950,48 @@ function renderCalcResults() {
   }
 }
 
-/* Növbəti 6 ixtisası əlavə et */
+/* Qalan siyahıdan balanslı altılıq seçir: 2 yüksək + 2 orta + 2 aşağı.
+   Siyahı artıq maxPercent üzrə azalan sıralanıb. Seçilən elementlər
+   orijinal sıralamada (yüksəkdən aşağıya) qaytarılır ki, nəticə
+   siyahısında qarışıqlıq yaranmasın. */
+function pickStepResults(remaining) {
+  if (remaining.length <= RESULTS_STEP) return remaining.slice();
+
+  const n = remaining.length;
+
+  /* Yüksək: ilk 2 */
+  const headIdx = [0, 1];
+
+  /* Aşağı: son 2 */
+  const tailIdx = [n - 2, n - 1];
+
+  /* Orta: qalanların (2..n-3) mərkəzindən 2 */
+  const midStart = 2;
+  const midEnd   = n - 3;                 /* daxil olmaqla */
+  const midIdx   = [];
+  if (midEnd >= midStart) {
+    const midLen = midEnd - midStart + 1;
+    if (midLen <= STEP_MID) {
+      for (let i = midStart; i <= midEnd; i++) midIdx.push(i);
+    } else {
+      const denom = STEP_MID - 1;         /* 1 */
+      for (let k = 0; k < STEP_MID; k++) {
+        const pos = midStart + Math.round(k * (midLen - 1) / denom);
+        midIdx.push(pos);
+      }
+    }
+  }
+
+  const set = new Set([...headIdx, ...midIdx, ...tailIdx]);
+  return Array.from(set).sort((a, b) => a - b).map(i => remaining[i]);
+}
+
+/* Növbəti 6 ixtisası balanslı şəkildə əlavə et (2 yüksək + 2 orta + 2 aşağı) */
 function showMoreResults() {
   if (!calcRemaining.length) return;
-  const next = calcRemaining.splice(0, RESULTS_STEP);
+  const next = pickStepResults(calcRemaining);
+  const nextSet = new Set(next);
+  calcRemaining = calcRemaining.filter(s => !nextSet.has(s));
   calcVisible = calcVisible.concat(next);
   renderCalcResults();
 }
@@ -1293,18 +2089,28 @@ function calculate() {
     renderCalcResults();
   }
 
-  /* RI diaqramları yalnız RI alt qrupu seçildikdə */
-  const calcRiSection = document.getElementById('calc-ri-charts-section');
-  const calcRiWrapper = document.getElementById('calcRiChartsWrapper');
+  /* Bal statistikası diaqramları — bütün qruplar və alt qruplar üçün.
+     Alt qrupsuz qruplarda (2-ci, 4-cü) bütün qrup üzrə qurulur. */
+  const calcChartSection = document.getElementById('calc-charts-section');
+  const calcChartWrapper = document.getElementById('calcChartsWrapper');
+  const calcChartTitle   = document.getElementById('calcChartsTitle');
 
-  if (calcRiSection && calcRiWrapper) {
-    const riSpecs = allSpecs.filter(s => s.subgroup === 'ri');
-    if (subgroup === 'ri' && riSpecs.length > 0) {
-      calcRiSection.style.display = 'block';
-      buildRiChartsForCalc(riSpecs, userBal, calcRiWrapper);
+  if (calcChartSection && calcChartWrapper) {
+    /* Diaqram üçün əsas: alt qrup varsa həmin alt qrup, yoxsa bütün qrup */
+    const chartPool = subgroup
+      ? allSpecs.filter(s => s.subgroup === subgroup)
+      : allSpecs;
+
+    if (chartPool.length > 0) {
+      const scopeLabel = subgroup
+        ? `${SUBGROUP_LABEL[subgroup] || subgroup.toUpperCase()} alt qrupu`
+        : `${GROUP_ORDINAL[groupNum] || group} qrup`;
+      if (calcChartTitle) calcChartTitle.textContent = `${scopeLabel} üzrə bal statistikası`;
+      calcChartSection.style.display = 'block';
+      buildStatChartsForCalc(chartPool, userBal, calcChartWrapper, scopeLabel);
     } else {
-      calcRiSection.style.display = 'none';
-      calcRiWrapper.innerHTML = '';
+      calcChartSection.style.display = 'none';
+      calcChartWrapper.innerHTML = '';
     }
   }
 
@@ -1645,6 +2451,49 @@ function buildDynamicFaqEntries() {
     });
   });
 
+  /* --- Tələbə həyatı: təşkilatlar, klublar, mərkəzlər (ayrıca) --- */
+  STUDENT_LIFE.forEach(it => {
+    const cat = SL_CATEGORIES[it.cat] || { label: '', icon: 'i-club' };
+    const nm = it.name.toLowerCase();
+    const facts = (it.facts && it.facts.length) ? `\n\nƏsas fəaliyyət istiqamətləri:\n• ${it.facts.join('\n• ')}` : '';
+    const where = it.where ? `\nYerləşmə: ${it.where}` : '';
+    const meta = it.meta ? `\n${it.meta}` : '';
+    const tags = (it.tags || []).join(', ');
+
+    entries.push({
+      keywords: [
+        nm,
+        `${nm} nədir`,
+        `${nm} haqqında`,
+        `${nm} məlumat`,
+        `${nm} fəaliyyəti`,
+        tags.toLowerCase(),
+      ].filter(Boolean),
+      answer: `${it.name}\n(${cat.label}${meta ? ' · ' + it.meta.replace(/^\s*/, '') : ''})\n${where}\n\n${it.about}${facts}`
+    });
+  });
+
+  /* Kateqoriya üzrə toplu cavablar */
+  const CAT_INTRO = {
+    org: 'BDU-da fəaliyyət göstərən tələbə təşkilatları',
+    club: 'BDU-da fəaliyyət göstərən tələbə klubları',
+    center: 'BDU-da fəaliyyət göstərən mərkəzlər',
+  };
+  Object.keys(SL_CATEGORIES).forEach(cat => {
+    const list = STUDENT_LIFE.filter(x => x.cat === cat);
+    if (!list.length) return;
+    const lines = list.map(x => `• ${x.name}${x.meta ? ' — ' + x.meta : ''}`);
+    const kwExtra = {
+      org:    ['tələbə təşkilatları', 'təşkilatlar', 'hansı təşkilatlar var', 'tələbə təşkilatı'],
+      club:   ['tələbə klubları', 'klublar', 'hansı klublar var', 'klub', 'club', 'klublar hansılardır'],
+      center: ['mərkəzlər', 'hansı mərkəzlər var', 'tələbə mərkəzləri', 'mərkəz'],
+    }[cat] || [];
+    entries.push({
+      keywords: kwExtra,
+      answer: `${CAT_INTRO[cat]} (${list.length}):\n${lines.join('\n')}\n\nHər biri haqqında ətraflı məlumat üçün adını yazın.`
+    });
+  });
+
   return entries;
 }
 
@@ -1842,7 +2691,7 @@ function appendBduluMsg(text, role) {
 
   if (role === 'bot') {
     div.innerHTML = `
-      <img src="images/bdulu-logo.png" alt="" class="bdulu-msg-avatar" loading="lazy" />
+      <img src="images/bdulu-logo.webp" alt="" class="bdulu-msg-avatar" loading="lazy" />
       <div class="bdulu-msg-bubble">${text.replace(/\n/g, '<br>')}</div>`;
   } else {
     div.innerHTML = `<div class="bdulu-msg-bubble bdulu-msg-bubble-user">${escHtml(text)}</div>`;
@@ -1870,7 +2719,7 @@ function showBduluTyping() {
   div.className = 'bdulu-msg bdulu-msg-bot';
   div.id = id;
   div.innerHTML = `
-    <img src="images/bdulu-logo.png" alt="" class="bdulu-msg-avatar" loading="lazy" />
+    <img src="images/bdulu-logo.webp" alt="" class="bdulu-msg-avatar" loading="lazy" />
     <div class="bdulu-msg-bubble bdulu-typing">
       <span></span><span></span><span></span>
     </div>`;
@@ -2088,6 +2937,11 @@ window.openBdulu              = openBdulu;
 window.closeBdulu             = closeBdulu;
 window.sendBdulu              = sendBdulu;
 window.sendSuggestion         = sendSuggestion;
+/* Tələbə həyatı */
+window.openStudentLife           = openStudentLife;
+window.closeStudentLifeModal     = closeStudentLifeModal;
+window.handleSlModalOverlayClick = handleSlModalOverlayClick;
+window.setStudentLifeCategory    = setStudentLifeCategory;
 
 /* =========================================================
    BAŞLATMA
@@ -2114,6 +2968,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
       closeKorpusModal();
+      closeStudentLifeModal();
       if (bduluOpen) closeBdulu();
     }
   }, { passive: true });
@@ -2124,6 +2979,30 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   setVh();
   window.addEventListener('resize', setVh, { passive: true });
+
+  /* Tələbə həyatı: axtarış və kateqoriya filtri
+     (kartlar ilk keçiddə qurulur, filtrlər yalnız görünürlüyü dəyişir) */
+  const slSearchInput = document.getElementById('slSearch');
+  if (slSearchInput) {
+    let slTimer = null;
+    slSearchInput.addEventListener('input', () => {
+      if (slTimer) clearTimeout(slTimer);
+      slTimer = setTimeout(() => {
+        slQuery = slSearchInput.value || '';
+        applyStudentLifeFilter();
+      }, 120);
+    });
+  }
+
+  const slChips = document.getElementById('slFilterChips');
+  if (slChips) {
+    slChips.addEventListener('click', (e) => {
+      const btn = e.target.closest('.filter-chip');
+      if (!btn) return;
+      e.stopPropagation();
+      setStudentLifeCategory(btn.dataset.slcat || 'all');
+    });
+  }
 
   getFaqIndex();
   initBduluWidget();

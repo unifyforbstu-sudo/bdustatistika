@@ -1,12 +1,13 @@
 # BDU Qəbul Statistikası
 
 Bakı Dövlət Universitetinə qəbul ehtimalını hesablamaq üçün statik veb sayt.
-Sayt fakültələr, ixtisaslar, qəbul balları və korpuslar haqqında məlumat verir.
+Sayt fakültələr, ixtisaslar, qəbul balları, korpuslar və **tələbə həyatı**
+haqqında məlumat verir.
 
 ## Layihə haqqında
 
-- **Məqsəd**: abituriyentin balına uyğun ixtisasları göstərmək və BDU-nun
-  fakültə/korpus quruluşunu bir yerdə təqdim etmək.
+- **Məqsəd**: abituriyentin balına uyğun ixtisasları göstərmək, BDU-nun
+  fakültə/korpus quruluşunu və tələbə həyatını bir yerdə təqdim etmək.
 - **Texnologiya**: təmiz HTML + CSS + JavaScript. Build addımı, framework və
   xarici CDN asılılığı yoxdur.
 - **Dillər**: interfeys Azərbaycan dilindədir.
@@ -18,9 +19,9 @@ webapp/
 ├── index.html    # bütün səhifələr + SVG ikon sprite (inline)
 ├── style.css     # dizayn sistemi və bütün üslublar
 ├── script.js     # data, hesablayıcı, naviqasiya, BDULU köməkçisi
-├── fonts/        # öz serverimizdən verilən woff2 şrift faylları
-└── images/       # BDU gerbi, fakültə loqoları, BDULU avatarı
-    └── mezunlar/ # uğurlu məzunların poster şəkilləri
+├── fonts/        # öz serverimizdən verilən woff2 şrift faylları (alt-küme edilmiş)
+└── images/       # BDU gerbi, fakültə loqoları, BDULU avatarı (WebP)
+    └── mezunlar/ # uğurlu məzunların poster şəkilləri (WebP)
 ```
 
 ## Hazır olan imkanlar
@@ -28,17 +29,40 @@ webapp/
 | Bölmə | Təsvir |
 |---|---|
 | **Bal hesabla** | Qrup, alt qrup, buraxılış və blok balına görə ixtisaslar üzrə qəbul faizini hesablayır |
-| **Nəticə səhifələmə** | İlk 15 ixtisas balanslı göstərilir (5 yüksək + 5 orta + 5 aşağı); "Daha çox göstər" hər basışda 6 ixtisas əlavə edir |
+| **Bal statistikası diaqramları** | **Bütün qruplar və alt qruplar** üzrə eyni qaydada qrafiklər: çubuq diaqramı (ödənişsiz + ödənişli hədd ayrıca, istifadəçi balı ilə müqayisə), donut diaqramları, 4 statistik göstərici və rəng izahı |
+| **Nəticə səhifələmə** | İlk 15 ixtisas balanslı göstərilir (5 yüksək + 5 orta + 5 aşağı); "Daha çox göstər" hər basışda **2 yüksək + 2 orta + 2 aşağı** əlavə edir |
 | **Filtr sistemi** | Ödəniş növü, tədris dili, tədris forması və Qazax filialı üzrə süzgəc |
 | **Bütün qruplar** | 1, 2, 3 və 4-cü qruplar üzrə ixtisas və bal statistikası (cəmi 109 ixtisas) |
 | **Alt qruplar** | 1-ci qrup üçün RI / RK, 3-cü qrup üçün DT / TC alt qrupları |
 | **Fakültələr** | 16 fakültə, hər biri üçün ixtisas siyahısı və qəbul balları |
 | **Korpuslar** | 5 korpus, yerləşmə məlumatı və korpusdakı fakültələr (modal pəncərə) |
-| **RI statistikası** | RI alt qrupu üçün bal müqayisəsi diaqramları |
-| **Scroll bərpası** | "Geri" düyməsi istifadəçini tərk etdiyi səhifəyə elə həmin scroll mövqeyində qaytarır |
-| **BDULU köməkçi** | Sürüklənə bilən chat vidjeti; fakültələr, ixtisaslar, korpuslar və qəbul barədə dinamik cavab verir |
-| **Quick Replies** | Hər mesajdan sonra yenidən görünən sürətli sual düymələri; seçilmiş sual təkrar göstərilmir |
+| **Tələbə həyatı** | **32 qeyd**: tələbə təşkilatları, nəzdində fəaliyyət göstərən klublar və inkişaf/elmi-texniki/mədəniyyət mərkəzləri. Axtarış + kateqoriya filtri, hər qeyd üçün ətraflı modal |
 | **Uğurlu məzunlar** | Dövlət Proqramının qalibi 6 məzunun poster şəkilləri (responsive şəbəkə) |
+| **Scroll bərpası** | "Geri" düyməsi istifadəçini tərk etdiyi səhifəyə elə həmin scroll mövqeyində qaytarır |
+| **BDULU köməkçi** | Sürüklənə bilən chat vidjeti; fakültələr, ixtisaslar, korpuslar, **klublar, təşkilatlar, mərkəzlər**, qəbul və tələbə xidmətləri barədə dinamik cavab verir |
+| **Quick Replies** | Hər mesajdan sonra yenidən görünən sürətli sual düymələri; seçilmiş sual təkrar göstərilmir |
+
+## Tələbə həyatı bölməsi
+
+Tələbə həyatı məlumatları BDU-nun rəsmi mənbələrinə
+(`bsu.edu.az`, `tetym.bsu.edu.az`, `sdg.bsu.edu.az`, TGT/TEC/TETYM açıqlamaları)
+əsaslanır və üç kateqoriyaya bölünür:
+
+| Kateqoriya | Sayı | Nümunələr |
+|---|---|---|
+| **Təşkilatlar** | 6 | Tələbə Gənclər Təşkilatı (TGT), Tələbə Həmkarlar İttifaqı Komitəsi (THİK), Tələbə Elmi Cəmiyyəti (TEC), "BDU könüllüləri", Gənc Alimlər Şurası, SABAH qrupları |
+| **Mərkəzlər** | 10 | Tələbə İnkişaf Mərkəzi, TETYM, Mədəniyyət-yaradıcılıq Mərkəzi, Karyera və məzunlarla iş Mərkəzi, İdman-sağlamlıq Mərkəzi, Psixoloji Yardım Sektoru, Elmi Kitabxana, İT Mərkəzi, "Eko Məkan" |
+| **Klublar** | 16 | "YENİ Klub", **"C Club"**, **"Zadə Club"**, "İƏT Modeli" (MOIC), Debat Klubu, "İstiqlal klubu", "CreArt", TED Club, "Price", "Lingua", "Art Club", "Kitab qurdu", İdeya və Kitab klubları, "IN Club", SDG klubu, Xəzər İntellektual Gənclər Klubu, "İntellekt Dünyası" |
+
+> **Qeyd**: "C Club" (rəqəmsal və texnoloji yönümlü klub) və "Zadə Club"
+> (Lütfi Zadə irsi, qeyri-səlis məntiq və süni intellekt mövzulu klub)
+> BDULU məlumat bazasına daxil edilib; hər ikisi adına görə axtarıla və
+> haqqında soruşula bilər.
+
+Hər qeyd üçün kart, ətraflı təsvir, yerləşmə məlumatı və fəaliyyət
+istiqamətləri göstərilir. Səhifədə canlı axtarış (debounce ilə) və
+kateqoriya filtri var; kartlar bir dəfə qurulur, filtrləmə yalnız
+görünürlüyü dəyişir (DOM yenidən qurulmur) — performans üçün.
 
 ## Dizayn qərarları
 
@@ -51,11 +75,24 @@ Sayt şablon görünüşündən uzaqlaşdırılmaq üçün aşağıdakı prinsip
   mətn üçün Public Sans. Şriftlər öz serverimizdən verilir və Azərbaycan
   əlifbasının bütün hərflərini (ə, ğ, ş, ı, ö, ü) dəstəkləyir.
 - **Boşluqlar** vahid 4px şkalasına bağlanıb (4, 8, 12, 16, 24, 32, 48, 64).
-  Bütün ölçülər yalnız bu dəyərlərdən seçilir.
-- **İkonlar** əl ilə çəkilmiş 19 ikondan ibarət SVG sprite-dır. Saytda heç bir
+- **İkonlar** əl ilə çəkilmiş 31 ikondan ibarət SVG sprite-dır. Saytda heç bir
   emoji istifadə olunmur.
-- **Ana səhifə naviqasiyası** üç eyni çərçivəli kart əvəzinə kataloq siyahısı
-  kimi verilib.
+- **Səhifələmə** həm ilkin, həm də hər əlavə addımda balanslıdır: yüksək,
+  orta və aşağı uyğunluqlu ixtisaslar bərabər payla göstərilir.
+
+## Performans optimizasiyası
+
+| Tədbir | Nəticə |
+|---|---|
+| **Şəkillər WebP-ə çevrildi** | 1556 KB → 337 KB (**79% azalma**); loqolar 220px → 184px, məzun şəkilləri 819×1024 → 496×620 |
+| **Şriftlər alt-küme edildi** (yalnız saytda istifadə olunan 128 simvol) | 350 KB → 154 KB (**56% azalma**) |
+| **Səhifə gecikmiş qurulması** | Fakültə, korpus, məzun və tələbə həyatı kartları yalnız səhifə açıldıqda qurulur; bir dəfə qurulandan sonra yenidən yaradılmır |
+| **Filtr/axtarış yalnız görünürlük dəyişir** | Tələbə həyatı axtarışı DOM-u yenidən qurmur, əvvəlcədən hesablanmış `hidden` bayrağından istifadə edir |
+| **Axtarış debounce** | 120 ms — hər hərf basışında deyil, yazma dayandıqda işə düşür |
+| **Donut diaqram limiti** | Çox ixtisaslı qruplarda yalnız ən yüksək həddi olan 12 ixtisas donut-da göstərilir (çubuq diaqramında hamısı qalır) |
+| **Şəkil yükləmə** | `loading="lazy"`, `decoding="async"`, loqolarda `width`/`height` (CLS-in qarşısını alır) |
+| **Şrift ön yükləmə** | Yalnız kritik 3 şrift `preload` edilir |
+| **Drag optimizasiyası** | BDULU vidjeti sürüklənərkən `requestAnimationFrame` ilə təzələnir; listener-lər yalnız sürükləmə zamanı qoşulur |
 
 ## İstifadə qaydası
 
@@ -63,19 +100,14 @@ Sayt şablon görünüşündən uzaqlaşdırılmaq üçün aşağıdakı prinsip
 2. Qrup seçin: 1, 2, 3 və ya 4-cü qrup.
 3. Alt qrup tələb olunarsa seçin:
    - **1-ci qrup** → RI (Riyaziyyat-İnformatika) və ya RK (Riyaziyyat-Kimya);
-   - **3-cü qrup** → DT (Dil-Tarix) və ya TC (Tarix-Coğrafiya).
+   - **3-cü qrup** → DT (Dil-Tarix) və ya TC (Tarix-Coğrafya).
    - 2-ci və 4-cü qruplarda alt qrup yoxdur.
 4. Buraxılış balını (0–300) və blok balını (0–400) daxil edin.
 5. Lazım gələrsə filtr çiplərindən istifadə edin.
 6. **Hesabla** düyməsini basın. Nəticələr bal uyğunluğuna görə sıralanır.
 
-RI alt qrupu seçildikdə əlavə olaraq bal statistikası diaqramları göstərilir.
-
-> RI alt qrupu üçün blok balı 100-dən, RK alt qrupu üçün isə 50-dən az olarsa
-> bütün ixtisaslarda qəbul faizi 0% qəbul edilir.
-
-> **Qeyd:** yalnız ödənişsiz (dövlət sifarişi) yeri olmayan ixtisaslarda
-> ödənişsiz sütununda `—` işarəsi göstərilir.
+Hesablamadan sonra **istənilən qrup və alt qrup üçün** bal statistikası
+diaqramları avtomatik göstərilir (çubuq + donut + statistik kartlar).
 
 ## Məlumat strukturu
 
@@ -87,10 +119,15 @@ Sayt heç bir verilənlər bazası və ya server istifadə etmir. Bütün məlum
   forması, ödənişsiz və ödənişli qəbul balları var. Ödənişsiz yer olmadıqda
   `free: null` yazılır və interfeysdə `—` kimi göstərilir.
 - **`KORPUSLAR`** – korpus adı, ikonu, yerləşməsi, rəngi və aid fakültələr.
+- **`STUDENT_LIFE`** – tələbə təşkilatları, klublar və mərkəzlər. Hər qeyd üçün
+  `cat` (org / club / center), ikon, meta məlumat, teqlər, yerləşmə, təsvir və
+  `facts` (fəaliyyət istiqamətləri) var.
+- **`SL_CATEGORIES`** – tələbə həyatı kateqoriyalarının adları və ikonları.
 - **`GRADUATES`** – uğurlu məzunlar: ad, ölkə, universitet, ixtisas və poster şəkli.
-- **`FAQ_DATA`** – BDULU köməkçisinin statik açar sözləri və cavabları.
-- **Dinamik FAQ** – BDULU cavabları `FACULTIES` və `KORPUSLAR` məlumatından
-  avtomatik qurulur; hər fakültə, korpus və ixtisas üzrə ayrıca cavab verilir.
+- **`FAQ_DATA`** – BDULU köməkçisinin 54 statik açar sözü və cavabı.
+- **Dinamik FAQ** – BDULU cavabları `FACULTIES`, `KORPUSLAR` və `STUDENT_LIFE`
+  məlumatından avtomatik qurulur; **hər fakültə, korpus, ixtisas, təşkilat, klub
+  və mərkəz üçün ayrıca cavab** verilir, həmçinin kateqoriya üzrə toplu siyahılar.
 
 ### İxtisas sayı (qruplar üzrə)
 
@@ -108,10 +145,14 @@ Sayt heç bir verilənlər bazası və ya server istifadə etmir. Bütün məlum
 > **TC** alt qrupuna, qalan ixtisaslar isə **DT** alt qrupuna aiddir.
 > 4-cü qrupda alt qrup yoxdur.
 
+> RI alt qrupu üçün blok balı 100-dən, RK alt qrupu üçün isə 50-dən az olarsa
+> bütün ixtisaslarda qəbul faizi 0% qəbul edilir.
+
 ## Sonrakı addımlar
 
 - Subbakalavrlar üzrə müsabiqə sətirlərinin əlavə edilməsi.
 - Qəbul faizi hesablamasının rəsmi keçid balı məlumatları ilə dəqiqləşdirilməsi.
+- Tələbə həyatı bölməsinə klubların sosial şəbəkə keçidlərinin əlavə edilməsi.
 
 ## Yerləşdirmə
 
