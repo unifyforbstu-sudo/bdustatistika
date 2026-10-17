@@ -697,11 +697,14 @@ const STUDENT_LIFE = [
     name: '“C Club”',
     cat: 'club',
     icon: 'i-code',
-    meta: 'Rəqəmsal və texnoloji yönümlü tələbə klubu',
-    tags: ['Klub', 'Texnologiya', 'Rəqəmsal'],
-    about: '“C Club” BDU tələbələrinin rəqəmsal texnologiyalar, proqramlaşdırma və texnoloji layihələr ətrafında birləşdiyi tələbə klubudur. Klub universitetdə rəqəmsal bacarıqların inkişafı üzrə təşəbbüslərdə və müsabiqələrdə iştirak edir.',
+    programming: true,
+    aliases: ['C klub', 'C Club BDU', 'C-club', 'CClub', 'C klub BDU'],
+    meta: 'Proqramlaşdırma və rəqəmsal texnologiyalar klubu',
+    tags: ['Klub', 'Proqramlaşdırma', 'Texnologiya', 'Rəqəmsal', 'İT'],
+    about: '“C Club” BDU-nun proqramlaşdırma yönümlü tələbə klublarındandır. Klub tələbələri kodlaşdırma, proqramlaşdırma dilləri, rəqəmsal texnologiyalar və texnoloji layihələr ətrafında birləşdirir. Burada proqramlaşdırma öyrənilir, komanda ilə real layihələr hazırlanır və rəqəmsal bacarıqların inkişafı üzrə təşəbbüslərdə, müsabiqələrdə iştirak edilir.',
     facts: [
-      'Proqramlaşdırma və rəqəmsal alətlər üzrə təlimlər',
+      'Proqramlaşdırma dilləri və kodlaşdırma üzrə təlimlər',
+      'Rəqəmsal alətlər üzrə praktik məşğələlər',
       'Texnoloji layihələr və komanda işi',
       'Rəqəmsal bacarıqlar və proqramlaşdırma müsabiqələrində iştirak',
       'TETYM-in texnologiya təlimləri ilə əlaqəli fəaliyyət',
@@ -712,9 +715,11 @@ const STUDENT_LIFE = [
     name: '“Zadə Club”',
     cat: 'club',
     icon: 'i-target',
-    meta: 'Lütfi Zadə irsi və qeyri-səlis məntiq üzrə klub',
-    tags: ['Klub', 'Riyaziyyat', 'Süni intellekt'],
-    about: '“Zadə Club” dünya şöhrətli azərbaycanlı alim, qeyri-səlis məntiq nəzəriyyəsinin banisi Lütfi Zadənin elmi irsini təbliğ edən tələbə klubudur. Klub riyaziyyat, məntiq və süni intellekt mövzularında tələbələri bir araya gətirir.',
+    programming: true,
+    aliases: ['Zadə klub', 'Zade Club', 'Zade klub', 'Lütfi Zadə klubu', 'Lutfi Zade Club'],
+    meta: 'Proqramlaşdırma, qeyri-səlis məntiq və süni intellekt klubu',
+    tags: ['Klub', 'Proqramlaşdırma', 'Süni intellekt', 'Riyaziyyat', 'Qeyri-səlis məntiq'],
+    about: '“Zadə Club” BDU-nun proqramlaşdırma klublarındandır və dünya şöhrətli azərbaycanlı alim, qeyri-səlis məntiq nəzəriyyəsinin banisi Lütfi Zadənin elmi irsini təbliğ edir. Klub proqramlaşdırma, süni intellekt, riyaziyyat və məntiq mövzularında tələbələri bir araya gətirir.',
     facts: [
       'Lütfi Zadənin elmi irsinin təbliği',
       'Qeyri-səlis məntiq və süni intellekt mövzulu tədbirlər',
@@ -941,9 +946,10 @@ const ICON_IDS = new Set([
   'i-chart', 'i-check', 'i-chevron-right', 'i-clock', 'i-close', 'i-home',
   'i-leaf', 'i-map-pin', 'i-mortarboard', 'i-people', 'i-scale', 'i-send',
   'i-target', 'i-train',
-  /* Tələbə həyatı üçün əlavə ikonlar */
+  /* Klub / təşkilat / mərkəz məlumatları üçün əlavə ikonlar
+     (BDULU cavablarında istifadə olunur) */
   'i-club', 'i-bulb', 'i-music', 'i-book', 'i-globe', 'i-heart', 'i-trophy',
-  'i-code', 'i-mic', 'i-robot', 'i-lang', 'i-search',
+  'i-code', 'i-mic', 'i-robot', 'i-lang',
 ]);
 
 function icon(id, size) {
@@ -1054,7 +1060,6 @@ function showPage(pageId) {
   if (pageId === 'page-faculties') buildFacultyGrid();
   if (pageId === 'page-korpuslar') buildKorpusGrid();
   if (pageId === 'page-graduates') buildGraduatesGrid();
-  if (pageId === 'page-student-life') { buildStudentLife(); applyStudentLifeFilter(); }
 
   /* İrəli keçiddə səhifə yuxarıdan başlayır */
   scrollTopInstant();
@@ -1133,165 +1138,6 @@ function buildGraduatesGrid() {
   graduatesBuilt = true;
 }
 
-/* =========================================================
-   TƏLƏBƏ HƏYATI SƏHİFƏSİ
-   ---------------------------------------------------------
-   Kartlar bir dəfə qurulur, sonra axtarış/filtr yalnız
-   görünürlüyü dəyişir (DOM yenidən qurulmur) — performans üçün.
-   ========================================================= */
-let slBuilt   = false;
-let slActiveCat = 'all';
-let slQuery     = '';
-let slItems     = [];   /* [{ el, item }] — bir dəfə keşlənir */
-
-function slSearchText(it) {
-  return [
-    it.name,
-    it.meta,
-    it.where,
-    it.about,
-    (it.tags || []).join(' '),
-    (SL_CATEGORIES[it.cat] ? SL_CATEGORIES[it.cat].label : ''),
-    (it.facts || []).join(' '),
-  ].filter(Boolean).join(' ').toLowerCase();
-}
-
-function buildStudentLife() {
-  const grid = document.getElementById('slGrid');
-  if (!grid || slBuilt) return;
-
-  const frag = document.createDocumentFragment();
-  slItems = [];
-
-  STUDENT_LIFE.forEach(it => {
-    const cat = SL_CATEGORIES[it.cat] || { label: '', icon: 'i-club' };
-
-    const card = document.createElement('article');
-    card.className = 'sl-card';
-    card.setAttribute('role', 'button');
-    card.setAttribute('tabindex', '0');
-    card.setAttribute('aria-label', it.name);
-    card.addEventListener('click', () => openStudentLife(it.id));
-    card.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openStudentLife(it.id); }
-    });
-
-    const tagHtml = (it.tags || []).slice(0, 3)
-      .map(t => `<span class="sl-tag">${t}</span>`).join('');
-
-    card.innerHTML = `
-      <div class="sl-card-icon">${icon(it.icon || cat.icon)}</div>
-      <div class="sl-card-cat">${cat.label}</div>
-      <h3 class="sl-card-name">${it.name}</h3>
-      ${it.meta ? `<p class="sl-card-meta">${it.meta}</p>` : ''}
-      ${tagHtml ? `<div class="sl-card-tags">${tagHtml}</div>` : ''}
-      <span class="sl-card-arrow">Ətraflı bax${icon('i-arrow-right')}</span>`;
-
-    frag.appendChild(card);
-    slItems.push({ el: card, item: it, haystack: slSearchText(it) });
-  });
-
-  grid.appendChild(frag);
-  slBuilt = true;
-}
-
-/* Axtarış və kateqoriya filtrini tətbiq edir */
-function applyStudentLifeFilter() {
-  if (!slBuilt) return;
-
-  const q = slQuery.trim().toLowerCase();
-  let visible = 0;
-
-  for (let i = 0; i < slItems.length; i++) {
-    const rec = slItems[i];
-    const catOk = slActiveCat === 'all' || rec.item.cat === slActiveCat;
-    const qOk = !q || rec.haystack.indexOf(q) !== -1;
-    const show = catOk && qOk;
-    rec.el.hidden = !show;
-    if (show) visible++;
-  }
-
-  const emptyEl = document.getElementById('slEmpty');
-  if (emptyEl) emptyEl.style.display = visible === 0 ? 'block' : 'none';
-
-  const countEl = document.getElementById('slCount');
-  if (countEl) {
-    const catLabel = slActiveCat === 'all'
-      ? 'bütün kateqoriyalar'
-      : (SL_CATEGORIES[slActiveCat] ? SL_CATEGORIES[slActiveCat].label.toLowerCase() : '');
-    countEl.textContent = q
-      ? `“${slQuery.trim()}” üzrə ${visible} nəticə tapıldı (${catLabel}).`
-      : `${visible} nəticə göstərilir (${catLabel}).`;
-  }
-}
-
-function setStudentLifeCategory(cat) {
-  slActiveCat = cat;
-  const chips = document.querySelectorAll('#slFilterChips .filter-chip');
-  for (let i = 0; i < chips.length; i++) {
-    const on = chips[i].dataset.slcat === cat;
-    chips[i].classList.toggle('active', on);
-    chips[i].setAttribute('aria-pressed', on ? 'true' : 'false');
-  }
-  applyStudentLifeFilter();
-}
-
-/* Modal overlay-ə klik -> bağla */
-function handleSlModalOverlayClick(e) {
-  if (e.target === document.getElementById('slModal')) closeStudentLifeModal();
-}
-
-function openStudentLife(id) {
-  const it = STUDENT_LIFE.find(x => x.id === id);
-  if (!it) return;
-
-  const modal = document.getElementById('slModal');
-  const inner = document.getElementById('slModalInner');
-  if (!modal || !inner) return;
-
-  const cat = SL_CATEGORIES[it.cat] || { label: '', icon: 'i-club' };
-
-  const factsHtml = (it.facts && it.facts.length)
-    ? `<h3 class="km-fac-title">Əsas fəaliyyət istiqamətləri</h3>
-       <ul class="sl-fact-list">${it.facts.map(f => `<li>${f}</li>`).join('')}</ul>`
-    : '';
-
-  const tagsHtml = (it.tags && it.tags.length)
-    ? `<div class="sl-modal-tags">${it.tags.map(t => `<span class="sl-tag">${t}</span>`).join('')}</div>`
-    : '';
-
-  const whereHtml = it.where
-    ? `<p class="sl-modal-where">${icon('i-map-pin', 'sm')}<span>${it.where}</span></p>`
-    : '';
-
-  inner.innerHTML = `
-    <div class="km-header sl-modal-header">
-      <div class="km-header-overlay"></div>
-      <div class="km-header-content">
-        <div class="km-icon">${icon(it.icon || cat.icon)}</div>
-        <div class="km-title-wrap">
-          <h2 class="km-title">${it.name}</h2>
-          <p class="km-loc">${icon(cat.icon, 'sm')}<span>${cat.label}${it.meta ? ' · ' + it.meta : ''}</span></p>
-        </div>
-        <button class="km-close" onclick="closeStudentLifeModal()" aria-label="Bağla" type="button">${icon('i-close', 'sm')}</button>
-      </div>
-    </div>
-    <div class="km-body">
-      ${tagsHtml}
-      ${whereHtml}
-      <p class="km-desc">${it.about}</p>
-      ${factsHtml}
-    </div>`;
-
-  modal.classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeStudentLifeModal() {
-  const modal = document.getElementById('slModal');
-  if (modal) modal.classList.remove('open');
-  document.body.style.overflow = '';
-}
 
 /* =========================================================
    FAKÜLTƏ ŞƏBƏKƏSİ
@@ -2277,8 +2123,12 @@ const FAQ_DATA = [
     answer: 'BDU-da əlçatanlıq üçün:\n• Girişlərdə panduslar\n• Brayl düymələri olan liftlər\n• Uyğunlaşdırılmış sanitar qovşaqları mövcuddur.'
   },
   {
-    keywords: ['tələbə təşkilatı', 'klub', 'yeni club', 'könüllü', 'həmkarlar', 'tələbə qurumu'],
-    answer: 'BDU-da fəaliyyət göstərən tələbə təşkilatları:\n• BDU Könüllüləri\n• Tələbə Həmkarlar İttifaqı Komitəsi\n• Tələbə Gənclər Təşkilatı\n• YENİ Club\n• OIC Model Club'
+    keywords: ['tələbə təşkilatı', 'tələbə təşkilatları', 'təşkilatlar', 'yeni club', 'könüllü', 'həmkarlar', 'tələbə qurumu'],
+    answer: 'BDU-da fəaliyyət göstərən tələbə təşkilatları:\n• Tələbə Gənclər Təşkilatı (TGT)\n• Tələbə Həmkarlar İttifaqı Komitəsi (THİK)\n• Tələbə Elmi Cəmiyyəti (TEC)\n• “BDU könüllüləri”\n• Gənc Alimlər Şurası\n• SABAH qrupları\n\nKlublar və mərkəzlər haqqında məlumat üçün adını yazın (məs. "C Club", "Zadə Club", "proqramlaşdırma klubları").'
+  },
+  {
+    keywords: ['proqramlaşdırma klubları', 'proqramlaşdırma klubu', 'proqramlasdirma klublari', 'kodlaşdırma klubu', 'it klubları', 'texnologiya klubları'],
+    answer: 'BDU-da proqramlaşdırma və texnologiya yönümlü əsas tələbə klubları:\n• “C Club” — proqramlaşdırma və rəqəmsal texnologiyalar klubu; kodlaşdırma, proqramlaşdırma dilləri və texnoloji layihələr.\n• “Zadə Club” — proqramlaşdırma, qeyri-səlis məntiq və süni intellekt klubu; Lütfi Zadənin elmi irsi, riyaziyyat və məntiq.\n\nHər klub haqqında ətraflı məlumat üçün adını yazın (məs. "C Club", "Zadə Club").'
   },
   {
     keywords: ['inkişaf mərkəzi', 'tələbə inkişaf', 'student space', 'eco space', 'eco energy'],
@@ -2451,14 +2301,23 @@ function buildDynamicFaqEntries() {
     });
   });
 
-  /* --- Tələbə həyatı: təşkilatlar, klublar, mərkəzlər (ayrıca) --- */
+  /* --- Tələbə həyatı: təşkilatlar, klublar, mərkəzlər (ayrıca) ---
+     Bu məlumat artıq ayrıca bölmə kimi göstərilmir; BDULU-ya BİLİK
+     kimi öyrədilir. Hər qeyd üçün ad, kateqoriya, yerləşmə, təsvir
+     və fəaliyyət istiqamətləri cavab kimi hazırlanır.
+     Ümumi sözlər (klub / təşkilat / mərkəz) ayrı-ayrı qeydlərə açar
+     söz kimi verilmir ki, ümumi suallar kateqoriya siyahısına yönəlsin. */
+  const GENERIC_TAGS = new Set(['klub', 'club', 'təşkilat', 'mərkəz']);
   STUDENT_LIFE.forEach(it => {
     const cat = SL_CATEGORIES[it.cat] || { label: '', icon: 'i-club' };
     const nm = it.name.toLowerCase();
     const facts = (it.facts && it.facts.length) ? `\n\nƏsas fəaliyyət istiqamətləri:\n• ${it.facts.join('\n• ')}` : '';
     const where = it.where ? `\nYerləşmə: ${it.where}` : '';
     const meta = it.meta ? `\n${it.meta}` : '';
-    const tags = (it.tags || []).join(', ');
+    /* Ümumi kateqoriya sözləri çıxarılır, qalan teqlər açar söz olur */
+    const tags = (it.tags || []).filter(t => !GENERIC_TAGS.has(String(t).toLowerCase())).join(', ');
+    /* Alternativ adlar (aliases) da açar söz kimi öyrədilir */
+    const aliasKws = (it.aliases || []).map(a => String(a).toLowerCase());
 
     entries.push({
       keywords: [
@@ -2468,24 +2327,41 @@ function buildDynamicFaqEntries() {
         `${nm} məlumat`,
         `${nm} fəaliyyəti`,
         tags.toLowerCase(),
-      ].filter(Boolean),
+      ].concat(aliasKws).filter(Boolean),
       answer: `${it.name}\n(${cat.label}${meta ? ' · ' + it.meta.replace(/^\s*/, '') : ''})\n${where}\n\n${it.about}${facts}`
     });
   });
 
-  /* Kateqoriya üzrə toplu cavablar */
+  /* Proqramlaşdırma klubları: C Club və Zadə Club həmişə birinci */
+  const progClubs = STUDENT_LIFE.filter(x => x.programming);
+  if (progClubs.length) {
+    const progLines = progClubs.map(x => `• ${x.name} — ${x.meta || ''}${x.about ? '\n  ' + x.about : ''}`);
+    entries.push({
+      keywords: [
+        'proqramlaşdırma klubları', 'proqramlaşdırma klubu', 'proqramlasdirma klublari',
+        'proqramlaşdırma', 'proqramlaşdırma klubları hansılardır', 'kodlaşdırma klubu',
+        'it klubları', 'texnologiya klubları', 'hansı proqramlaşdırma klubları var',
+      ],
+      answer: `BDU-da proqramlaşdırma və texnologiya yönümlü əsas tələbə klubları:\n${progLines.join('\n')}\n\nHər klub haqqında ətraflı məlumat üçün adını yazın (məs. "C Club", "Zadə Club").`
+    });
+  }
+
+  /* Kateqoriya üzrə toplu cavablar.
+     Klublar siyahısında C Club və Zadə Club həmişə başda göstərilir. */
   const CAT_INTRO = {
     org: 'BDU-da fəaliyyət göstərən tələbə təşkilatları',
     club: 'BDU-da fəaliyyət göstərən tələbə klubları',
     center: 'BDU-da fəaliyyət göstərən mərkəzlər',
   };
   Object.keys(SL_CATEGORIES).forEach(cat => {
-    const list = STUDENT_LIFE.filter(x => x.cat === cat);
+    /* Proqramlaşdırma klubları (C Club, Zadə Club) siyahının başına keçir */
+    const list = STUDENT_LIFE.filter(x => x.cat === cat)
+      .sort((a, b) => (b.programming ? 1 : 0) - (a.programming ? 1 : 0));
     if (!list.length) return;
     const lines = list.map(x => `• ${x.name}${x.meta ? ' — ' + x.meta : ''}`);
     const kwExtra = {
       org:    ['tələbə təşkilatları', 'təşkilatlar', 'hansı təşkilatlar var', 'tələbə təşkilatı'],
-      club:   ['tələbə klubları', 'klublar', 'hansı klublar var', 'klub', 'club', 'klublar hansılardır'],
+      club:   ['tələbə klubları', 'klublar', 'hansı klublar var', 'klub', 'club', 'klublar hansılardır', 'bduda klublar'],
       center: ['mərkəzlər', 'hansı mərkəzlər var', 'tələbə mərkəzləri', 'mərkəz'],
     }[cat] || [];
     entries.push({
@@ -2497,6 +2373,23 @@ function buildDynamicFaqEntries() {
   return entries;
 }
 
+/* ---------------------------------------------------------
+   Axtarış mətninin normallaşdırılması
+   ---------------------------------------------------------
+   İstifadəçi adları düz yazır ("C Club"), saytda isə bəzi adlar
+   dırnaq işarələri ilə saxlanılır ("“C Club”"). Ona görə həm açar
+   sözlər, həm də sorğu mətni eyni qaydada təmizlənir: dırnaq
+   işarələri silinir, boşluqlar sadələşdirilir, kiçik hərfə çevrilir.
+   Beləliklə "C Club" və "“C Club”" eyni nəticəni verir.
+   --------------------------------------------------------- */
+function normFaqText(str) {
+  return String(str == null ? '' : str)
+    .replace(/[“”„"«»'‘’`´]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .toLowerCase();
+}
+
 /* Axtarış indeksi */
 let _faqIndex = null;
 function getFaqIndex() {
@@ -2505,7 +2398,7 @@ function getFaqIndex() {
   const all = FAQ_DATA.concat(buildDynamicFaqEntries());
   _faqIndex = all.map(entry => ({
     entry,
-    kwLower: entry.keywords.map(k => String(k).toLowerCase())
+    kwLower: entry.keywords.map(normFaqText)
   }));
   return _faqIndex;
 }
@@ -2524,7 +2417,7 @@ function faqKeywordScore(kw, lower, tokens) {
 }
 
 function getBduluAnswer(text) {
-  const lower = text.toLowerCase().trim().replace(/\s+/g, ' ');
+  const lower = normFaqText(text);
   const index = getFaqIndex();
 
   /* Normalizə edilmiş söz dəsti (qısa açar sözlər üçün) */
@@ -2937,11 +2830,6 @@ window.openBdulu              = openBdulu;
 window.closeBdulu             = closeBdulu;
 window.sendBdulu              = sendBdulu;
 window.sendSuggestion         = sendSuggestion;
-/* Tələbə həyatı */
-window.openStudentLife           = openStudentLife;
-window.closeStudentLifeModal     = closeStudentLifeModal;
-window.handleSlModalOverlayClick = handleSlModalOverlayClick;
-window.setStudentLifeCategory    = setStudentLifeCategory;
 
 /* =========================================================
    BAŞLATMA
@@ -2968,7 +2856,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
       closeKorpusModal();
-      closeStudentLifeModal();
       if (bduluOpen) closeBdulu();
     }
   }, { passive: true });
@@ -2979,30 +2866,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   setVh();
   window.addEventListener('resize', setVh, { passive: true });
-
-  /* Tələbə həyatı: axtarış və kateqoriya filtri
-     (kartlar ilk keçiddə qurulur, filtrlər yalnız görünürlüyü dəyişir) */
-  const slSearchInput = document.getElementById('slSearch');
-  if (slSearchInput) {
-    let slTimer = null;
-    slSearchInput.addEventListener('input', () => {
-      if (slTimer) clearTimeout(slTimer);
-      slTimer = setTimeout(() => {
-        slQuery = slSearchInput.value || '';
-        applyStudentLifeFilter();
-      }, 120);
-    });
-  }
-
-  const slChips = document.getElementById('slFilterChips');
-  if (slChips) {
-    slChips.addEventListener('click', (e) => {
-      const btn = e.target.closest('.filter-chip');
-      if (!btn) return;
-      e.stopPropagation();
-      setStudentLifeCategory(btn.dataset.slcat || 'all');
-    });
-  }
 
   getFaqIndex();
   initBduluWidget();

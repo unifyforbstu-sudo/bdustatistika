@@ -53,10 +53,6 @@
           <svg class="ico" aria-hidden="true"><use href="#i-mortarboard" /></svg>
           <span>Fakültələrə bax</span>
         </button>
-        <button class="btn btn-quiet" onclick="showPage('page-student-life')" type="button">
-          <svg class="ico" aria-hidden="true"><use href="#i-club" /></svg>
-          <span>Tələbə həyatı</span>
-        </button>
       </div>
     </div>
   </section>
@@ -81,16 +77,6 @@
             <span class="dir-text">
               <span class="dir-title">Korpuslar</span>
               <span class="dir-desc">5 korpusun yerləşməsi və korpuslara görə fakültə bölgüsü</span>
-            </span>
-            <svg class="ico dir-chev" aria-hidden="true"><use href="#i-chevron-right" /></svg>
-          </button>
-        </li>
-        <li>
-          <button class="dir-row" onclick="showPage('page-student-life')" type="button">
-            <span class="dir-icon"><svg class="ico" aria-hidden="true"><use href="#i-club" /></svg></span>
-            <span class="dir-text">
-              <span class="dir-title">Tələbə həyatı</span>
-              <span class="dir-desc">Tələbə təşkilatları, klublar, inkişaf və yaradıcılıq mərkəzləri</span>
             </span>
             <svg class="ico dir-chev" aria-hidden="true"><use href="#i-chevron-right" /></svg>
           </button>
@@ -280,45 +266,7 @@
   </div>
 </div>
 
-<!-- =================== TƏLƏBƏ HƏYATI SƏHİFƏSİ =================== -->
-<div class="page" id="page-student-life">
-  <div class="page-header-bar">
-    <div class="container">
-      <h2 class="page-header-title">
-        <svg class="ico ico-lg" aria-hidden="true"><use href="#i-club" /></svg>
-        Tələbə həyatı
-      </h2>
-      <p class="page-header-desc">Universitetin tələbə təşkilatları, nəzdində fəaliyyət göstərən klublar və inkişaf, elmi-texniki və mədəniyyət mərkəzləri.</p>
-    </div>
-  </div>
-  <div class="container">
-    <div class="sl-toolbar">
-      <div class="sl-search">
-        <svg class="ico ico-sm" aria-hidden="true"><use href="#i-search" /></svg>
-        <input type="search" id="slSearch" class="sl-search-input" placeholder="Klub, təşkilat və ya mərkəz axtarın"
-               aria-label="Tələbə həyatı üzrə axtarış" autocomplete="off" spellcheck="false" />
-      </div>
-      <div class="filter-chips" id="slFilterChips">
-        <button class="filter-chip active" type="button" data-slcat="all" aria-pressed="true">Hamısı</button>
-        <button class="filter-chip" type="button" data-slcat="org" aria-pressed="false">Təşkilatlar</button>
-        <button class="filter-chip" type="button" data-slcat="club" aria-pressed="false">Klublar</button>
-        <button class="filter-chip" type="button" data-slcat="center" aria-pressed="false">Mərkəzlər</button>
-      </div>
-    </div>
-    <p class="sl-count" id="slCount"></p>
-    <div class="sl-grid" id="slGrid"></div>
-    <p class="sl-empty" id="slEmpty" style="display:none;">Axtarışa uyğun nəticə tapılmadı. Başqa söz yoxlayın.</p>
-  </div>
-</div>
-
 </main>
-
-<!-- ===== TƏLƏBƏ HƏYATI MODAL ===== -->
-<div class="korpus-modal-overlay" id="slModal" onclick="handleSlModalOverlayClick(event)">
-  <div class="korpus-modal sl-modal" id="slModalInner" role="dialog" aria-modal="true" aria-label="Tələbə həyatı məlumatı">
-    <!-- JS tərəfindən doldurulur -->
-  </div>
-</div>
 
 <!-- ===== KORPUS MODAL ===== -->
 <div class="korpus-modal-overlay" id="korpusModal" onclick="handleModalOverlayClick(event)">
@@ -373,7 +321,7 @@
       <svg class="ico ico-sm" aria-hidden="true"><use href="#i-mortarboard" /></svg>
       <span>Fakültələr</span>
     </button>
-    <button class="bdulu-suggestion-btn" type="button" data-q="Tələbə klubları hansılardır?">
+    <button class="bdulu-suggestion-btn" type="button" data-q="Proqramlaşdırma klubları hansılardır?">
       <svg class="ico ico-sm" aria-hidden="true"><use href="#i-club" /></svg>
       <span>Klublar</span>
     </button>
@@ -547,10 +495,6 @@
   <symbol id="i-lang" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
     <path d="M3.6 9.6a4.4 4.4 0 0 1 4.4-4.4h3.4a4.4 4.4 0 0 1 0 8.8H9.6l-3.4 2.6v-2.6a4.4 4.4 0 0 1-2.6-4.4Z"/>
     <path d="M14.2 8.4h1.4a4.6 4.6 0 0 1 0 9.2l1.8 2.8-3.5-2.5h-2.1a4.6 4.6 0 0 1-4.2-2.5"/>
-  </symbol>
-  <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="10.8" cy="10.8" r="6.4"/>
-    <path d="m15.6 15.6 4.2 4.2"/>
   </symbol>
 </svg>
 

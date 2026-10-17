@@ -1,13 +1,15 @@
 # BDU Qəbul Statistikası
 
 Bakı Dövlət Universitetinə qəbul ehtimalını hesablamaq üçün statik veb sayt.
-Sayt fakültələr, ixtisaslar, qəbul balları, korpuslar və **tələbə həyatı**
-haqqında məlumat verir.
+Sayt fakültələr, ixtisaslar, qəbul balları və korpuslar haqqında məlumat verir;
+tələbə təşkilatları, klublar və mərkəzlər barədə məlumat isə **BDULU**
+köməkçisinə bilik kimi öyrədilib.
 
 ## Layihə haqqında
 
 - **Məqsəd**: abituriyentin balına uyğun ixtisasları göstərmək, BDU-nun
-  fakültə/korpus quruluşunu və tələbə həyatını bir yerdə təqdim etmək.
+  fakültə/korpus quruluşunu təqdim etmək və tələbə həyatı ilə bağlı bütün
+  məlumatı BDULU köməkçisi vasitəsilə cavablandırmaq.
 - **Texnologiya**: təmiz HTML + CSS + JavaScript. Build addımı, framework və
   xarici CDN asılılığı yoxdur.
 - **Dillər**: interfeys Azərbaycan dilindədir.
@@ -36,33 +38,50 @@ webapp/
 | **Alt qruplar** | 1-ci qrup üçün RI / RK, 3-cü qrup üçün DT / TC alt qrupları |
 | **Fakültələr** | 16 fakültə, hər biri üçün ixtisas siyahısı və qəbul balları |
 | **Korpuslar** | 5 korpus, yerləşmə məlumatı və korpusdakı fakültələr (modal pəncərə) |
-| **Tələbə həyatı** | **32 qeyd**: tələbə təşkilatları, nəzdində fəaliyyət göstərən klublar və inkişaf/elmi-texniki/mədəniyyət mərkəzləri. Axtarış + kateqoriya filtri, hər qeyd üçün ətraflı modal |
 | **Uğurlu məzunlar** | Dövlət Proqramının qalibi 6 məzunun poster şəkilləri (responsive şəbəkə) |
 | **Scroll bərpası** | "Geri" düyməsi istifadəçini tərk etdiyi səhifəyə elə həmin scroll mövqeyində qaytarır |
-| **BDULU köməkçi** | Sürüklənə bilən chat vidjeti; fakültələr, ixtisaslar, korpuslar, **klublar, təşkilatlar, mərkəzlər**, qəbul və tələbə xidmətləri barədə dinamik cavab verir |
+| **BDULU köməkçi** | Sürüklənə bilən chat vidjeti; fakültələr, ixtisaslar, korpuslar, qəbul və tələbə xidmətləri barədə dinamik cavab verir. **32 qeydlik tələbə həyatı məlumatı** (6 təşkilat, 17 klub, 9 mərkəz) BDULU-ya bilik kimi öyrədilib — hər qeyd üçün ad, təsvir, yerləşmə və fəaliyyət istiqamətləri ayrıca cavab kimi verilir |
 | **Quick Replies** | Hər mesajdan sonra yenidən görünən sürətli sual düymələri; seçilmiş sual təkrar göstərilmir |
 
-## Tələbə həyatı bölməsi
+## Tələbə həyatı məlumatı (BDULU biliyi)
 
-Tələbə həyatı məlumatları BDU-nun rəsmi mənbələrinə
-(`bsu.edu.az`, `tetym.bsu.edu.az`, `sdg.bsu.edu.az`, TGT/TEC/TETYM açıqlamaları)
-əsaslanır və üç kateqoriyaya bölünür:
+Tələbə həyatı artıq saytda ayrıca bölmə deyil. Bütün məlumat **BDULU**
+köməkçisinə bilik kimi öyrədilib: istifadəçi klub, təşkilat və ya mərkəzin
+adını yazdıqda həmin qeydin təsviri, yerləşməsi və fəaliyyət istiqamətləri
+cavab kimi göstərilir. Ümumi suallar ("klublar hansılardır?", "hansı
+mərkəzlər var?") isə kateqoriya üzrə tam siyahı qaytarır.
+
+Məlumat BDU-nun rəsmi mənbələrinə (`bsu.edu.az`, `tetym.bsu.edu.az`,
+`sdg.bsu.edu.az`, TGT/TEC/TETYM açıqlamaları) əsaslanır və üç kateqoriyaya
+bölünür:
 
 | Kateqoriya | Sayı | Nümunələr |
 |---|---|---|
 | **Təşkilatlar** | 6 | Tələbə Gənclər Təşkilatı (TGT), Tələbə Həmkarlar İttifaqı Komitəsi (THİK), Tələbə Elmi Cəmiyyəti (TEC), "BDU könüllüləri", Gənc Alimlər Şurası, SABAH qrupları |
-| **Mərkəzlər** | 10 | Tələbə İnkişaf Mərkəzi, TETYM, Mədəniyyət-yaradıcılıq Mərkəzi, Karyera və məzunlarla iş Mərkəzi, İdman-sağlamlıq Mərkəzi, Psixoloji Yardım Sektoru, Elmi Kitabxana, İT Mərkəzi, "Eko Məkan" |
-| **Klublar** | 16 | "YENİ Klub", **"C Club"**, **"Zadə Club"**, "İƏT Modeli" (MOIC), Debat Klubu, "İstiqlal klubu", "CreArt", TED Club, "Price", "Lingua", "Art Club", "Kitab qurdu", İdeya və Kitab klubları, "IN Club", SDG klubu, Xəzər İntellektual Gənclər Klubu, "İntellekt Dünyası" |
+| **Mərkəzlər** | 9 | Tələbə İnkişaf Mərkəzi, TETYM, Mədəniyyət-yaradıcılıq Mərkəzi, Karyera və məzunlarla iş Mərkəzi, İdman-sağlamlıq Mərkəzi, Psixoloji Yardım Sektoru, Elmi Kitabxana, İT Mərkəzi, "Eko Məkan" |
+| **Klublar** | 17 | **"C Club"**, **"Zadə Club"**, "YENİ Klub", "İƏT Modeli" (MOIC), Debat Klubu, "İstiqlal klubu", "CreArt", TED Club, "Price", "Lingua", "Art Club", "Kitab qurdu", İdeya və Kitab klubları, "IN Club", SDG klubu, Xəzər İntellektual Gənclər Klubu, "İntellekt Dünyası" |
 
-> **Qeyd**: "C Club" (rəqəmsal və texnoloji yönümlü klub) və "Zadə Club"
-> (Lütfi Zadə irsi, qeyri-səlis məntiq və süni intellekt mövzulu klub)
-> BDULU məlumat bazasına daxil edilib; hər ikisi adına görə axtarıla və
-> haqqında soruşula bilər.
+### Proqramlaşdırma klubları
 
-Hər qeyd üçün kart, ətraflı təsvir, yerləşmə məlumatı və fəaliyyət
-istiqamətləri göstərilir. Səhifədə canlı axtarış (debounce ilə) və
-kateqoriya filtri var; kartlar bir dəfə qurulur, filtrləmə yalnız
-görünürlüyü dəyişir (DOM yenidən qurulmur) — performans üçün.
+**"C Club"** və **"Zadə Club"** proqramlaşdırma klubları kimi qeyd olunub və
+BDULU cavablarında **həmişə birinci** göstərilir:
+
+- **"C Club"** — proqramlaşdırma və rəqəmsal texnologiyalar klubu: kodlaşdırma,
+  proqramlaşdırma dilləri, texnoloji layihələr.
+- **"Zadə Club"** — proqramlaşdırma, qeyri-səlis məntiq və süni intellekt klubu:
+  Lütfi Zadənin elmi irsi, riyaziyyat və məntiq.
+
+"proqramlaşdırma klubları hansılardır?" sualına BDULU bu iki klubu başda
+göstərməklə cavab verir.
+
+### Axtarışın dəqiqliyi
+
+İstifadəçi adları düz yazır ("C Club"), saytda isə bəzi adlar dırnaq
+işarələri ilə saxlanılır ("“C Club”"). Ona görə həm açar sözlər, həm də sorğu
+mətni normallaşdırılır (dırnaq işarələri silinir, boşluqlar sadələşdirilir,
+kiçik hərfə çevrilir) — beləliklə "C Club", "C klub" və "“C Club”" eyni
+nəticəni verir. Hər klub üçün `aliases` sahəsi ilə alternativ adlar da
+öyrədilir.
 
 ## Dizayn qərarları
 
@@ -86,9 +105,9 @@ Sayt şablon görünüşündən uzaqlaşdırılmaq üçün aşağıdakı prinsip
 |---|---|
 | **Şəkillər WebP-ə çevrildi** | 1556 KB → 337 KB (**79% azalma**); loqolar 220px → 184px, məzun şəkilləri 819×1024 → 496×620 |
 | **Şriftlər alt-küme edildi** (yalnız saytda istifadə olunan 128 simvol) | 350 KB → 154 KB (**56% azalma**) |
-| **Səhifə gecikmiş qurulması** | Fakültə, korpus, məzun və tələbə həyatı kartları yalnız səhifə açıldıqda qurulur; bir dəfə qurulandan sonra yenidən yaradılmır |
-| **Filtr/axtarış yalnız görünürlük dəyişir** | Tələbə həyatı axtarışı DOM-u yenidən qurmur, əvvəlcədən hesablanmış `hidden` bayrağından istifadə edir |
-| **Axtarış debounce** | 120 ms — hər hərf basışında deyil, yazma dayandıqda işə düşür |
+| **Səhifə gecikmiş qurulması** | Fakültə, korpus və məzun kartları yalnız səhifə açıldıqda qurulur; bir dəfə qurulandan sonra yenidən yaradılmır |
+| **Tələbə həyatı səhifəsi silindi** | Ayrıca bölmə, onun DOM-u, CSS-i və 32 kartı tam çıxarıldı; məlumat yalnız BDULU cavablarında string kimi saxlanılır — daha az DOM, daha az yaddaş |
+| **Artıq ikonlar təmizləndi** | Yalnız istifadə olunan SVG ikonları sprite-da saxlanılır |
 | **Donut diaqram limiti** | Çox ixtisaslı qruplarda yalnız ən yüksək həddi olan 12 ixtisas donut-da göstərilir (çubuq diaqramında hamısı qalır) |
 | **Şəkil yükləmə** | `loading="lazy"`, `decoding="async"`, loqolarda `width`/`height` (CLS-in qarşısını alır) |
 | **Şrift ön yükləmə** | Yalnız kritik 3 şrift `preload` edilir |
