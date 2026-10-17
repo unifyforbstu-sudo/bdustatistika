@@ -12,6 +12,120 @@
    DATA - FAKÜLTƏLƏR
    ========================================================= */
 const FACULTIES = [
+  /* 1 */
+  {
+    id: 'ism',
+    name: 'İnformasiya və Sənəd Menecmenti Fakültəsi',
+    short: 'İSM Fakültəsi',
+    logo: 'images/logo-ism.png',
+    about: 'İnformasiya və Sənəd Menecmenti fakültəsi kitabxanaçılıq, arxiv işi, muzeyşünaslıq və informasiya menecmenti sahəsində mütəxəssislər hazırlayır.',
+    specialties: [
+      { id: 'kitabxana', name: 'Kitabxanaçılıq və informasiya fəaliyyəti', code: '6002010', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: 424, paid: 337.7 },
+      { id: 'kitabxana-en', name: 'Kitabxanaçılıq və informasiya fəaliyyəti', code: '6002010', group: 3, subgroup: 'dt', lang: 'en', type: 'eyani', free: 423.7, paid: 200 },
+      { id: 'muzey', name: 'Muzey arxiv işi və abidələrin qorunması', code: '6003012', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: 414.8, paid: 396.8 },
+    ]
+  },
+
+  /* 2 */
+  {
+    id: 'cografiya',
+    name: 'Coğrafiya Fakültəsi',
+    short: 'Coğrafiya Fakültəsi',
+    logo: 'images/logo-cografiya.png',
+    about: 'Coğrafiya fakültəsi coğrafiya, hidrometeorologiya, geomatika və geodeziya mühəndisliyi, turizm işinin təşkili və coğrafiya müəllimliyi üzrə mütəxəssislər hazırlayır.',
+    specialties: [
+      { id: 'coq', name: 'Coğrafiya', code: '6005003', group: 2, subgroup: null, lang: 'az', type: 'eyani', free: 237.8, paid: 237.8 },
+      { id: 'coq-muel', name: 'Coğrafiya müəllimliyi', code: '6001003', group: 2, subgroup: null, lang: 'az', type: 'eyani', free: 334.8, paid: 334.8 },
+      { id: 'geomat', name: 'Geomatika və geodeziya mühəndisliyi', code: '6006011', group: 1, subgroup: 'rk', lang: 'az', type: 'eyani', free: 209.9, paid: 200 },
+      { id: 'hidromet', name: 'Hidrometeorologiya', code: '6005007', group: 2, subgroup: null, lang: 'az', type: 'eyani', free: 274.8, paid: 274.8 },
+      { id: 'turizm', name: 'Turizm işinin təşkili', code: '6008008', group: 2, subgroup: null, lang: 'az', type: 'eyani', free: 315.3, paid: 315.3 },
+      { id: 'turizm-en', name: 'Turizm işinin təşkili', code: '6008008', group: 2, subgroup: null, lang: 'en', type: 'eyani', free: 296.5, paid: 150 },
+      { id: 'turizm-qaz', name: 'Turizm işinin təşkili (Qazax filialı)', code: '6008008', group: 2, subgroup: null, lang: 'az', type: 'eyani', free: null, paid: 150, isQazax: true },
+    ]
+  },
+
+  /* 3 */
+  {
+    id: 'geo',
+    name: 'Geologiya Fakültəsi',
+    short: 'Geologiya Fakültəsi',
+    logo: 'images/logo-geologiya.png',
+    about: 'Geologiya fakültəsi geologiya, geologiya və geofizika mühəndisliyi, mədən və meliorasiya mühəndisliyi sahələrində mütəxəssislər hazırlayır.',
+    specialties: [
+      { id: 'geo-spec', name: 'Geologiya', code: '6005006', group: 1, subgroup: 'rk', lang: 'az', type: 'eyani', free: 234.1, paid: 234.1 },
+      { id: 'geo-geo-muh', name: 'Geologiya və geofizika mühəndisliyi', code: '6006010', group: 1, subgroup: 'rk', lang: 'az', type: 'eyani', free: 208.2, paid: 208.2 },
+      { id: 'med-muh', name: 'Mədən mühəndisliyi', code: '6006033', group: 1, subgroup: 'rk', lang: 'az', type: 'eyani', free: 207.5, paid: 200 },
+      { id: 'mel-muh', name: 'Meliorasiya mühəndisliyi', code: '6006030', group: 1, subgroup: 'rk', lang: 'az', type: 'eyani', free: 240.7, paid: 198.9 },
+    ]
+  },
+
+  /* 4 */
+  {
+    id: 'sep',
+    name: 'Sosial Elmlər və Psixologiya Fakültəsi',
+    short: 'SEP Fakültəsi',
+    logo: 'images/logo-sep.png',
+    about: 'Sosial Elmlər və Psixologiya fakültəsi psixologiya, sosiologiya, sosial iş, fəlsəfə və pedaqoji sahələr üzrə mütəxəssislər hazırlayır.',
+    specialties: [
+      { id: 'psix', name: 'Psixologiya', code: '6002013', group: 4, subgroup: null, lang: 'az', type: 'eyani', free: 492.5, paid: 489 },
+      { id: 'psix-q', name: 'Psixologiya', code: '6002013', group: 4, subgroup: null, lang: 'az', type: 'qiyabi', free: null, paid: 200 },
+      { id: 'psix-en', name: 'Psixologiya', code: '6002013', group: 4, subgroup: null, lang: 'en', type: 'eyani', free: 581.7, paid: 581.7 },
+      { id: 'sosio', name: 'Sosiologiya', code: '6002015', group: 2, subgroup: null, lang: 'az', type: 'eyani', free: 317.1, paid: 317.1 },
+      { id: 'sosio-en', name: 'Sosiologiya', code: '6002015', group: 2, subgroup: null, lang: 'en', type: 'eyani', free: 326.9, paid: 326.9 },
+      { id: 'sosial-is', name: 'Sosial iş', code: '6008006', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: 501.3, paid: 501.3 },
+      { id: 'sosial-is-en', name: 'Sosial iş', code: '6008006', group: 3, subgroup: 'dt', lang: 'en', type: 'eyani', free: 529.6, paid: 529.6 },
+      { id: 'sosial-is-qaz', name: 'Sosial iş (Qazax filialı)', code: '6008006', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: null, paid: 319, isQazax: true },
+      { id: 'felsefe', name: 'Fəlsəfə', code: '6002005', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: 436.5, paid: 380.7 },
+      { id: 'tsh', name: 'Təhsildə sosial-psixoloji xidmət', code: '6001021', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: 480.9, paid: 480.9 },
+      { id: 'xususi-ped', name: 'Xüsusi pedaqogika', code: '6001008', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: 459.8, paid: 459.8 },
+    ]
+  },
+
+  /* 5 */
+  {
+    id: 'mr',
+    name: 'Mexanika-Riyaziyyat Fakültəsi',
+    short: 'MR Fakültəsi',
+    logo: 'images/logo-mexanika-riyaziyyat.png',
+    about: 'Mexanika-Riyaziyyat fakültəsi riyaziyyat, mexanika və riyaziyyat müəllimliyi üzrə mütəxəssislər hazırlayır.',
+    specialties: [
+      { id: 'riy', name: 'Riyaziyyat', code: '6005011', group: 1, subgroup: 'rk', lang: 'az', type: 'eyani', free: 362.5, paid: 362.5 },
+      { id: 'riy-en', name: 'Riyaziyyat', code: '6005011', group: 1, subgroup: 'rk', lang: 'en', type: 'eyani', free: 467.4, paid: 467.4 },
+      { id: 'riy-muel', name: 'Riyaziyyat müəllimliyi', code: '6001015', group: 1, subgroup: 'rk', lang: 'az', type: 'eyani', free: 486.8, paid: 486.8 },
+      { id: 'riy-muel-en', name: 'Riyaziyyat müəllimliyi', code: '6001015', group: 1, subgroup: 'rk', lang: 'en', type: 'eyani', free: 577, paid: 577 },
+      { id: 'riy-muel-qaz', name: 'Riyaziyyat müəllimliyi (Qazax filialı)', code: '6001015', group: 1, subgroup: 'rk', lang: 'az', type: 'eyani', free: 417.5, paid: 219.7, isQazax: true },
+      { id: 'mex', name: 'Mexanika', code: '6005010', group: 1, subgroup: 'rk', lang: 'az', type: 'eyani', free: 239.2, paid: 239.2 },
+    ]
+  },
+
+  /* 6 */
+  {
+    id: 'serk',
+    name: 'Şərqşünaslıq Fakültəsi',
+    short: 'Şərqşünaslıq',
+    logo: 'images/logo-serqsunasliq.png',
+    about: 'Şərqşünaslıq fakültəsi Şərq dilləri, regionşünaslıq, filologiya və tərcümə sahələri üzrə mütəxəssislər hazırlayır.',
+    specialties: [
+      { id: 'fil-arab', name: 'Filologiya (ərəb dili və ədəbiyyatı)', code: '6002006', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: null, paid: 348.5 },
+      { id: 'fil-fars', name: 'Filologiya (fars dili və ədəbiyyatı)', code: '6002006', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: null, paid: 323 },
+      { id: 'fil-turk', name: 'Filologiya (türk dili və ədəbiyyatı)', code: '6002006', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: null, paid: 340.2 },
+      { id: 'fil-cin', name: 'Filologiya (çin dili və ədəbiyyatı)', code: '6002006', group: 3, subgroup: 'dt', lang: 'en', type: 'eyani', free: 506.3, paid: 429.1 },
+      { id: 'reg-cin', name: 'Regionşünaslıq (Çin üzrə)', code: '6002014', group: 3, subgroup: 'tc', lang: 'az', type: 'eyani', free: 440.2, paid: 383.6 },
+      { id: 'reg-cin-en', name: 'Regionşünaslıq (Çin üzrə)', code: '6002014', group: 3, subgroup: 'tc', lang: 'en', type: 'eyani', free: 441.3, paid: 441.3 },
+      { id: 'reg-arab', name: 'Regionşünaslıq (ərəb ölkələri üzrə)', code: '6002014', group: 3, subgroup: 'tc', lang: 'az', type: 'eyani', free: null, paid: 305.7 },
+      { id: 'reg-arab-en', name: 'Regionşünaslıq (ərəb ölkələri üzrə)', code: '6002014', group: 3, subgroup: 'tc', lang: 'en', type: 'eyani', free: null, paid: 297.1 },
+      { id: 'reg-iran', name: 'Regionşünaslıq (İran üzrə)', code: '6002014', group: 3, subgroup: 'tc', lang: 'az', type: 'eyani', free: null, paid: 283.3 },
+      { id: 'reg-israil', name: 'Regionşünaslıq (İsrail üzrə)', code: '6002014', group: 3, subgroup: 'tc', lang: 'az', type: 'eyani', free: null, paid: 306.2 },
+      { id: 'reg-koreya', name: 'Regionşünaslıq (Koreya üzrə)', code: '6002014', group: 3, subgroup: 'tc', lang: 'az', type: 'eyani', free: 488.3, paid: 371.3 },
+      { id: 'reg-pak', name: 'Regionşünaslıq (Pakistan üzrə)', code: '6002014', group: 3, subgroup: 'tc', lang: 'az', type: 'eyani', free: null, paid: 285.3 },
+      { id: 'reg-turk', name: 'Regionşünaslıq (Türkiyə üzrə)', code: '6002014', group: 3, subgroup: 'tc', lang: 'az', type: 'eyani', free: null, paid: 345.5 },
+      { id: 'reg-yapon', name: 'Regionşünaslıq (Yaponiya üzrə)', code: '6002014', group: 3, subgroup: 'tc', lang: 'az', type: 'eyani', free: 484.8, paid: 350 },
+      { id: 'terc-arab', name: 'Tərcümə (ərəb dili üzrə)', code: '6002017', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: null, paid: 343.6 },
+      { id: 'terc-fars', name: 'Tərcümə (fars dili üzrə)', code: '6002017', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: null, paid: 308.8 },
+    ]
+  },
+
+  /* 7 - dəyişməz saxlanılır */
   {
     id: 'trk',
     name: 'Tətbiqi Riyaziyyat və Kibernetika Fakültəsi',
@@ -26,29 +140,83 @@ const FACULTIES = [
     ]
   },
 
+  /* 8 */
   {
-    id: 'mr',
-    name: 'Mexanika-Riyaziyyat Fakültəsi',
-    short: 'MR Fakültəsi',
-    logo: 'images/logo-mexanika-riyaziyyat.png',
-    about: 'Mexanika-Riyaziyyat fakültəsi riyaziyyat, mexanika və riyaziyyat müəllimliyi üzrə mütəxəssislər hazırlayır.',
+    id: 'jour',
+    name: 'Jurnalistika Fakültəsi',
+    short: 'Jurnalistika',
+    logo: 'images/logo-jurnalistika.png',
+    about: 'Jurnalistika fakültəsi media, televiziya, radio jurnalistikası, reklam və ictimai əlaqələr üzrə kadrlar hazırlayır.',
     specialties: [
-      { id: 'riy', name: 'Riyaziyyat', code: '6005011', group: 1, subgroup: 'rk', lang: 'az', type: 'eyani', free: 362.5, paid: 362.5 },
-      { id: 'riy-en', name: 'Riyaziyyat', code: '6005011', group: 1, subgroup: 'rk', lang: 'en', type: 'eyani', free: 467.4, paid: 467.4 },
-      { id: 'riy-muel', name: 'Riyaziyyat müəllimliyi', code: '6001015', group: 1, subgroup: 'rk', lang: 'az', type: 'eyani', free: 486.8, paid: 486.8 },
-      { id: 'riy-muel-en', name: 'Riyaziyyat müəllimliyi', code: '6001015', group: 1, subgroup: 'rk', lang: 'en', type: 'eyani', free: 577, paid: 577 },
-      { id: 'mex', name: 'Mexanika', code: '6005010', group: 1, subgroup: 'rk', lang: 'az', type: 'eyani', free: 239.2, paid: 239.2 },
-      { id: 'riy-muel-qaz', name: 'Riyaziyyat müəllimliyi (Qazax filialı)', code: '6001015', group: 1, subgroup: 'rk', lang: 'az', type: 'eyani', free: 417.5, paid: 219.7, isQazax: true },
-      { id: 'riy-inf-qaz', name: 'Riyaziyyat və informatika (rəqəmsal bacarıqlar) müəllimliyi (Qazax filialı)', code: '6001010', group: 1, subgroup: 'rk', lang: 'az', type: 'eyani', free: 251.1, paid: 251.1, isQazax: true },
+      { id: 'jur', name: 'Jurnalistika (Qabiliyyət imtahanı)', code: '6002009', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: 431.1, paid: 431.1 },
+      { id: 'jur-en', name: 'Jurnalistika (Qabiliyyət imtahanı)', code: '6002009', group: 3, subgroup: 'dt', lang: 'en', type: 'eyani', free: 465.5, paid: 465.5 },
     ]
   },
 
+  /* 9 */
+  {
+    id: 'eko',
+    name: 'Ekologiya və Torpaqşünaslıq Fakültəsi',
+    short: 'Ekologiya Fakültəsi',
+    logo: 'images/logo-ekologiya.png',
+    about: 'Ekologiya və Torpaqşünaslıq fakültəsi ekologiya, torpaqşünaslıq, aqrokimya, kadastr və ekologiya mühəndisliyi sahələrini əhatə edir.',
+    specialties: [
+      { id: 'ekologiya', name: 'Ekologiya', code: '6005004', group: 4, subgroup: null, lang: 'az', type: 'eyani', free: 315.4, paid: 296 },
+      { id: 'ekologiya-en', name: 'Ekologiya', code: '6005004', group: 4, subgroup: null, lang: 'en', type: 'eyani', free: 391.7, paid: 368.6 },
+      { id: 'torpaq', name: 'Torpaqşünaslıq və aqrokimya', code: '6007008', group: 1, subgroup: 'rk', lang: 'az', type: 'eyani', free: 235.2, paid: 235.2 },
+      { id: 'yerq-az', name: 'Yerquruluşu və daşınmaz əmlakın kadastrı', code: '6007009', group: 1, subgroup: 'rk', lang: 'az', type: 'eyani', free: 269.5, paid: 269.5 },
+      { id: 'eko-muh', name: 'Ekologiya mühəndisliyi', code: '6006007', group: 1, subgroup: 'rk', lang: 'az', type: 'eyani', free: 243.4, paid: 231.7 },
+    ]
+  },
+
+  /* 10 */
+  {
+    id: 'tarix',
+    name: 'Tarix Fakültəsi',
+    short: 'Tarix Fakültəsi',
+    logo: 'images/logo-tarix.png',
+    about: 'Tarix fakültəsi Azərbaycan tarixi, ümumi tarix, regionşünaslıq və tarix müəllimliyi üzrə mütəxəssislər hazırlayır.',
+    specialties: [
+      { id: 'tar', name: 'Tarix', code: '6002016', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: 519.3, paid: 519.3 },
+      { id: 'tar-q', name: 'Tarix', code: '6002016', group: 3, subgroup: 'dt', lang: 'az', type: 'qiyabi', free: 516.1, paid: 374.4 },
+      { id: 'tar-en', name: 'Tarix', code: '6002016', group: 3, subgroup: 'dt', lang: 'en', type: 'eyani', free: 559.9, paid: 559.9 },
+      { id: 'tar-qaz', name: 'Tarix (Qazax filialı)', code: '6002016', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: 520.1, paid: 343.3, isQazax: true },
+      { id: 'tar-muel', name: 'Tarix müəllimliyi', code: '6001018', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: 516.2, paid: 516.2 },
+      { id: 'tar-muel-en', name: 'Tarix müəllimliyi', code: '6001018', group: 3, subgroup: 'dt', lang: 'en', type: 'eyani', free: 538.1, paid: 538.1 },
+      { id: 'reg-qafqaz', name: 'Regionşünaslıq (Qafqaz ölkələri üzrə)', code: '6002014', group: 3, subgroup: 'tc', lang: 'az', type: 'eyani', free: 445, paid: 340.1 },
+      { id: 'reg-qafqaz-en', name: 'Regionşünaslıq (Qafqaz ölkələri üzrə)', code: '6002014', group: 3, subgroup: 'tc', lang: 'en', type: 'eyani', free: null, paid: 328.4 },
+      { id: 'reg-amerika', name: 'Regionşünaslıq (Amerika üzrə)', code: '6002014', group: 3, subgroup: 'tc', lang: 'az', type: 'eyani', free: 439.8, paid: 386 },
+      { id: 'reg-amerika-en', name: 'Regionşünaslıq (Amerika üzrə)', code: '6002014', group: 3, subgroup: 'tc', lang: 'en', type: 'eyani', free: 434.3, paid: 386.9 },
+      { id: 'reg-afrika', name: 'Regionşünaslıq (Afrika üzrə)', code: '6002014', group: 3, subgroup: 'tc', lang: 'az', type: 'eyani', free: null, paid: 275.4 },
+    ]
+  },
+
+  /* 11 */
+  {
+    id: 'fil',
+    name: 'Filologiya Fakültəsi',
+    short: 'Filologiya',
+    logo: 'images/logo-filologiya.png',
+    about: 'Filologiya fakültəsi Azərbaycan dili və ədəbiyyatı, xarici dillər, dilçilik və dil müəllimliyi üzrə mütəxəssislər hazırlayır.',
+    specialties: [
+      { id: 'az-dil-muel', name: 'Azərbaycan dili və ədəbiyyatı müəllimliyi', code: '6001001', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: 582, paid: 582 },
+      { id: 'dil-muel-rus', name: 'Dil və ədəbiyyat müəllimliyi (rus dili və ədəbiyyatı üzrə)', code: '6001001', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: null, paid: 331.3 },
+      { id: 'fil-alman', name: 'Filologiya (alman dili və ədəbiyyatı)', code: '6002006', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: 508.2, paid: 417.4 },
+      { id: 'fil-az', name: 'Filologiya (Azərbaycan dili və ədəbiyyatı)', code: '6002006', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: 503.2, paid: 413.1 },
+      { id: 'fil-az-qaz', name: 'Filologiya (Azərbaycan dili və ədəbiyyatı, Qazax filialı)', code: '6002006', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: null, paid: 329.8, isQazax: true },
+      { id: 'fil-fransiz', name: 'Filologiya (fransız dili və ədəbiyyatı)', code: '6002006', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: null, paid: 396.3 },
+      { id: 'fil-ingilis', name: 'Filologiya (ingilis dili və ədəbiyyatı)', code: '6002006', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: 510, paid: 482.1 },
+      { id: 'fil-rus', name: 'Filologiya (rus dili və ədəbiyyatı)', code: '6002006', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: null, paid: 307.1 },
+    ]
+  },
+
+  /* 12 */
   {
     id: 'fizika',
     name: 'Fizika Fakültəsi',
     short: 'Fizika Fakültəsi',
     logo: 'images/logo-fizika.png',
-    about: 'Fizika fakültəsi fundamental və tətbiqi fizika, nano texnologiyalar, kvant texnologiyaları, optika və enerji sahələrini əhatə edir.',
+    about: 'Fizika fakültəsi fundamental və tətbiqi fizika, mühəndislik fizikası və fizika müəllimliyi üzrə mütəxəssislər hazırlayır.',
     specialties: [
       { id: 'fiz', name: 'Fizika', code: '6005005', group: 1, subgroup: 'rk', lang: 'az', type: 'eyani', free: 274.9, paid: 274.9 },
       { id: 'fiz-en', name: 'Fizika', code: '6005005', group: 1, subgroup: 'rk', lang: 'en', type: 'eyani', free: 284.9, paid: 250 },
@@ -58,121 +226,28 @@ const FACULTIES = [
     ]
   },
 
+  /* 13 */
   {
     id: 'kimya',
     name: 'Kimya Fakültəsi',
     short: 'Kimya Fakültəsi',
     logo: 'images/logo-kimya.png',
-    about: 'Kimya fakültəsi kimya mühəndisliyi, analitik kimya və üzvi kimya sahəsindəki tədqiqatları əhatə edir.',
+    about: 'Kimya fakültəsi kimya, kimya mühəndisliyi və kimya müəllimliyi sahələrini əhatə edir.',
     specialties: [
+      { id: 'kimya', name: 'Kimya', code: '6005008', group: 4, subgroup: null, lang: 'az', type: 'eyani', free: 466.6, paid: 200 },
       { id: 'kim-muh', name: 'Kimya mühəndisliyi', code: '6006020', group: 1, subgroup: 'rk', lang: 'az', type: 'eyani', free: 437.1, paid: 353 },
       { id: 'kim-muh-en', name: 'Kimya mühəndisliyi', code: '6006020', group: 1, subgroup: 'rk', lang: 'en', type: 'eyani', free: 439.9, paid: 407.8 },
-      { id: 'kimya', name: 'Kimya', code: '6005008', group: 4, subgroup: null, lang: 'az', type: 'eyani', free: 466.6, paid: 200 },
       { id: 'kim-muel', name: 'Kimya müəllimliyi', code: '6001011', group: 4, subgroup: null, lang: 'az', type: 'eyani', free: 397.3, paid: 397.3 },
     ]
   },
 
-  {
-    id: 'bio',
-    name: 'Biologiya Fakültəsi',
-    short: 'Biologiya Fakültəsi',
-    logo: 'images/logo-biologiya.png',
-    about: 'Biologiya fakültəsi molekulyar biologiya, genetika, mikrobiologiya, botanika və zoologiya sahələrini əhatə edir.',
-    specialties: [
-      { id: 'biol-muel', name: 'Biologiya müəllimliyi', code: '6001002', group: 4, subgroup: null, lang: 'az', type: 'eyani', free: 397.7, paid: 397.7 },
-      { id: 'bio', name: 'Biologiya', code: '6005001', group: 4, subgroup: null, lang: 'az', type: 'eyani', free: 466.9, paid: 466.9 },
-      { id: 'bio-en', name: 'Biologiya', code: '6005001', group: 4, subgroup: null, lang: 'en', type: 'eyani', free: 552.3, paid: 552.3 },
-      { id: 'biotex', name: 'Biotexnologiya', code: '6005002', group: 4, subgroup: null, lang: 'az', type: 'eyani', free: 562.4, paid: 562.4 },
-      { id: 'biotex-en', name: 'Biotexnologiya', code: '6005002', group: 4, subgroup: null, lang: 'en', type: 'eyani', free: 605.9, paid: 605.9 },
-      { id: 'su-bio', name: 'Su bioehtiyatları və akvakultura', code: '6005013', group: 4, subgroup: null, lang: 'az', type: 'eyani', free: 260.6, paid: 258.8 },
-      { id: 'bitki-muh', name: 'Bitki mühafizəsi', code: '6007005', group: 4, subgroup: null, lang: 'az', type: 'eyani', free: 258.9, paid: 258.9 },
-      { id: 'kim-bio-qaz', name: 'Kimya və biologiya müəllimliyi (Qazax filialı)', code: '6001011', group: 4, subgroup: null, lang: 'az', type: 'eyani', free: 276.4, paid: 200, isQazax: true },
-    ]
-  },
-
-  {
-    id: 'eko',
-    name: 'Ekologiya və Torpaqşünaslıq Fakültəsi',
-    short: 'Ekologiya Fakültəsi',
-    logo: 'images/logo-ekologiya.png',
-    about: 'Ekologiya və Torpaqşünaslıq fakültəsi ekoloji mühəndislik, torpaqşünaslıq, aqrokimya və qida mühəndisliyi sahələrini əhatə edir.',
-    specialties: [
-      { id: 'eko-muh', name: 'Ekologiya mühəndisliyi', code: '6006007', group: 1, subgroup: 'rk', lang: 'az', type: 'eyani', free: 243.4, paid: 231.7 },
-      { id: 'qida', name: 'Qida mühəndisliyi', code: '6006023', group: 1, subgroup: 'rk', lang: 'az', type: 'eyani', free: 351.4, paid: 351.4 },
-      { id: 'torpaq', name: 'Torpaqşünaslıq və aqrokimya', code: '6007008', group: 1, subgroup: 'rk', lang: 'az', type: 'eyani', free: 235.2, paid: 235.2 },
-      { id: 'yerq-az', name: 'Yerquruluşu və daşınmaz əmlakın kadastrı', code: '6007009', group: 1, subgroup: 'rk', lang: 'az', type: 'eyani', free: 269.5, paid: 269.5 },
-      { id: 'ekologiya', name: 'Ekologiya', code: '6005004', group: 4, subgroup: null, lang: 'az', type: 'eyani', free: 315.4, paid: 296 },
-      { id: 'ekologiya-en', name: 'Ekologiya', code: '6005004', group: 4, subgroup: null, lang: 'en', type: 'eyani', free: 391.7, paid: 368.6 },
-    ]
-  },
-
-  {
-    id: 'cografiya',
-    name: 'Coğrafiya Fakültəsi',
-    short: 'Coğrafiya Fakültəsi',
-    logo: 'images/logo-cografiya.png',
-    about: 'Coğrafiya fakültəsi GIS texnologiyaları, regional planlaşdırma, iqlim dəyişiklikləri, turizm, landşaftşünaslıq və kadastr üzrə mütəxəssislər hazırlayır.',
-    specialties: [
-      { id: 'geomat', name: 'Geomatika və geodeziya mühəndisliyi', code: '6006011', group: 1, subgroup: 'rk', lang: 'az', type: 'eyani', free: 209.9, paid: 200 },
-      { id: 'coq', name: 'Coğrafiya', code: '6005003', group: 2, subgroup: null, lang: 'az', type: 'eyani', free: 237.8, paid: 237.8 },
-      { id: 'coq-muel', name: 'Coğrafiya müəllimliyi', code: '6001003', group: 2, subgroup: null, lang: 'az', type: 'eyani', free: 334.8, paid: 334.8 },
-      { id: 'hidromet', name: 'Hidrometeorologiya', code: '6005007', group: 2, subgroup: null, lang: 'az', type: 'eyani', free: 274.8, paid: 274.8 },
-      { id: 'turizm', name: 'Turizm işinin təşkili', code: '6008008', group: 2, subgroup: null, lang: 'az', type: 'eyani', free: 315.3, paid: 315.3 },
-      { id: 'turizm-en', name: 'Turizm işinin təşkili', code: '6008008', group: 2, subgroup: null, lang: 'en', type: 'eyani', free: 296.5, paid: 150 },
-      { id: 'tar-coq-qaz', name: 'Tarix və coğrafiya müəllimliyi (Qazax filialı)', code: '6001018', group: 2, subgroup: null, lang: 'az', type: 'eyani', free: 266, paid: 266, isQazax: true },
-      { id: 'turizm-qaz', name: 'Turizm işinin təşkili (Qazax filialı)', code: '6008008', group: 2, subgroup: null, lang: 'az', type: 'eyani', free: null, paid: 150, isQazax: true },
-    ]
-  },
-
-  {
-    id: 'geo',
-    name: 'Geologiya Fakültəsi',
-    short: 'Geologiya Fakültəsi',
-    logo: 'images/logo-geologiya.png',
-    about: 'Geologiya fakültəsi geoloji prosesləri, neft-qaz geologiyası, seysmologiya, mineralogiya və geoekologiya üzrə mütəxəssislər hazırlayır.',
-    specialties: [
-      { id: 'geo-spec', name: 'Geologiya', code: '6005006', group: 1, subgroup: 'rk', lang: 'az', type: 'eyani', free: 234.1, paid: 234.1 },
-      { id: 'geo-geo-muh', name: 'Geologiya və geofizika mühəndisliyi', code: '6006010', group: 1, subgroup: 'rk', lang: 'az', type: 'eyani', free: 208.2, paid: 208.2 },
-      { id: 'med-muh', name: 'Mədən mühəndisliyi', code: '6006033', group: 1, subgroup: 'rk', lang: 'az', type: 'eyani', free: 207.5, paid: 200 },
-      { id: 'mel-muh', name: 'Meliorasiya mühəndisliyi', code: '6006030', group: 1, subgroup: 'rk', lang: 'az', type: 'eyani', free: 240.7, paid: 198.9 },
-    ]
-  },
-
-  {
-    id: 'tarix',
-    name: 'Tarix Fakültəsi',
-    short: 'Tarix Fakültəsi',
-    logo: 'images/logo-tarix.png',
-    about: 'Tarix fakültəsi Azərbaycan tarixi, ümumi tarix, arxeologiya, etnoqrafiya və muzeyşünaslıq üzrə mütəxəssislər hazırlayır.',
-    specialties: [
-      { id: 'tar-muel', name: 'Tarix müəllimliyi', code: '6001018', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: 516.2, paid: 516.2 },
-      { id: 'tar-muel-en', name: 'Tarix müəllimliyi', code: '6001018', group: 3, subgroup: 'dt', lang: 'en', type: 'eyani', free: 538.1, paid: 538.1 },
-      { id: 'tar', name: 'Tarix', code: '6002016', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: 519.3, paid: 519.3 },
-      { id: 'tar-q', name: 'Tarix', code: '6002016', group: 3, subgroup: 'dt', lang: 'az', type: 'qiyabi', free: 516.1, paid: 374.4 },
-      { id: 'tar-en', name: 'Tarix', code: '6002016', group: 3, subgroup: 'dt', lang: 'en', type: 'eyani', free: 559.9, paid: 559.9 },
-      { id: 'tar-qaz', name: 'Tarix (Qazax filialı)', code: '6002016', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: 520.1, paid: 343.3, isQazax: true },
-    ]
-  },
-
-  {
-    id: 'huquq',
-    name: 'Hüquq Fakültəsi',
-    short: 'Hüquq Fakültəsi',
-    logo: 'images/logo-huquq.png',
-    about: 'Hüquq fakültəsi mülki hüquq, cinayət hüququ və beynəlxalq hüquq sahələrini əhatə edir.',
-    specialties: [
-      { id: 'huq-az', name: 'Hüquqşünaslıq', code: '6002007', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: 608.9, paid: 608.9 },
-      { id: 'huq-q', name: 'Hüquqşünaslıq', code: '6002007', group: 3, subgroup: 'dt', lang: 'az', type: 'qiyabi', free: 606.8, paid: 571.5 },
-      { id: 'huq-en', name: 'Hüquqşünaslıq', code: '6002007', group: 3, subgroup: 'dt', lang: 'en', type: 'eyani', free: 657.4, paid: 657.4 },
-    ]
-  },
-
+  /* 14 */
   {
     id: 'bmi',
     name: 'Beynəlxalq Münasibətlər və İqtisadiyyat Fakültəsi',
     short: 'BMİ Fakültəsi',
     logo: 'images/logo-bmi.png',
-    about: 'BMİ fakültəsi beynəlxalq münasibətlər, iqtisadiyyat və beynəlxalq ticarət sahəsində kadrlar hazırlayır.',
+    about: 'BMİ fakültəsi beynəlxalq münasibətlər, politologiya, iqtisadiyyat, maliyyə, biznes və menecment sahəsində kadrlar hazırlayır.',
     specialties: [
       { id: 'beyn-int', name: 'Beynəlxalq münasibətlər', code: '6002001', group: 3, subgroup: 'tc', lang: 'az', type: 'eyani', free: 494.3, paid: 434.7 },
       { id: 'beyn-int-en', name: 'Beynəlxalq münasibətlər', code: '6002001', group: 3, subgroup: 'tc', lang: 'en', type: 'eyani', free: 510.1, paid: 510.1 },
@@ -189,97 +264,36 @@ const FACULTIES = [
     ]
   },
 
+  /* 15 */
   {
-    id: 'ism',
-    name: 'İnformasiya və Sənəd Menecmenti Fakültəsi',
-    short: 'İSM Fakültəsi',
-    logo: 'images/logo-ism.png',
-    about: 'İSM fakültəsi sənəd dövriyyəsi, arxiv işi və informasiya menecmenti sahəsində mütəxəssislər hazırlayır.',
+    id: 'bio',
+    name: 'Biologiya Fakültəsi',
+    short: 'Biologiya Fakültəsi',
+    logo: 'images/logo-biologiya.png',
+    about: 'Biologiya fakültəsi biologiya, biotexnologiya, bitki mühafizəsi, qida mühəndisliyi və su bioehtiyatları sahələrini əhatə edir.',
     specialties: [
-      { id: 'kitabxana', name: 'Kitabxanaçılıq və informasiya fəaliyyəti', code: '6002010', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: 424, paid: 337.7 },
-      { id: 'kitabxana-en', name: 'Kitabxanaçılıq və informasiya fəaliyyəti', code: '6002010', group: 3, subgroup: 'dt', lang: 'en', type: 'eyani', free: 423.7, paid: 200 },
-      { id: 'muzey', name: 'Muzey, arxiv işi və abidələrin qorunması', code: '6003012', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: 414.8, paid: 396.8 },
+      { id: 'bio', name: 'Biologiya', code: '6005001', group: 4, subgroup: null, lang: 'az', type: 'eyani', free: 466.9, paid: 466.9 },
+      { id: 'bio-en', name: 'Biologiya', code: '6005001', group: 4, subgroup: null, lang: 'en', type: 'eyani', free: 552.3, paid: 552.3 },
+      { id: 'biol-muel', name: 'Biologiya müəllimliyi', code: '6001002', group: 4, subgroup: null, lang: 'az', type: 'eyani', free: 397.7, paid: 397.7 },
+      { id: 'su-bio', name: 'Su bioehtiyatları və akvakultura', code: '6005013', group: 4, subgroup: null, lang: 'az', type: 'eyani', free: 260.6, paid: 258.8 },
+      { id: 'biotex', name: 'Biotexnologiya', code: '6005002', group: 4, subgroup: null, lang: 'az', type: 'eyani', free: 562.4, paid: 562.4 },
+      { id: 'biotex-en', name: 'Biotexnologiya', code: '6005002', group: 4, subgroup: null, lang: 'en', type: 'eyani', free: 605.9, paid: 605.9 },
+      { id: 'bitki-muh', name: 'Bitki mühafizəsi', code: '6007005', group: 4, subgroup: null, lang: 'az', type: 'eyani', free: 258.9, paid: 258.9 },
+      { id: 'qida', name: 'Qida mühəndisliyi', code: '6006023', group: 1, subgroup: 'rk', lang: 'az', type: 'eyani', free: 351.4, paid: 351.4 },
     ]
   },
 
+  /* 16 */
   {
-    id: 'sep',
-    name: 'Sosial Elmlər və Psixologiya Fakültəsi',
-    short: 'SEP Fakültəsi',
-    logo: 'images/logo-sep.png',
-    about: 'SEP fakültəsi psixologiya, sosiologiya və sosial iş sahəsində mütəxəssislər hazırlayır.',
+    id: 'huquq',
+    name: 'Hüquq Fakültəsi',
+    short: 'Hüquq Fakültəsi',
+    logo: 'images/logo-huquq.png',
+    about: 'Hüquq fakültəsi mülki hüquq, cinayət hüququ və beynəlxalq hüquq sahələrini əhatə edir.',
     specialties: [
-      { id: 'sosio', name: 'Sosiologiya', code: '6002015', group: 2, subgroup: null, lang: 'az', type: 'eyani', free: 317.1, paid: 317.1 },
-      { id: 'sosio-en', name: 'Sosiologiya', code: '6002015', group: 2, subgroup: null, lang: 'en', type: 'eyani', free: 326.9, paid: 326.9 },
-      { id: 'felsefe', name: 'Fəlsəfə', code: '6002005', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: 436.5, paid: 380.7 },
-      { id: 'xususi-ped', name: 'Xüsusi pedaqogika', code: '6001008', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: 459.8, paid: 459.8 },
-      { id: 'tsh', name: 'Təhsildə sosial-psixoloji xidmət', code: '6001021', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: 480.9, paid: 480.9 },
-      { id: 'sosial-is', name: 'Sosial iş', code: '6008006', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: 501.3, paid: 501.3 },
-      { id: 'sosial-is-en', name: 'Sosial iş', code: '6008006', group: 3, subgroup: 'dt', lang: 'en', type: 'eyani', free: 529.6, paid: 529.6 },
-      { id: 'mekteb-qaz', name: 'Məktəbəqədər təhsil (Qazax filialı)', code: '6001021', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: 463.5, paid: 323.8, isQazax: true },
-      { id: 'psix', name: 'Psixologiya', code: '6002013', group: 4, subgroup: null, lang: 'az', type: 'eyani', free: 492.5, paid: 489 },
-      { id: 'psix-q', name: 'Psixologiya', code: '6002013', group: 4, subgroup: null, lang: 'az', type: 'qiyabi', free: null, paid: 200 },
-      { id: 'psix-en', name: 'Psixologiya', code: '6002013', group: 4, subgroup: null, lang: 'en', type: 'eyani', free: 581.7, paid: 581.7 },
-      { id: 'sosial-is-qaz', name: 'Sosial iş (Qazax filialı)', code: '6008006', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: null, paid: 319, isQazax: true },
-    ]
-  },
-
-  {
-    id: 'serk',
-    name: 'Şərqşünaslıq Fakültəsi',
-    short: 'Şərqşünaslıq',
-    logo: 'images/logo-serqsunasliq.png',
-    about: 'Şərqşünaslıq fakültəsi Şərq dilləri, tarixi və mədəniyyəti üzrə mütəxəssislər hazırlayır.',
-    specialties: [
-      { id: 'reg-arab', name: 'Regionşünaslıq (ərəb ölkələri üzrə)', code: '6002014', group: 3, subgroup: 'tc', lang: 'az', type: 'eyani', free: null, paid: 305.7 },
-      { id: 'reg-iran', name: 'Regionşünaslıq (İran üzrə)', code: '6002014', group: 3, subgroup: 'tc', lang: 'az', type: 'eyani', free: null, paid: 283.3 },
-      { id: 'reg-turk', name: 'Regionşünaslıq (Türkiyə üzrə)', code: '6002014', group: 3, subgroup: 'tc', lang: 'az', type: 'eyani', free: null, paid: 345.5 },
-      { id: 'reg-israil', name: 'Regionşünaslıq (İsrail üzrə)', code: '6002014', group: 3, subgroup: 'tc', lang: 'az', type: 'eyani', free: null, paid: 306.2 },
-      { id: 'reg-pak', name: 'Regionşünaslıq (Pakistan üzrə)', code: '6002014', group: 3, subgroup: 'tc', lang: 'az', type: 'eyani', free: null, paid: 285.3 },
-      { id: 'reg-koreya', name: 'Regionşünaslıq (Koreya üzrə)', code: '6002014', group: 3, subgroup: 'tc', lang: 'az', type: 'eyani', free: 488.3, paid: 371.3 },
-      { id: 'reg-yapon', name: 'Regionşünaslıq (Yaponiya üzrə)', code: '6002014', group: 3, subgroup: 'tc', lang: 'az', type: 'eyani', free: 484.8, paid: 350 },
-      { id: 'reg-cin', name: 'Regionşünaslıq (Çin üzrə)', code: '6002014', group: 3, subgroup: 'tc', lang: 'az', type: 'eyani', free: 440.2, paid: 383.6 },
-      { id: 'reg-qafqaz', name: 'Regionşünaslıq (Qafqaz ölkələri üzrə)', code: '6002014', group: 3, subgroup: 'tc', lang: 'az', type: 'eyani', free: 445, paid: 340.1 },
-      { id: 'reg-amerika', name: 'Regionşünaslıq (Amerika üzrə)', code: '6002014', group: 3, subgroup: 'tc', lang: 'az', type: 'eyani', free: 439.8, paid: 386 },
-      { id: 'reg-afrika', name: 'Regionşünaslıq (Afrika üzrə)', code: '6002014', group: 3, subgroup: 'tc', lang: 'az', type: 'eyani', free: null, paid: 275.4 },
-      { id: 'reg-arab-en', name: 'Regionşünaslıq (ərəb ölkələri üzrə)', code: '6002014', group: 3, subgroup: 'tc', lang: 'en', type: 'eyani', free: null, paid: 297.1 },
-      { id: 'reg-cin-en', name: 'Regionşünaslıq (Çin üzrə)', code: '6002014', group: 3, subgroup: 'tc', lang: 'en', type: 'eyani', free: 441.3, paid: 441.3 },
-      { id: 'reg-qafqaz-en', name: 'Regionşünaslıq (Qafqaz ölkələri üzrə)', code: '6002014', group: 3, subgroup: 'tc', lang: 'en', type: 'eyani', free: null, paid: 328.4 },
-      { id: 'reg-amerika-en', name: 'Regionşünaslıq (Amerika üzrə)', code: '6002014', group: 3, subgroup: 'tc', lang: 'en', type: 'eyani', free: 434.3, paid: 386.9 },
-      { id: 'fil-arab', name: 'Filologiya (ərəb dili və ədəbiyyatı üzrə)', code: '6002006', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: null, paid: 348.5 },
-      { id: 'fil-fars', name: 'Filologiya (fars dili və ədəbiyyatı üzrə)', code: '6002006', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: null, paid: 323 },
-      { id: 'fil-turk', name: 'Filologiya (türk dili və ədəbiyyatı üzrə)', code: '6002006', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: null, paid: 340.2 },
-      { id: 'fil-cin', name: 'Filologiya (çin dili və ədəbiyyatı üzrə)', code: '6002006', group: 3, subgroup: 'dt', lang: 'en', type: 'eyani', free: 506.3, paid: 429.1 },
-      { id: 'terc-arab', name: 'Tərcümə (ərəb dili üzrə)', code: '6002017', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: null, paid: 343.6 },
-      { id: 'terc-fars', name: 'Tərcümə (fars dili üzrə)', code: '6002017', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: null, paid: 308.8 },
-    ]
-  },
-
-  {
-    id: 'jour',
-    name: 'Jurnalistika Fakültəsi',
-    short: 'Jurnalistika',
-    logo: 'images/logo-jurnalistika.png',
-    about: 'Jurnalistika fakültəsi media, televiziya, radio jurnalistikası, reklam və ictimai əlaqələr üzrə kadrlar hazırlayır.',
-    specialties: [
-      { id: 'jur', name: 'Jurnalistika (Qabiliyyət imtahanı)', code: '6002009', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: 431.1, paid: 431.1 },
-      { id: 'jur-en', name: 'Jurnalistika (Qabiliyyət imtahanı)', code: '6002009', group: 3, subgroup: 'dt', lang: 'en', type: 'eyani', free: 465.5, paid: 465.5 },
-    ]
-  },
-
-  {
-    id: 'fil',
-    name: 'Filologiya Fakültəsi',
-    short: 'Filologiya',
-    logo: 'images/logo-filologiya.png',
-    about: 'Filologiya fakültəsi Azərbaycan dili və ədəbiyyatı, xarici dillər və dilçilik üzrə mütəxəssislər hazırlayır.',
-    specialties: [
-      { id: 'az-dil-muel', name: 'Azərbaycan dili və ədəbiyyatı müəllimliyi', code: '6001001', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: 582, paid: 582 },
-      { id: 'fil-az', name: 'Filologiya (Azərbaycan dili və ədəbiyyatı üzrə)', code: '6002006', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: 503.2, paid: 413.1 },
-      { id: 'fil-alman', name: 'Filologiya (alman dili və ədəbiyyatı üzrə)', code: '6002006', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: 508.2, paid: 417.4 },
-      { id: 'fil-fransiz', name: 'Filologiya (fransız dili və ədəbiyyatı üzrə)', code: '6002006', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: null, paid: 396.3 },
-      { id: 'fil-ingilis', name: 'Filologiya (ingilis dili və ədəbiyyatı üzrə)', code: '6002006', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: 510, paid: 482.1 },
-      { id: 'fil-az-qaz', name: 'Filologiya (Azərbaycan dili və ədəbiyyatı üzrə, Qazax filialı)', code: '6002006', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: null, paid: 329.8, isQazax: true },
+      { id: 'huq-az', name: 'Hüquqşünaslıq', code: '6002007', group: 3, subgroup: 'dt', lang: 'az', type: 'eyani', free: 608.9, paid: 608.9 },
+      { id: 'huq-q', name: 'Hüquqşünaslıq', code: '6002007', group: 3, subgroup: 'dt', lang: 'az', type: 'qiyabi', free: 606.8, paid: 571.5 },
+      { id: 'huq-en', name: 'Hüquqşünaslıq', code: '6002007', group: 3, subgroup: 'dt', lang: 'en', type: 'eyani', free: 657.4, paid: 657.4 },
     ]
   },
 ];
@@ -347,6 +361,62 @@ const KORPUSLAR = [
 ];
 
 /* =========================================================
+   DATA - UĞURLU MƏZUNLAR
+   Dövlət Proqramının qalibi kimi magistratura pilləsində
+   xarici universitetlərdə təhsilini davam etdirən BDU məzunları.
+   ========================================================= */
+const GRADUATES = [
+  {
+    id: 'jale-elizade',
+    name: 'Jalə Əlizadə',
+    country: 'Böyük Britaniya və Şimali İrlandiya Birləşmiş Krallığı',
+    university: 'Edinburq Universiteti',
+    specialty: 'Tibbi və bioloji kimya',
+    image: 'images/mezunlar/mezun-jale-elizade.jpg'
+  },
+  {
+    id: 'nazim-hesenov',
+    name: 'Nazim Həsənov',
+    country: 'Avstraliya İttifaqı',
+    university: 'Sidney Universiteti',
+    specialty: 'İctimai siyasət',
+    image: 'images/mezunlar/mezun-nazim-hesenov.jpg'
+  },
+  {
+    id: 'meleyke-heybetova',
+    name: 'Məleykə Heybətova',
+    country: 'Böyük Britaniya və Şimali İrlandiya Birləşmiş Krallığı',
+    university: 'Birminqem Universiteti',
+    specialty: 'Kibertəhlükəsizlik',
+    image: 'images/mezunlar/mezun-meleyke-heybetova.jpg'
+  },
+  {
+    id: 'ilkin-bayramov',
+    name: 'İlkin Bayramov',
+    country: 'Sinqapur Respublikası',
+    university: 'Sinqapur Milli Universiteti',
+    specialty: 'Beynəlxalq arbitraj və mübahisələrin həlli',
+    image: 'images/mezunlar/mezun-ilkin-bayramov.jpg'
+  },
+  {
+    id: 'gunay-mahmudova',
+    name: 'Günay Mahmudova',
+    country: 'ABŞ',
+    university: 'Berkli Kaliforniya Universiteti',
+    specialty: 'Hüquq',
+    image: 'images/mezunlar/mezun-gunay-mahmudova.jpg'
+  },
+  {
+    id: 'ramil-nebiyev',
+    name: 'Ramil Nəbiyev',
+    country: 'ABŞ',
+    university: 'Berkli Kaliforniya Universiteti',
+    specialty: 'Hüquq',
+    image: 'images/mezunlar/mezun-ramil-nebiyev.jpg'
+  },
+];
+
+/* =========================================================
    İKON KÖMƏKÇİSİ
    Sprite işarəsi qurur. Adı tanınmasa boş sətir qaytarır ki,
    sınıq <use> elementi render olunmasın.
@@ -407,77 +477,141 @@ function handleModalOverlayClick(e) {
 
 /* =========================================================
    SƏHİFƏ NAVİQASİYASI
+   ---------------------------------------------------------
+   Hər səhifənin son scroll mövqeyi pageScroll-da saxlanılır.
+   - İrəli naviqasiyada səhifə yuxarıdan açılır.
+   - "Geri" düyməsi basıldıqda istifadəçi tərk etdiyi səhifəyə
+     elə həmin scroll mövqeyində qaytarılır.
    ========================================================= */
 let currentPage = 'page-home';
 const pageHistory = [];
 
-function showPage(pageId) {
+/* pageId -> son scroll (px) */
+const pageScroll = Object.create(null);
+
+/* Cari şaquli scroll mövqeyi */
+function currentScrollY() {
+  return window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+}
+
+/* Səhifəni animasiyasız yuxarıdan göstər */
+function scrollTopInstant() {
+  window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+}
+
+/* Saxlanılmış mövqeyi bərpa et (layout hazır olduqdan sonra) */
+function restoreScrollFor(pageId) {
+  const y = pageScroll[pageId] || 0;
+  if (!y) { scrollTopInstant(); return; }
+  requestAnimationFrame(() => {
+    window.scrollTo({ top: y, left: 0, behavior: 'instant' });
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: y, left: 0, behavior: 'instant' });
+    });
+  });
+}
+
+/* Aktiv səhifəni dəyişdir */
+function activatePage(pageId) {
   const pages = document.querySelectorAll('.page');
   for (let i = 0; i < pages.length; i++) pages[i].classList.remove('active');
   const pg = document.getElementById(pageId);
   if (pg) pg.classList.add('active');
-
-  if (currentPage !== pageId) pageHistory.push(currentPage);
   currentPage = pageId;
 
   const backBtn = document.getElementById('backBtn');
   if (backBtn) backBtn.classList.toggle('visible', pageId !== 'page-home');
+}
 
-  window.scrollTo({ top: 0, behavior: 'instant' });
+function showPage(pageId) {
+  /* Tərk etdiyimiz səhifənin scroll mövqeyini yadda saxla */
+  if (currentPage && currentPage !== pageId) {
+    pageScroll[currentPage] = currentScrollY();
+  }
+
+  if (currentPage !== pageId) pageHistory.push(currentPage);
+  activatePage(pageId);
 
   /* Lazım olduqda qur */
   if (pageId === 'page-faculties') buildFacultyGrid();
   if (pageId === 'page-korpuslar') buildKorpusGrid();
   if (pageId === 'page-graduates') buildGraduatesGrid();
+
+  /* İrəli keçiddə səhifə yuxarıdan başlayır */
+  scrollTopInstant();
 }
 
 function goBack() {
   const prev = pageHistory.pop();
   if (!prev) { goHome(); return; }
 
-  const pages = document.querySelectorAll('.page');
-  for (let i = 0; i < pages.length; i++) pages[i].classList.remove('active');
-  const pg = document.getElementById(prev);
-  if (pg) pg.classList.add('active');
-  currentPage = prev;
+  /* Hazırkı səhifənin mövqeyini yadda saxla */
+  pageScroll[currentPage] = currentScrollY();
 
-  const backBtn = document.getElementById('backBtn');
-  if (backBtn) backBtn.classList.toggle('visible', prev !== 'page-home');
+  activatePage(prev);
 
-  window.scrollTo({ top: 0, behavior: 'instant' });
   if (prev === 'page-graduates') buildGraduatesGrid();
+
+  /* Əvvəlki səhifəni həmin scroll mövqeyində bərpa et */
+  restoreScrollFor(prev);
 }
 
 function goHome() {
   pageHistory.length = 0;
-  const pages = document.querySelectorAll('.page');
-  for (let i = 0; i < pages.length; i++) pages[i].classList.remove('active');
-  const pg = document.getElementById('page-home');
-  if (pg) pg.classList.add('active');
-  currentPage = 'page-home';
-
-  const backBtn = document.getElementById('backBtn');
-  if (backBtn) backBtn.classList.remove('visible');
-
-  window.scrollTo({ top: 0, behavior: 'instant' });
+  activatePage('page-home');
+  scrollTopInstant();
 }
 
 /* =========================================================
    MƏZUNLAR SƏHİFƏSİ
+   Hər məzun üçün şəkil (poster) kartı. Şəkillər 4:5 nisbətindədir,
+   ona görə kart da həmin nisbətdə qurulur ki, heç bir cihazda
+   ekrandan kənara çıxmasın və ya uzanmasın.
    ========================================================= */
+let graduatesBuilt = false;
+
 function buildGraduatesGrid() {
   const grid = document.getElementById('graduatesGrid');
   if (!grid) return;
-  if (grid.querySelector('.graduates-empty-page')) return;
+  if (graduatesBuilt && grid.childElementCount > 0) return;
 
-  grid.innerHTML = `
-    <div class="graduates-empty-page">
-      ${icon('i-award', 'lg').replace('class="ico ico-lg"', 'class="ico graduates-empty-icon"')}
-      <div class="graduates-empty-text">
-        Məlumatlar hazırlanır<br />
-        <span style="font-weight:400;color:#78839b;">Fəxri məzunların siyahısı tezliklə burada yerləşdiriləcək</span>
+  grid.innerHTML = '';
+
+  if (!GRADUATES.length) {
+    grid.innerHTML = `
+      <div class="graduates-empty-page">
+        ${icon('i-award', 'lg').replace('class="ico ico-lg"', 'class="ico graduates-empty-icon"')}
+        <div class="graduates-empty-text">Məlumatlar hazırlanır</div>
+      </div>`;
+    graduatesBuilt = true;
+    return;
+  }
+
+  const frag = document.createDocumentFragment();
+
+  GRADUATES.forEach(g => {
+    const card = document.createElement('article');
+    card.className = 'graduate-card';
+    card.setAttribute('aria-label', `${g.name} — ${g.university}`);
+
+    card.innerHTML = `
+      <div class="graduate-photo-wrap">
+        <img src="${g.image}" alt="${g.name} — ${g.university}, ${g.specialty}"
+             class="graduate-photo" loading="lazy" decoding="async"
+             onerror="this.closest('.graduate-photo-wrap').classList.add('graduate-photo-failed');" />
       </div>
-    </div>`;
+      <div class="graduate-info">
+        <h3 class="graduate-name">${g.name}</h3>
+        <p class="graduate-country">${g.country}</p>
+        <p class="graduate-university">${g.university}</p>
+        <p class="graduate-specialty"><span class="graduate-specialty-label">İxtisas</span> ${g.specialty}</p>
+      </div>`;
+
+    frag.appendChild(card);
+  });
+
+  grid.appendChild(frag);
+  graduatesBuilt = true;
 }
 
 /* =========================================================
@@ -506,10 +640,10 @@ function buildFacultyGrid() {
          <div class="faculty-card-logo-placeholder" style="display:none;">${icon('i-mortarboard')}</div>`
       : `<div class="faculty-card-logo-placeholder">${icon('i-mortarboard')}</div>`;
 
-    const grpLabel = facultyGroupLabel(f);
+    /* Fakültə adının yanında qrup yazılmır (tələb olunan dəyişiklik) */
     const meta = f.specialties.length > 0
-      ? `${f.specialties.length} ixtisas · ${grpLabel}`
-      : `Məlumat hazırlanır${grpLabel ? ' · ' + grpLabel : ''}`;
+      ? `${f.specialties.length} ixtisas`
+      : 'Məlumat hazırlanır';
 
     card.innerHTML = `
       <div class="faculty-card-logo-wrap">${logoHtml}</div>
@@ -582,10 +716,10 @@ function openKorpusModal(id) {
   const facHtml = k.facultyIds.map(fid => {
     const fac = FACULTIES.find(f => f.id === fid);
     if (!fac) return '';
-    const facGrpLabel = facultyGroupLabel(fac);
+    /* Fakültənin yanında qrup göstərilmir (tələb olunan dəyişiklik) */
     const meta = fac.specialties.length > 0
-      ? `${fac.specialties.length} ixtisas · ${facGrpLabel}`
-      : `Məlumat hazırlanır${facGrpLabel ? ' · ' + facGrpLabel : ''}`;
+      ? `${fac.specialties.length} ixtisas`
+      : 'Məlumat hazırlanır';
 
     return `
       <div class="km-fac-card" onclick="openFacultyFromKorpus('${fac.id}')">
@@ -946,6 +1080,126 @@ function calcPercent(userBal, thresholdBal) {
   return Math.max(1, Math.min(100, Math.round(50 + diff)));
 }
 
+/* =========================================================
+   NƏTİCƏ SƏHİFƏLƏMƏSİ (PAGINATION)
+   ---------------------------------------------------------
+   İlkin olaraq 15 ixtisas göstərilir və bu seçim balanslıdır:
+   5 ən yüksək, 5 orta, 5 ən aşağı uyğunluq. "Daha çox göstər"
+   düyməsi hər basışda qalanlardan 6 ixtisas əlavə edir.
+   ========================================================= */
+const RESULTS_INITIAL = 15;
+const RESULTS_STEP    = 6;
+
+let calcResults   = [];   /* tam sıralanmış siyahı */
+let calcVisible   = [];   /* göstərilən ixtisaslar */
+let calcRemaining = [];   /* hələ göstərilməyənlər */
+
+/* Balanslı ilkin seçim: 5 yüksək + 5 orta + 5 aşağı */
+function pickInitialResults(ordered) {
+  if (ordered.length <= RESULTS_INITIAL) return ordered.slice();
+
+  const n = ordered.length;
+  const headCount = 5;
+  const tailCount = 5;
+  const midCount  = RESULTS_INITIAL - headCount - tailCount; /* 5 */
+
+  const headIdx = [];
+  for (let i = 0; i < headCount; i++) headIdx.push(i);
+
+  const tailStart = n - tailCount;
+  const tailIdx = [];
+  for (let i = tailStart; i < n; i++) tailIdx.push(i);
+
+  const midCandidates = [];
+  for (let i = headCount; i < tailStart; i++) midCandidates.push(i);
+
+  const midIdx = [];
+  if (midCandidates.length <= midCount) {
+    for (const i of midCandidates) midIdx.push(i);
+  } else {
+    for (let k = 0; k < midCount; k++) {
+      const pos = Math.round(k * (midCandidates.length - 1) / (midCount - 1));
+      midIdx.push(midCandidates[pos]);
+    }
+  }
+
+  const idxSet = new Set([...headIdx, ...midIdx, ...tailIdx]);
+  const picked = Array.from(idxSet).sort((a, b) => a - b).map(i => ordered[i]);
+  return picked;
+}
+
+/* Bir nəticə kartının HTML-i */
+function resultItemHtml(s, displayIndex) {
+  const i = displayIndex;
+  const rankClass = i === 0 ? 'gold' : i === 1 ? 'silver' : i === 2 ? 'bronze' : '';
+  const tags = [];
+  if (s.lang === 'en')     tags.push('<span class="tag tag-en">İngiliscə</span>');
+  if (s.isQazax)           tags.push('<span class="tag tag-qazax">Qazax filialı</span>');
+  if (s.type === 'qiyabi') tags.push('<span class="tag tag-qiyabi">Qiyabi</span>');
+
+  const pctColor = s.maxPercent >= 70 ? 'high' : s.maxPercent >= 40 ? 'medium' : 'low';
+  const barClass = s.maxPercent >= 70 ? ''     : s.maxPercent >= 40 ? 'medium' : 'low';
+
+  let scoreDetails = '';
+  if (s.freePercent !== null) scoreDetails += `Ödənişsiz ${scoreText(s.free)}: <strong>${s.freePercent}%</strong><br>`;
+  if (s.paidPercent !== null) scoreDetails += `Ödənişli ${scoreText(s.paid)}: <strong>${s.paidPercent}%</strong>`;
+  if (!scoreDetails) scoreDetails = 'Uyğun keçid balı yoxdur';
+
+  return `
+    <div class="result-rank ${rankClass}">${i + 1}</div>
+    <div class="result-info">
+      <div class="result-name">${s.name}</div>
+      <div class="result-faculty">${s.facultyName}</div>
+      ${tags.length ? `<div class="result-tags">${tags.join('')}</div>` : ''}
+      <div class="percent-bar"><div class="percent-bar-fill ${barClass}" style="width:${s.maxPercent}%"></div></div>
+    </div>
+    <div class="result-right">
+      <div class="result-percent ${pctColor}">${s.maxPercent}%</div>
+      <div class="result-score">${scoreDetails}</div>
+    </div>`;
+}
+
+/* Göstərilən nəticələri və "daha çox" düyməsini çəkir */
+function renderCalcResults() {
+  const list    = document.getElementById('resultsList');
+  const moreBox = document.getElementById('resultsMore');
+  if (!list) return;
+
+  const rfrag = document.createDocumentFragment();
+  calcVisible.forEach((s, i) => {
+    const item = document.createElement('div');
+    item.className = 'result-item';
+    item.innerHTML = resultItemHtml(s, i);
+    rfrag.appendChild(item);
+  });
+
+  list.innerHTML = '';
+  list.appendChild(rfrag);
+
+  if (moreBox) {
+    const left = calcRemaining.length;
+    if (left > 0) {
+      const step = Math.min(RESULTS_STEP, left);
+      moreBox.innerHTML =
+        `<button class="btn btn-more" type="button" onclick="showMoreResults()">
+           <span>Daha çox göstər (+${step})</span>
+           ${icon('i-chevron-right')}
+         </button>
+         <div class="results-more-note">${left} ixtisas daha var</div>`;
+    } else {
+      moreBox.innerHTML = '';
+    }
+  }
+}
+
+/* Növbəti 6 ixtisası əlavə et */
+function showMoreResults() {
+  if (!calcRemaining.length) return;
+  const next = calcRemaining.splice(0, RESULTS_STEP);
+  calcVisible = calcVisible.concat(next);
+  renderCalcResults();
+}
+
 function calculate() {
   const group      = document.getElementById('groupSelect').value;
   const subgroup   = document.getElementById('subgroupSelect').value;
@@ -1014,54 +1268,29 @@ function calculate() {
   const container = document.getElementById('resultsContainer');
   const list      = document.getElementById('resultsList');
   const header    = document.getElementById('resultsHeader');
+  const moreBox   = document.getElementById('resultsMore');
   container.style.display = 'block';
 
   const subLabel = subgroup ? `, alt qrup ${subgroup.toUpperCase()}` : '';
-  header.textContent = `${GROUP_ORDINAL[groupNum] || group} qrup${subLabel} · ümumi bal ${userBal.toFixed(1)}. ${results.length} ixtisas uyğun gəlir.`;
+  const shownCount = Math.min(RESULTS_INITIAL, results.length);
+  header.textContent = `${GROUP_ORDINAL[groupNum] || group} qrup${subLabel} · ümumi bal ${userBal.toFixed(1)}. ${results.length} ixtisas uyğun gəlir (ilk ${shownCount} göstərilir).`;
 
   if (blockMsg) {
+    if (moreBox) moreBox.innerHTML = '';
     list.innerHTML = `<div class="no-results no-results-blocked">${blockMsg}</div>`;
   } else if (results.length === 0) {
+    if (moreBox) moreBox.innerHTML = '';
     list.innerHTML = '<div class="no-results">Seçdiyiniz filtrlərə uyğun ixtisas tapılmadı. Filtrləri genişləndirməyi yoxlayın.</div>';
   } else {
-    const rfrag = document.createDocumentFragment();
-
-    results.forEach((s, i) => {
-      const item = document.createElement('div');
-      item.className = 'result-item';
-
-      const rankClass = i === 0 ? 'gold' : i === 1 ? 'silver' : i === 2 ? 'bronze' : '';
-      const tags = [];
-      if (s.lang === 'en')     tags.push('<span class="tag tag-en">İngiliscə</span>');
-      if (s.isQazax)           tags.push('<span class="tag tag-qazax">Qazax filialı</span>');
-      if (s.type === 'qiyabi') tags.push('<span class="tag tag-qiyabi">Qiyabi</span>');
-
-      const pctColor = s.maxPercent >= 70 ? 'high' : s.maxPercent >= 40 ? 'medium' : 'low';
-      const barClass = s.maxPercent >= 70 ? ''     : s.maxPercent >= 40 ? 'medium' : 'low';
-
-      let scoreDetails = '';
-      if (s.freePercent !== null) scoreDetails += `Ödənişsiz ${scoreText(s.free)}: <strong>${s.freePercent}%</strong><br>`;
-      if (s.paidPercent !== null) scoreDetails += `Ödənişli ${scoreText(s.paid)}: <strong>${s.paidPercent}%</strong>`;
-      if (!scoreDetails) scoreDetails = 'Uyğun keçid balı yoxdur';
-
-      item.innerHTML = `
-        <div class="result-rank ${rankClass}">${i + 1}</div>
-        <div class="result-info">
-          <div class="result-name">${s.name}</div>
-          <div class="result-faculty">${s.facultyName}</div>
-          ${tags.length ? `<div class="result-tags">${tags.join('')}</div>` : ''}
-          <div class="percent-bar"><div class="percent-bar-fill ${barClass}" style="width:${s.maxPercent}%"></div></div>
-        </div>
-        <div class="result-right">
-          <div class="result-percent ${pctColor}">${s.maxPercent}%</div>
-          <div class="result-score">${scoreDetails}</div>
-        </div>`;
-
-      rfrag.appendChild(item);
-    });
-
-    list.innerHTML = '';
-    list.appendChild(rfrag);
+    /* İlkin olaraq balanslı 15 ixtisas göstərilir (5 yüksək + 5 orta + 5 aşağı),
+       qalanları "Daha çox göstər" düyməsi ilə 6-6 əlavə olunur. */
+    const ordered = results;                 /* artıq maxPercent üzrə azalan sıralanıb */
+    const initial = pickInitialResults(ordered);
+    const initialSet = new Set(initial);
+    calcResults   = ordered.slice();
+    calcVisible   = initial.slice();
+    calcRemaining = ordered.filter(s => !initialSet.has(s));
+    renderCalcResults();
   }
 
   /* RI diaqramları yalnız RI alt qrupu seçildikdə */
@@ -1337,28 +1566,139 @@ const FAQ_DATA = [
   },
 ];
 
+/* ---------------------------------------------------------
+   DİNAMİK FAQ - fakültələr, korpuslar və ixtisaslar
+   ---------------------------------------------------------
+   Bu girişlər FACULTIES / KORPUSLAR məlumatından avtomatik
+   qurulur. Beləliklə BDULU həmişə saytdaki cari məlumatla
+   uyğun cavab verir: hansı fakültə hansı korpusda, hansı
+   ixtisaslar var, keçid balları, tədris dili və forması.
+   --------------------------------------------------------- */
+
+/* Fakültənin yerləşdiyi korpusun adını qaytarır */
+function korpusOfFaculty(facId) {
+  const k = KORPUSLAR.find(x => x.facultyIds.indexOf(facId) !== -1);
+  return k ? k.name : null;
+}
+
+/* İxtisasın qrup/dil/form məlumatını oxunaqlı sətrə çevirir */
+function specMetaLine(s) {
+  const bits = [];
+  if (GROUP_ORDINAL[s.group]) {
+    const sg = s.subgroup ? ` (${SUBGROUP_LABEL[s.subgroup] || s.subgroup.toUpperCase()})` : '';
+    bits.push(`${GROUP_ORDINAL[s.group]} qrup${sg}`);
+  }
+  bits.push(s.lang === 'en' ? 'İngilis dilində' : 'Azərbaycan dilində');
+  bits.push(s.type === 'qiyabi' ? 'qiyabi' : 'əyani');
+  if (s.isQazax) bits.push('Qazax filialı');
+  return bits.join(', ');
+}
+
+/* İxtisasın keçid ballarını oxunaqlı sətrə çevirir */
+function specScoreLine(s) {
+  return `ödənişsiz ${scoreText(s.free)}, ödənişli ${scoreText(s.paid)}`;
+}
+
+function buildDynamicFaqEntries() {
+  const entries = [];
+
+  /* --- Korpuslar --- */
+  KORPUSLAR.forEach(k => {
+    const facs = k.facultyIds
+      .map(fid => { const f = FACULTIES.find(x => x.id === fid); return f ? f.name : null; })
+      .filter(Boolean);
+    entries.push({
+      keywords: [
+        k.name.toLowerCase(),
+        `${k.name.toLowerCase()} harada`,
+        `${k.name.toLowerCase()} hansı fakültələr`,
+        `${k.name.toLowerCase()} fakültələr`,
+      ],
+      answer: `${k.name} — ${k.location}.\n\n${k.desc}\n\nBu korpusdakı fakültələr (${facs.length}):\n• ${facs.join('\n• ')}`
+    });
+  });
+
+  /* --- Fakültələr (ixtisas siyahısı ilə) --- */
+  FACULTIES.forEach(f => {
+    const kor = korpusOfFaculty(f.id);
+    const lines = f.specialties.map(s => `• ${s.name} — ${specMetaLine(s)}; ${specScoreLine(s)}`);
+    entries.push({
+      keywords: [
+        f.name.toLowerCase(),
+        f.short.toLowerCase(),
+        `${f.name.toLowerCase()} ixtisaslar`,
+        `${f.name.toLowerCase()} ixtisasları`,
+        `${f.name.toLowerCase()} harada`,
+        `${f.name.toLowerCase()} neçə ixtisas`,
+      ],
+      answer: `${f.name}\n\n${f.about || ''}\n\n${kor ? 'Yerləşmə: ' + kor + '.' : ''}\nİxtisaslar (${f.specialties.length}):\n${lines.join('\n')}`
+    });
+  });
+
+  /* --- Hər ixtisas (ayrıca) --- */
+  FACULTIES.forEach(f => {
+    f.specialties.forEach(s => {
+      entries.push({
+        keywords: [s.name.toLowerCase()],
+        answer: `${s.name}\n\nFakültə: ${f.name}\n${specMetaLine(s)}\nİxtisas kodu: ${s.code}\nÖdənişsiz keçid balı: ${scoreText(s.free)}\nÖdənişli keçid balı: ${scoreText(s.paid)}`
+      });
+    });
+  });
+
+  return entries;
+}
+
 /* Axtarış indeksi */
 let _faqIndex = null;
 function getFaqIndex() {
   if (_faqIndex) return _faqIndex;
-  _faqIndex = FAQ_DATA.map(entry => ({
+  /* Statik girişlər + fakültə/korpus/ixtisas üzrə dinamik girişlər */
+  const all = FAQ_DATA.concat(buildDynamicFaqEntries());
+  _faqIndex = all.map(entry => ({
     entry,
-    kwLower: entry.keywords.map(k => k.toLowerCase())
+    kwLower: entry.keywords.map(k => String(k).toLowerCase())
   }));
   return _faqIndex;
 }
 
+/* Açar sözün balı: nə qədər uzun və konkretdirsə, bir o qədər yüksək.
+   Çox qısa (<=3 hərf) sözlər yalnız tam söz kimi uyğun gəlir ki,
+   təsadüfi alt-sətir uyğunluğu yanlış cavab verməsin. */
+function faqKeywordScore(kw, lower, tokens) {
+  if (!kw) return 0;
+  if (kw.length <= 3) {
+    return tokens.has(kw) ? kw.length : 0;
+  }
+  if (lower.indexOf(kw) === -1) return 0;
+  /* Çoxsözlü açar sözlər daha konkretdir */
+  return kw.length + (kw.indexOf(' ') !== -1 ? 10 : 0);
+}
+
 function getBduluAnswer(text) {
-  const lower = text.toLowerCase().trim();
+  const lower = text.toLowerCase().trim().replace(/\s+/g, ' ');
   const index = getFaqIndex();
 
+  /* Normalizə edilmiş söz dəsti (qısa açar sözlər üçün) */
+  const tokens = new Set(lower.split(/[^0-9a-zəğıöşüç]+/i).filter(Boolean));
+
+  /* Ən yüksək ballı girişi seç (bərabərlikdə əvvəlki giriş üstünlük alır) */
+  let best = null;
+  let bestScore = 0;
   for (const { entry, kwLower } of index) {
+    let score = 0;
     for (const kw of kwLower) {
-      if (lower.includes(kw)) return entry.answer;
+      const sc = faqKeywordScore(kw, lower, tokens);
+      if (sc > score) score = sc;
+    }
+    if (score > bestScore) {
+      bestScore = score;
+      best = entry;
     }
   }
+  if (best) return best.answer;
 
-  const words = lower.split(/\s+/).filter(w => w.length >= 3);
+  /* Ehtiyat: söz-səviyyəli qismən uyğunluq */
+  const words = lower.split(/[^0-9a-zəğıöşüç]+/i).filter(w => w.length >= 4);
   if (words.length > 0) {
     for (const { entry, kwLower } of index) {
       for (const kw of kwLower) {
@@ -1369,7 +1709,7 @@ function getBduluAnswer(text) {
     }
   }
 
-  return 'Bu barədə məlumatım yoxdur.\n\nAşağıdakı mövzularda kömək edə bilərəm:\n• Korpusların yeri\n• Dərs saatları\n• Yataqxana\n• BDU reytinqi\n• Fakültələr\n• Qəbul məlumatları';
+  return 'Bu barədə məlumatım yoxdur.\n\nAşağıdakı mövzularda kömək edə bilərəm:\n• Fakültələr və ixtisaslar\n• Korpusların yeri\n• Dərs saatları\n• Yataqxana\n• BDU reytinqi\n• Qəbul məlumatları\n\nNümunə: "Kimya fakültəsi", "Tətbiqi Riyaziyyat və Kibernetika", "C korpusu".';
 }
 
 /* =========================================================
@@ -1741,6 +2081,7 @@ window.toggleFilter           = toggleFilter;
 window.onGroupChange          = onGroupChange;
 window.updateTotal            = updateTotal;
 window.calculate              = calculate;
+window.showMoreResults        = showMoreResults;
 window.handleModalOverlayClick = handleModalOverlayClick;
 window.toggleBdulu            = toggleBdulu;
 window.openBdulu              = openBdulu;

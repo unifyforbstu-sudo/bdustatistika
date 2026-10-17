@@ -1235,6 +1235,38 @@ button, [role="button"], .filter-chip, .faculty-card, .korpus-card, .dir-row, .k
   border-radius: var(--r-md);
 }
 
+/* "Daha çox göstər" düyməsi */
+.results-more {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s2);
+  padding: var(--s4) 0 var(--s6);
+}
+.btn-more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s2);
+  min-height: 46px;
+  padding: var(--s3) var(--s6);
+  font-size: .9375rem;
+  font-weight: 700;
+  color: var(--navy);
+  background: var(--paper);
+  border: 1px solid var(--navy);
+  border-radius: var(--r-md);
+  transition: background .15s, color .15s, border-color .15s;
+}
+.btn-more:hover { background: var(--navy); color: #fff; }
+.btn-more:active { transform: translateY(1px); }
+.btn-more .ico { width: 16px; height: 16px; }
+.results-more-note {
+  font-size: .75rem;
+  font-weight: 600;
+  color: var(--ink-mute);
+}
+
 /* ===== MƏZUNLAR SƏHİFƏSİ ===== */
 .graduates-grid-page {
   display: grid;
@@ -1261,6 +1293,85 @@ button, [role="button"], .filter-chip, .faculty-card, .korpus-card, .dir-row, .k
   font-weight: 600;
   color: var(--ink-soft);
   text-align: center;
+}
+
+/* Məzun kartları - poster şəkilləri 4:5 nisbətindədir */
+.graduate-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-1);
+  transition: box-shadow .16s, border-color .16s, transform .16s;
+}
+.graduate-card:hover {
+  border-color: var(--gold);
+  box-shadow: var(--shadow-2);
+  transform: translateY(-2px);
+}
+.graduate-photo-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  background: var(--cream);
+  border-bottom: 1px solid var(--line-2);
+  overflow: hidden;
+}
+.graduate-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+.graduate-photo-failed::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--cream);
+}
+.graduate-info {
+  padding: var(--s3) var(--s4) var(--s4);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.graduate-name {
+  font-size: 1.0625rem;
+  line-height: 1.25;
+  color: var(--ink);
+  margin-bottom: var(--s1);
+}
+.graduate-country {
+  font-size: .6875rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  line-height: 1.45;
+}
+.graduate-university {
+  font-size: .875rem;
+  font-weight: 600;
+  color: var(--navy-soft);
+  line-height: 1.4;
+  margin-top: var(--s2);
+}
+.graduate-specialty {
+  font-size: .8125rem;
+  color: var(--ink-soft);
+  line-height: 1.45;
+  margin-top: var(--s2);
+}
+.graduate-specialty-label {
+  display: inline-block;
+  font-size: .625rem;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-right: var(--s1);
 }
 
 /* =====================================================================

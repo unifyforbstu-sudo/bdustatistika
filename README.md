@@ -20,6 +20,7 @@ webapp/
 ├── script.js     # data, hesablayıcı, naviqasiya, BDULU köməkçisi
 ├── fonts/        # öz serverimizdən verilən woff2 şrift faylları
 └── images/       # BDU gerbi, fakültə loqoları, BDULU avatarı
+    └── mezunlar/ # uğurlu məzunların poster şəkilləri
 ```
 
 ## Hazır olan imkanlar
@@ -27,15 +28,17 @@ webapp/
 | Bölmə | Təsvir |
 |---|---|
 | **Bal hesabla** | Qrup, alt qrup, buraxılış və blok balına görə ixtisaslar üzrə qəbul faizini hesablayır |
+| **Nəticə səhifələmə** | İlk 15 ixtisas balanslı göstərilir (5 yüksək + 5 orta + 5 aşağı); "Daha çox göstər" hər basışda 6 ixtisas əlavə edir |
 | **Filtr sistemi** | Ödəniş növü, tədris dili, tədris forması və Qazax filialı üzrə süzgəc |
-| **Bütün qruplar** | 1, 2, 3 və 4-cü qruplar üzrə ixtisas və bal statistikası (cəmi 111 ixtisas) |
+| **Bütün qruplar** | 1, 2, 3 və 4-cü qruplar üzrə ixtisas və bal statistikası (cəmi 109 ixtisas) |
 | **Alt qruplar** | 1-ci qrup üçün RI / RK, 3-cü qrup üçün DT / TC alt qrupları |
 | **Fakültələr** | 16 fakültə, hər biri üçün ixtisas siyahısı və qəbul balları |
 | **Korpuslar** | 5 korpus, yerləşmə məlumatı və korpusdakı fakültələr (modal pəncərə) |
 | **RI statistikası** | RI alt qrupu üçün bal müqayisəsi diaqramları |
-| **BDULU köməkçi** | Sürüklənə bilən chat vidjeti; BDU haqqında ~50 mövzuda cavab verir |
+| **Scroll bərpası** | "Geri" düyməsi istifadəçini tərk etdiyi səhifəyə elə həmin scroll mövqeyində qaytarır |
+| **BDULU köməkçi** | Sürüklənə bilən chat vidjeti; fakültələr, ixtisaslar, korpuslar və qəbul barədə dinamik cavab verir |
 | **Quick Replies** | Hər mesajdan sonra yenidən görünən sürətli sual düymələri; seçilmiş sual təkrar göstərilmir |
-| **Uğurlu məzunlar** | Bölmə hazırdır, məlumat gözlənilir |
+| **Uğurlu məzunlar** | Dövlət Proqramının qalibi 6 məzunun poster şəkilləri (responsive şəbəkə) |
 
 ## Dizayn qərarları
 
@@ -84,19 +87,22 @@ Sayt heç bir verilənlər bazası və ya server istifadə etmir. Bütün məlum
   forması, ödənişsiz və ödənişli qəbul balları var. Ödənişsiz yer olmadıqda
   `free: null` yazılır və interfeysdə `—` kimi göstərilir.
 - **`KORPUSLAR`** – korpus adı, ikonu, yerləşməsi, rəngi və aid fakültələr.
-- **`FAQ_DATA`** – BDULU köməkçisinin açar sözləri və cavabları.
+- **`GRADUATES`** – uğurlu məzunlar: ad, ölkə, universitet, ixtisas və poster şəkli.
+- **`FAQ_DATA`** – BDULU köməkçisinin statik açar sözləri və cavabları.
+- **Dinamik FAQ** – BDULU cavabları `FACULTIES` və `KORPUSLAR` məlumatından
+  avtomatik qurulur; hər fakültə, korpus və ixtisas üzrə ayrıca cavab verilir.
 
 ### İxtisas sayı (qruplar üzrə)
 
 | Qrup | Alt qrup | İxtisas sayı |
 |---|---|---|
 | 1-ci qrup | RI | 4 |
-| 1-ci qrup | RK | 23 |
-| 2-ci qrup | — | 16 |
-| 3-cü qrup | DT | 36 |
+| 1-ci qrup | RK | 22 |
+| 2-ci qrup | — | 15 |
+| 3-cü qrup | DT | 37 |
 | 3-cü qrup | TC | 17 |
-| 4-cü qrup | — | 15 |
-| **Cəmi** | | **111** |
+| 4-cü qrup | — | 14 |
+| **Cəmi** | | **109** |
 
 > 3-cü qrup üçün beynəlxalq münasibətlər və regionşünaslıq ixtisasları yalnız
 > **TC** alt qrupuna, qalan ixtisaslar isə **DT** alt qrupuna aiddir.
@@ -104,7 +110,6 @@ Sayt heç bir verilənlər bazası və ya server istifadə etmir. Bütün məlum
 
 ## Sonrakı addımlar
 
-- Uğurlu məzunlar bölməsi üçün real məlumatların əlavə edilməsi.
 - Subbakalavrlar üzrə müsabiqə sətirlərinin əlavə edilməsi.
 - Qəbul faizi hesablamasının rəsmi keçid balı məlumatları ilə dəqiqləşdirilməsi.
 
