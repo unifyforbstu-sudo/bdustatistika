@@ -40,7 +40,7 @@ webapp/
 | **Korpuslar** | 5 korpus, yerləşmə məlumatı və korpusdakı fakültələr (modal pəncərə) |
 | **Uğurlu məzunlar** | Dövlət Proqramının qalibi 6 məzunun poster şəkilləri (responsive şəbəkə) |
 | **Scroll bərpası** | "Geri" düyməsi istifadəçini tərk etdiyi səhifəyə elə həmin scroll mövqeyində qaytarır |
-| **BDULU köməkçi** | Sürüklənə bilən chat vidjeti; fakültələr, ixtisaslar, korpuslar, qəbul və tələbə xidmətləri barədə dinamik cavab verir. **32 qeydlik tələbə həyatı məlumatı** (6 təşkilat, 17 klub, 9 mərkəz) BDULU-ya bilik kimi öyrədilib — hər qeyd üçün ad, təsvir, yerləşmə və fəaliyyət istiqamətləri ayrıca cavab kimi verilir |
+| **BDULU köməkçi** | Sürüklənə bilən chat vidjeti; fakültələr, ixtisaslar, korpuslar, qəbul və tələbə xidmətləri barədə dinamik cavab verir. **31 qeydlik tələbə həyatı məlumatı** (6 təşkilat, 16 klub, 9 mərkəz) BDULU-ya bilik kimi öyrədilib — hər qeyd üçün ad, təsvir, yerləşmə və fəaliyyət istiqamətləri ayrıca cavab kimi verilir. Klub və mərkəz suallarında əvvəlcə **3 əsas qeyd** göstərilir, "hamısını göstər" yazıldıqda isə bütün qeydlər sadalanır |
 | **Quick Replies** | Hər mesajdan sonra yenidən görünən sürətli sual düymələri; seçilmiş sual təkrar göstərilmir |
 
 ## Tələbə həyatı məlumatı (BDULU biliyi)
@@ -48,8 +48,9 @@ webapp/
 Tələbə həyatı artıq saytda ayrıca bölmə deyil. Bütün məlumat **BDULU**
 köməkçisinə bilik kimi öyrədilib: istifadəçi klub, təşkilat və ya mərkəzin
 adını yazdıqda həmin qeydin təsviri, yerləşməsi və fəaliyyət istiqamətləri
-cavab kimi göstərilir. Ümumi suallar ("klublar hansılardır?", "hansı
-mərkəzlər var?") isə kateqoriya üzrə tam siyahı qaytarır.
+cavab kimi göstərilir. Klub və mərkəz suallarında əvvəlcə **3 əsas (featured)
+qeyd** göstərilir; istifadəçi **"hamısını göstər"** yazdıqda isə kateqoriya
+üzrə bütün qeydlər sadalanır.
 
 Məlumat BDU-nun rəsmi mənbələrinə (`bsu.edu.az`, `tetym.bsu.edu.az`,
 `sdg.bsu.edu.az`, TGT/TEC/TETYM açıqlamaları) əsaslanır və üç kateqoriyaya
@@ -58,21 +59,32 @@ bölünür:
 | Kateqoriya | Sayı | Nümunələr |
 |---|---|---|
 | **Təşkilatlar** | 6 | Tələbə Gənclər Təşkilatı (TGT), Tələbə Həmkarlar İttifaqı Komitəsi (THİK), Tələbə Elmi Cəmiyyəti (TEC), "BDU könüllüləri", Gənc Alimlər Şurası, SABAH qrupları |
-| **Mərkəzlər** | 9 | Tələbə İnkişaf Mərkəzi, TETYM, Mədəniyyət-yaradıcılıq Mərkəzi, Karyera və məzunlarla iş Mərkəzi, İdman-sağlamlıq Mərkəzi, Psixoloji Yardım Sektoru, Elmi Kitabxana, İT Mərkəzi, "Eko Məkan" |
-| **Klublar** | 17 | **"C Club"**, **"Zadə Club"**, "YENİ Klub", "İƏT Modeli" (MOIC), Debat Klubu, "İstiqlal klubu", "CreArt", TED Club, "Price", "Lingua", "Art Club", "Kitab qurdu", İdeya və Kitab klubları, "IN Club", SDG klubu, Xəzər İntellektual Gənclər Klubu, "İntellekt Dünyası" |
+| **Mərkəzlər** | 9 | **Tələbə İnkişaf Mərkəzi**, **TETYM**, **Karyera və məzunlarla iş Mərkəzi** (3 əsas), Mədəniyyət-yaradıcılıq Mərkəzi, İdman-sağlamlıq Mərkəzi, Psixoloji Yardım Sektoru, Elmi Kitabxana, İT Mərkəzi, "Eko Məkan" |
+| **Klublar** | 16 | **"C Club" və "Zadə Club"** (proqramlaşdırma klubları — Fuad müəllim), **"YENİ Klub"**, **Debat Klubu** (3 əsas), "İƏT Modeli" (MOIC), "İstiqlal klubu", "CreArt", TED Club, "Price", "Lingua", "Art Club", "Kitab qurdu", İdeya və Kitab klubları, "IN Club", SDG klubu, Xəzər İntellektual Gənclər Klubu, "İntellekt Dünyası" |
+
+### Əsas klublar və mərkəzlər (featured)
+
+Hər kateqoriyada **3 əsas qeyd** xüsusi olaraq önə çıxarılır:
+
+- **Klublar (3 əsas)**: "C Club" və "Zadə Club", "YENİ Klub", Debat Klubu
+- **Mərkəzlər (3 əsas)**: Tələbə İnkişaf Mərkəzi, TETYM, Karyera və məzunlarla iş Mərkəzi
+
+Əsas qeydlər siyahının başında göstərilir, qalan qeydlər isə istifadəçi
+"hamısını göstər" yazdıqda tam siyahı kimi təqdim olunur.
 
 ### Proqramlaşdırma klubları
 
-**"C Club"** və **"Zadə Club"** proqramlaşdırma klubları kimi qeyd olunub və
-BDULU cavablarında **həmişə birinci** göstərilir:
+**"C Club"** və **"Zadə Club"** proqramlaşdırma klublarıdır və **hər ikisi
+Fuad müəllim tərəfindən keçirilir**. Ona görə BDULU-da **bir qeyd** kimi
+birləşdirilib və cavablarda **həmişə birinci** göstərilir:
 
 - **"C Club"** — proqramlaşdırma və rəqəmsal texnologiyalar klubu: kodlaşdırma,
   proqramlaşdırma dilləri, texnoloji layihələr.
 - **"Zadə Club"** — proqramlaşdırma, qeyri-səlis məntiq və süni intellekt klubu:
   Lütfi Zadənin elmi irsi, riyaziyyat və məntiq.
 
-"proqramlaşdırma klubları hansılardır?" sualına BDULU bu iki klubu başda
-göstərməklə cavab verir.
+"proqramlaşdırma klubları hansılardır?" sualına BDULU bu iki klubu Fuad
+müəllim tərəfindən keçirildiyini qeyd etməklə cavab verir.
 
 ### Axtarışın dəqiqliyi
 
@@ -106,7 +118,7 @@ Sayt şablon görünüşündən uzaqlaşdırılmaq üçün aşağıdakı prinsip
 | **Şəkillər WebP-ə çevrildi** | 1556 KB → 337 KB (**79% azalma**); loqolar 220px → 184px, məzun şəkilləri 819×1024 → 496×620 |
 | **Şriftlər alt-küme edildi** (yalnız saytda istifadə olunan 128 simvol) | 350 KB → 154 KB (**56% azalma**) |
 | **Səhifə gecikmiş qurulması** | Fakültə, korpus və məzun kartları yalnız səhifə açıldıqda qurulur; bir dəfə qurulandan sonra yenidən yaradılmır |
-| **Tələbə həyatı səhifəsi silindi** | Ayrıca bölmə, onun DOM-u, CSS-i və 32 kartı tam çıxarıldı; məlumat yalnız BDULU cavablarında string kimi saxlanılır — daha az DOM, daha az yaddaş |
+| **Tələbə həyatı səhifəsi silindi** | Ayrıca bölmə, onun DOM-u, CSS-i və 31 kartı tam çıxarıldı; məlumat yalnız BDULU cavablarında string kimi saxlanılır — daha az DOM, daha az yaddaş |
 | **Artıq ikonlar təmizləndi** | Yalnız istifadə olunan SVG ikonları sprite-da saxlanılır |
 | **Donut diaqram limiti** | Çox ixtisaslı qruplarda yalnız ən yüksək həddi olan 12 ixtisas donut-da göstərilir (çubuq diaqramında hamısı qalır) |
 | **Şəkil yükləmə** | `loading="lazy"`, `decoding="async"`, loqolarda `width`/`height` (CLS-in qarşısını alır) |

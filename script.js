@@ -535,6 +535,7 @@ const STUDENT_LIFE = [
     name: 'Tələbə İnkişaf Mərkəzi',
     cat: 'center',
     icon: 'i-bulb',
+    featured: true,
     meta: '2025-ci il sentyabr · Bilik Günü açılışı',
     tags: ['Mərkəz', 'Şəbəkələşmə', 'İnkişaf'],
     where: 'Kampus ərazisi',
@@ -551,6 +552,7 @@ const STUDENT_LIFE = [
     name: 'Tələbə Elmi-Texniki Yaradıcılıq Mərkəzi (TETYM)',
     cat: 'center',
     icon: 'i-robot',
+    featured: true,
     meta: '2022-ci il iyun · 24 saat açıq',
     tags: ['Mərkəz', 'Robototexnika', 'Proqramlaşdırma', 'Dizayn'],
     where: 'Əsas tədris binası, I mərtəbə',
@@ -588,6 +590,7 @@ const STUDENT_LIFE = [
     name: 'Karyera və məzunlarla iş Mərkəzi',
     cat: 'center',
     icon: 'i-target',
+    featured: true,
     meta: '2023-cü il dekabr',
     tags: ['Mərkəz', 'Karyera', 'Məzunlar', 'Təcrübə'],
     about: 'Karyera və məzunlarla iş Mərkəzi 2023-cü il dekabrın 30-da BDU Elmi Şurasının qərarı ilə yaradılıb. Mərkəz tələbələrin əmək bazarına hazırlanması, karyera planlaşdırılması, təcrübə və iş imkanları, məzunlarla əlaqələrin qurulması ilə məşğuldur.',
@@ -681,6 +684,7 @@ const STUDENT_LIFE = [
     name: '“YENİ Klub”',
     cat: 'club',
     icon: 'i-club',
+    featured: true,
     meta: 'Universitetdaxili ictimai-siyasi klub',
     tags: ['Klub', 'İctimai fəaliyyət', 'Vətənpərvərlik'],
     about: '“YENİ Klub” BDU-da fəaliyyət göstərən fəal tələbə klublarından biridir. Klub layihələri əsasən dövlətçilik, milli ideologiya və vətənpərvərlik mövzularını əhatə edir.',
@@ -693,39 +697,31 @@ const STUDENT_LIFE = [
     ],
   },
   {
-    id: 'c-club',
-    name: '“C Club”',
+    /* “C Club” və “Zadə Club” — hər ikisi proqramlaşdırma klubudur və
+       hər ikisi Fuad müəllim tərəfindən keçirilir. Ona görə bir qeyd
+       kimi verilir. */
+    id: 'c-zade-club',
+    name: '“C Club” və “Zadə Club”',
     cat: 'club',
     icon: 'i-code',
     programming: true,
-    aliases: ['C klub', 'C Club BDU', 'C-club', 'CClub', 'C klub BDU'],
-    meta: 'Proqramlaşdırma və rəqəmsal texnologiyalar klubu',
-    tags: ['Klub', 'Proqramlaşdırma', 'Texnologiya', 'Rəqəmsal', 'İT'],
-    about: '“C Club” BDU-nun proqramlaşdırma yönümlü tələbə klublarındandır. Klub tələbələri kodlaşdırma, proqramlaşdırma dilləri, rəqəmsal texnologiyalar və texnoloji layihələr ətrafında birləşdirir. Burada proqramlaşdırma öyrənilir, komanda ilə real layihələr hazırlanır və rəqəmsal bacarıqların inkişafı üzrə təşəbbüslərdə, müsabiqələrdə iştirak edilir.',
-    facts: [
-      'Proqramlaşdırma dilləri və kodlaşdırma üzrə təlimlər',
-      'Rəqəmsal alətlər üzrə praktik məşğələlər',
-      'Texnoloji layihələr və komanda işi',
-      'Rəqəmsal bacarıqlar və proqramlaşdırma müsabiqələrində iştirak',
-      'TETYM-in texnologiya təlimləri ilə əlaqəli fəaliyyət',
+    featured: true,
+    teacher: 'Fuad müəllim',
+    aliases: [
+      'C klub', 'C Club', 'C Club BDU', 'C-club', 'CClub', 'C klub BDU',
+      'Zadə klub', 'Zadə Club', 'Zade Club', 'Zade klub',
+      'Lütfi Zadə klubu', 'Lutfi Zade Club',
     ],
-  },
-  {
-    id: 'zade-club',
-    name: '“Zadə Club”',
-    cat: 'club',
-    icon: 'i-target',
-    programming: true,
-    aliases: ['Zadə klub', 'Zade Club', 'Zade klub', 'Lütfi Zadə klubu', 'Lutfi Zade Club'],
-    meta: 'Proqramlaşdırma, qeyri-səlis məntiq və süni intellekt klubu',
-    tags: ['Klub', 'Proqramlaşdırma', 'Süni intellekt', 'Riyaziyyat', 'Qeyri-səlis məntiq'],
-    about: '“Zadə Club” BDU-nun proqramlaşdırma klublarındandır və dünya şöhrətli azərbaycanlı alim, qeyri-səlis məntiq nəzəriyyəsinin banisi Lütfi Zadənin elmi irsini təbliğ edir. Klub proqramlaşdırma, süni intellekt, riyaziyyat və məntiq mövzularında tələbələri bir araya gətirir.',
+    meta: 'Proqramlaşdırma klubları · Fuad müəllim tərəfindən keçirilir',
+    tags: ['Klub', 'Proqramlaşdırma', 'Texnologiya', 'Rəqəmsal', 'İT', 'Süni intellekt', 'Riyaziyyat', 'Qeyri-səlis məntiq'],
+    about: '“C Club” və “Zadə Club” BDU-nun proqramlaşdırma yönümlü tələbə klublarıdır və hər ikisi Fuad müəllim tərəfindən keçirilir.\n\n• “C Club” — proqramlaşdırma və rəqəmsal texnologiyalar klubu: kodlaşdırma, proqramlaşdırma dilləri, rəqəmsal texnologiyalar və texnoloji layihələr. Burada proqramlaşdırma öyrənilir, komanda ilə real layihələr hazırlanır və rəqəmsal bacarıqların inkişafı üzrə təşəbbüslərdə, müsabiqələrdə iştirak edilir.\n• “Zadə Club” — proqramlaşdırma, qeyri-səlis məntiq və süni intellekt klubu: dünya şöhrətli azərbaycanlı alim, qeyri-səlis məntiq nəzəriyyəsinin banisi Lütfi Zadənin elmi irsi, riyaziyyat və məntiq.',
     facts: [
-      'Lütfi Zadənin elmi irsinin təbliği',
+      'Hər iki klub Fuad müəllim tərəfindən keçirilir',
+      'Proqramlaşdırma dilləri və kodlaşdırma üzrə təlimlər',
+      'Rəqəmsal alətlər üzrə praktik məşğələlər və texnoloji layihələr',
       'Qeyri-səlis məntiq və süni intellekt mövzulu tədbirlər',
-      'İntellektual yarışlar və elmi müzakirələr',
-      '“Lütfi Zadə 105” kimi yubiley tədbirləri ilə əlaqəli fəaliyyət',
-      'Lütfi Zadə adına təqaüd proqramı ilə tanışlıq',
+      'Lütfi Zadənin elmi irsinin təbliği',
+      'Rəqəmsal bacarıqlar və proqramlaşdırma müsabiqələrində iştirak',
     ],
   },
   {
@@ -749,6 +745,7 @@ const STUDENT_LIFE = [
     name: 'Debat Klubu',
     cat: 'club',
     icon: 'i-mic',
+    featured: true,
     meta: 'Natiqlik və müzakirə bacarıqları',
     tags: ['Klub', 'Debat', 'Natiqlik'],
     about: 'Debat Klubu tələbələrin natiqlik, arqument qurma və tənqidi düşünmə bacarıqlarını inkişaf etdirir. Klub Tələbə Həmkarlar İttifaqı Komitəsinin təşkilatçılığı ilə universitetlərarası debat turnirləri keçirir.',
@@ -2127,8 +2124,8 @@ const FAQ_DATA = [
     answer: 'BDU-da fəaliyyət göstərən tələbə təşkilatları:\n• Tələbə Gənclər Təşkilatı (TGT)\n• Tələbə Həmkarlar İttifaqı Komitəsi (THİK)\n• Tələbə Elmi Cəmiyyəti (TEC)\n• “BDU könüllüləri”\n• Gənc Alimlər Şurası\n• SABAH qrupları\n\nKlublar və mərkəzlər haqqında məlumat üçün adını yazın (məs. "C Club", "Zadə Club", "proqramlaşdırma klubları").'
   },
   {
-    keywords: ['proqramlaşdırma klubları', 'proqramlaşdırma klubu', 'proqramlasdirma klublari', 'kodlaşdırma klubu', 'it klubları', 'texnologiya klubları'],
-    answer: 'BDU-da proqramlaşdırma və texnologiya yönümlü əsas tələbə klubları:\n• “C Club” — proqramlaşdırma və rəqəmsal texnologiyalar klubu; kodlaşdırma, proqramlaşdırma dilləri və texnoloji layihələr.\n• “Zadə Club” — proqramlaşdırma, qeyri-səlis məntiq və süni intellekt klubu; Lütfi Zadənin elmi irsi, riyaziyyat və məntiq.\n\nHər klub haqqında ətraflı məlumat üçün adını yazın (məs. "C Club", "Zadə Club").'
+    keywords: ['proqramlaşdırma klubları', 'proqramlaşdırma klubu', 'proqramlasdirma klublari', 'kodlaşdırma klubu', 'it klubları', 'texnologiya klubları', 'fuad müəllim', 'fuad muellim'],
+    answer: 'BDU-da proqramlaşdırma və texnologiya yönümlü əsas tələbə klubları:\n• “C Club” — proqramlaşdırma və rəqəmsal texnologiyalar klubu; kodlaşdırma, proqramlaşdırma dilləri və texnoloji layihələr.\n• “Zadə Club” — proqramlaşdırma, qeyri-səlis məntiq və süni intellekt klubu; Lütfi Zadənin elmi irsi, riyaziyyat və məntiq.\n\nHər iki klub (C Club və Zadə Club) Fuad müəllim tərəfindən keçirilir.\n\nƏtraflı məlumat üçün adını yazın (məs. "C Club", "Zadə Club").'
   },
   {
     keywords: ['inkişaf mərkəzi', 'tələbə inkişaf', 'student space', 'eco space', 'eco energy'],
@@ -2332,7 +2329,7 @@ function buildDynamicFaqEntries() {
     });
   });
 
-  /* Proqramlaşdırma klubları: C Club və Zadə Club həmişə birinci */
+  /* Proqramlaşdırma klubları: “C Club” və “Zadə Club” (Fuad müəllim) */
   const progClubs = STUDENT_LIFE.filter(x => x.programming);
   if (progClubs.length) {
     const progLines = progClubs.map(x => `• ${x.name} — ${x.meta || ''}${x.about ? '\n  ' + x.about : ''}`);
@@ -2341,32 +2338,60 @@ function buildDynamicFaqEntries() {
         'proqramlaşdırma klubları', 'proqramlaşdırma klubu', 'proqramlasdirma klublari',
         'proqramlaşdırma', 'proqramlaşdırma klubları hansılardır', 'kodlaşdırma klubu',
         'it klubları', 'texnologiya klubları', 'hansı proqramlaşdırma klubları var',
+        'fuad müəllim', 'fuad muellim',
       ],
-      answer: `BDU-da proqramlaşdırma və texnologiya yönümlü əsas tələbə klubları:\n${progLines.join('\n')}\n\nHər klub haqqında ətraflı məlumat üçün adını yazın (məs. "C Club", "Zadə Club").`
+      answer: `BDU-da proqramlaşdırma və texnologiya yönümlü əsas tələbə klubları:\n${progLines.join('\n')}\n\nHər iki klub (C Club və Zadə Club) Fuad müəllim tərəfindən keçirilir.\n\nƏtraflı məlumat üçün adını yazın (məs. "C Club", "Zadə Club").`
     });
   }
 
   /* Kateqoriya üzrə toplu cavablar.
-     Klublar siyahısında C Club və Zadə Club həmişə başda göstərilir. */
+     Əvvəlcə 3 əsas (featured) qeyd, sonra istifadəçi əlavə məlumat
+     istədikdə bütün qalan qeydlər göstərilir. */
   const CAT_INTRO = {
     org: 'BDU-da fəaliyyət göstərən tələbə təşkilatları',
-    club: 'BDU-da fəaliyyət göstərən tələbə klubları',
-    center: 'BDU-da fəaliyyət göstərən mərkəzlər',
+    club: 'BDU-da fəaliyyət göstərən əsas tələbə klubları',
+    center: 'BDU-da fəaliyyət göstərən əsas mərkəzlər',
   };
+  /* Kateqoriya üzrə "3 əsas + qalanlar" cavabını qurur */
+  function catListAnswer(cat, onlyFeatured) {
+    const all = STUDENT_LIFE.filter(x => x.cat === cat)
+      .sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
+    const featured = all.filter(x => x.featured);
+    const others = all.filter(x => !x.featured);
+    const main = featured.length ? featured : all.slice(0, 3);
+    const rest = featured.length ? others : all.slice(3);
+    const lines = main.map(x => `• ${x.name}${x.meta ? ' — ' + x.meta : ''}`);
+    let out = `${CAT_INTRO[cat]} (${main.length}):\n${lines.join('\n')}`;
+    if (onlyFeatured) {
+      out += `\n\nƏlavə ${rest.length} qeyd də var. Hamısını görmək üçün "hamısını göstər" yazın.`;
+    } else if (rest.length) {
+      const restLines = rest.map(x => `• ${x.name}${x.meta ? ' — ' + x.meta : ''}`);
+      out += `\n\nDigər ${cat === 'org' ? 'təşkilatlar' : cat === 'club' ? 'klublar' : 'mərkəzlər'} (${rest.length}):\n${restLines.join('\n')}`;
+    }
+    out += `\n\nHər biri haqqında ətraflı məlumat üçün adını yazın.`;
+    return out;
+  }
   Object.keys(SL_CATEGORIES).forEach(cat => {
-    /* Proqramlaşdırma klubları (C Club, Zadə Club) siyahının başına keçir */
-    const list = STUDENT_LIFE.filter(x => x.cat === cat)
-      .sort((a, b) => (b.programming ? 1 : 0) - (a.programming ? 1 : 0));
-    if (!list.length) return;
-    const lines = list.map(x => `• ${x.name}${x.meta ? ' — ' + x.meta : ''}`);
+    if (!STUDENT_LIFE.some(x => x.cat === cat)) return;
     const kwExtra = {
       org:    ['tələbə təşkilatları', 'təşkilatlar', 'hansı təşkilatlar var', 'tələbə təşkilatı'],
       club:   ['tələbə klubları', 'klublar', 'hansı klublar var', 'klub', 'club', 'klublar hansılardır', 'bduda klublar'],
       center: ['mərkəzlər', 'hansı mərkəzlər var', 'tələbə mərkəzləri', 'mərkəz'],
     }[cat] || [];
+    /* 1) Yalnız 3 əsas qeyd */
     entries.push({
       keywords: kwExtra,
-      answer: `${CAT_INTRO[cat]} (${list.length}):\n${lines.join('\n')}\n\nHər biri haqqında ətraflı məlumat üçün adını yazın.`
+      answer: catListAnswer(cat, true)
+    });
+    /* 2) "Hamısını göstər" — bütün qeydlər */
+    entries.push({
+      keywords: (cat === 'club'
+        ? ['hamısını göstər', 'hamisini goster', 'bütün klublar', 'butun klublar', 'bütün tələbə klubları', 'əlavə klublar', 'elave klublar', 'bütün klublar hansılardır']
+        : cat === 'center'
+        ? ['hamısını göstər', 'hamisini goster', 'bütün mərkəzlər', 'butun merkezler', 'əlavə mərkəzlər', 'elave merkezler', 'bütün mərkəzlər hansılardır']
+        : ['hamısını göstər', 'hamisini goster', 'bütün təşkilatlar', 'butun teskilatlar']
+      ),
+      answer: catListAnswer(cat, false)
     });
   });
 
